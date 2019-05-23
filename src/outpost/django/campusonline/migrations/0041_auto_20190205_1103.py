@@ -7,13 +7,10 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('campusonline', '0040_telephone'),
-    ]
+    dependencies = [("campusonline", "0040_telephone")]
 
     operations = [
         migrations.AlterModelOptions(
-            name='bulletinpage',
-            options={'ordering': ('-bulletin', 'index')},
-        ),
+            name="bulletinpage", options={"ordering": ("-bulletin", "index")}
+        )
     ]

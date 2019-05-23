@@ -48,13 +48,6 @@ class Migration(migrations.Migration):
         """,
     ]
 
-    dependencies = [
-        ('campusonline', '0025_personorganizationfunction'),
-    ]
+    dependencies = [("campusonline", "0025_personorganizationfunction")]
 
-    operations = [
-        migrations.RunSQL(
-            forward,
-            reverse
-        )
-    ]
+    operations = [migrations.RunSQL(forward, reverse)]

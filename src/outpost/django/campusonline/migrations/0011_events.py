@@ -8,12 +8,10 @@ from django.conf import settings
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('campusonline', '0010_auto_20171002_1450'),
-    ]
+    dependencies = [("campusonline", "0010_auto_20171002_1450")]
 
     forward = [
-        '''
+        """
         CREATE FOREIGN TABLE "campusonline"."veranstaltungen" (
             PK_LV numeric,
             REIHUNG numeric,
@@ -35,8 +33,10 @@ class Migration(migrations.Migration):
             tablename 'VERANSTALTUNGEN_HEUTE_V',
             db_url '{}'
         );
-        '''.format(settings.MULTICORN.get('campusonline')),
-        '''
+        """.format(
+            settings.MULTICORN.get("campusonline")
+        ),
+        """
         CREATE MATERIALIZED VIEW "public"."campusonline_event" AS SELECT
             md5(concat(reihung,typ,titel,datum,zeit_von,zeit_bis,pk_geb,pk_raum)) AS id,
             pk_lv::integer AS course_id,
@@ -51,20 +51,15 @@ class Migration(migrations.Migration):
             anzeige_bis AS show_end
         FROM "campusonline"."veranstaltungen"
         WITH DATA;
-        ''',
+        """,
     ]
 
     reverse = [
-        '''
+        """
         DROP MATERIALIZED VIEW IF EXISTS "public"."campusonline_event";
-        ''',
-        '''
+        """,
+        """
         DROP FOREIGN TABLE IF EXISTS "campusonline"."veranstaltungen";
-        ''',
+        """,
     ]
-    operations = [
-        migrations.RunSQL(
-            forward,
-            reverse
-        )
-    ]
+    operations = [migrations.RunSQL(forward, reverse)]

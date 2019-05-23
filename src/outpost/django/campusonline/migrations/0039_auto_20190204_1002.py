@@ -7,18 +7,15 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('campusonline', '0038_auto_20190128_1451'),
-    ]
+    dependencies = [("campusonline", "0038_auto_20190128_1451")]
 
     operations = [
         migrations.AddField(
-            model_name='bulletinpage',
-            name='clean',
+            model_name="bulletinpage",
+            name="clean",
             field=models.BooleanField(default=False),
         ),
         migrations.AlterUniqueTogether(
-            name='bulletinpage',
-            unique_together=set([('bulletin', 'index')]),
+            name="bulletinpage", unique_together=set([("bulletin", "index")])
         ),
     ]

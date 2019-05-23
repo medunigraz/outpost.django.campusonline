@@ -7,37 +7,30 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('campusonline', '0009_course_coursegroup_coursegroupterm_student'),
-    ]
+    dependencies = [("campusonline", "0009_course_coursegroup_coursegroupterm_student")]
 
     operations = [
         migrations.AlterModelOptions(
-            name='building',
-            options={'managed': False, 'ordering': ('name',)},
+            name="building", options={"managed": False, "ordering": ("name",)}
         ),
         migrations.AlterModelOptions(
-            name='floor',
-            options={'managed': False, 'ordering': ('name',)},
+            name="floor", options={"managed": False, "ordering": ("name",)}
         ),
         migrations.AlterModelOptions(
-            name='organization',
-            options={'managed': False, 'ordering': ('name',)},
+            name="organization", options={"managed": False, "ordering": ("name",)}
         ),
         migrations.AlterModelOptions(
-            name='person',
-            options={'managed': False, 'ordering': ('last_name', 'first_name')},
+            name="person",
+            options={"managed": False, "ordering": ("last_name", "first_name")},
         ),
         migrations.AlterModelOptions(
-            name='room',
-            options={'managed': False, 'ordering': ('name_full', 'title')},
+            name="room", options={"managed": False, "ordering": ("name_full", "title")}
         ),
         migrations.AlterModelOptions(
-            name='roomcategory',
-            options={'managed': False, 'ordering': ('name',)},
+            name="roomcategory", options={"managed": False, "ordering": ("name",)}
         ),
         migrations.AlterModelOptions(
-            name='student',
-            options={'managed': False, 'ordering': ('last_name', 'first_name')},
+            name="student",
+            options={"managed": False, "ordering": ("last_name", "first_name")},
         ),
     ]

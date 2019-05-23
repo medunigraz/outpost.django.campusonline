@@ -8,50 +8,50 @@ from django.db import migrations
 class Migration(migrations.Migration):
     ops = [
         (
-            '''
+            """
             DROP INDEX IF EXISTS campusonline_coursegroupterm_selection_idx;
-            ''',
-            '''
+            """,
+            """
             CREATE INDEX campusonline_coursegroupterm_selection_idx ON "public"."campusonline_coursegroupterm" ("person_id", "room_id", "start", "end");
-            ''',
+            """,
         ),
         (
-            '''
+            """
             DROP INDEX IF EXISTS campusonline_coursegroupterm_person_idx;
-            ''',
-            '''
+            """,
+            """
             CREATE INDEX campusonline_coursegroupterm_person_idx ON "public"."campusonline_coursegroupterm" ("person_id");
-            ''',
+            """,
         ),
         (
-            '''
+            """
             DROP INDEX IF EXISTS campusonline_coursegroupterm_room_idx;
-            ''',
-            '''
+            """,
+            """
             CREATE INDEX campusonline_coursegroupterm_room_idx ON "public"."campusonline_coursegroupterm" ("room_id");
-            ''',
+            """,
         ),
         (
-            '''
+            """
             DROP INDEX IF EXISTS campusonline_coursegroupterm_timerange_idx;
-            ''',
-            '''
+            """,
+            """
             CREATE INDEX campusonline_coursegroupterm_timerange_idx ON "public"."campusonline_coursegroupterm" ("start", "end");
-            ''',
+            """,
         ),
         (
-            '''
+            """
             DROP INDEX IF EXISTS campusonline_coursegroupterm_id_idx;
-            ''',
-            '''
+            """,
+            """
             CREATE INDEX campusonline_coursegroupterm_id_idx ON "public"."campusonline_coursegroupterm" ("id");
-            ''',
+            """,
         ),
         (
-            '''
+            """
             DROP MATERIALIZED VIEW IF EXISTS "public"."campusonline_coursegroupterm";
-            ''',
-            '''
+            """,
+            """
             CREATE MATERIALIZED VIEW "public"."campusonline_coursegroupterm" AS SELECT
                 format('%s-%s-%s', termin_nr::integer, lv_grp_nr::integer, pers_nr::integer) AS id,
                 termin_nr::integer AS term,
@@ -63,10 +63,10 @@ class Migration(migrations.Migration):
                 lerneinheit as title
             FROM "campusonline"."lv_grp_term"
             WITH DATA;
-            ''',
+            """,
         ),
         (
-            '''
+            """
             CREATE MATERIALIZED VIEW "public"."campusonline_coursegroupterm" AS SELECT
                 FORMAT(
                     '%s-%s-%s',
@@ -85,60 +85,58 @@ class Migration(migrations.Migration):
             INNER JOIN "campusonline"."personen" p
             ON lgt.pers_nr::integer = p.pers_nr::integer
             WITH DATA;
-            ''',
-            '''
+            """,
+            """
             DROP MATERIALIZED VIEW IF EXISTS "public"."campusonline_coursegroupterm";
-            ''',
+            """,
         ),
         (
-            '''
+            """
             CREATE INDEX campusonline_coursegroupterm_selection_idx ON "public"."campusonline_coursegroupterm" ("person_id", "room_id", "start", "end");
-            ''',
-            '''
+            """,
+            """
             DROP INDEX IF EXISTS campusonline_coursegroupterm_selection_idx;
-            ''',
+            """,
         ),
         (
-            '''
+            """
             CREATE INDEX campusonline_coursegroupterm_person_idx ON "public"."campusonline_coursegroupterm" ("person_id");
-            ''',
-            '''
+            """,
+            """
             DROP INDEX IF EXISTS campusonline_coursegroupterm_person_idx;
-            ''',
+            """,
         ),
         (
-            '''
+            """
             CREATE INDEX campusonline_coursegroupterm_room_idx ON "public"."campusonline_coursegroupterm" ("room_id");
-            ''',
-            '''
+            """,
+            """
             DROP INDEX IF EXISTS campusonline_coursegroupterm_room_idx;
-            ''',
+            """,
         ),
         (
-            '''
+            """
             CREATE INDEX campusonline_coursegroupterm_timerange_idx ON "public"."campusonline_coursegroupterm" ("start", "end");
-            ''',
-            '''
+            """,
+            """
             DROP INDEX IF EXISTS campusonline_coursegroupterm_timerange_idx;
-            ''',
+            """,
         ),
         (
-            '''
+            """
             CREATE INDEX campusonline_coursegroupterm_id_idx ON "public"."campusonline_coursegroupterm" ("id");
-            ''',
-            '''
+            """,
+            """
             DROP INDEX IF EXISTS campusonline_coursegroupterm_id_idx;
-            ''',
+            """,
         ),
     ]
 
-    dependencies = [
-        ('campusonline', '0044_auto_20190225_1708'),
-    ]
+    dependencies = [("campusonline", "0044_auto_20190225_1708")]
 
     operations = [
         migrations.RunSQL(
             [forward for forward, reverse in ops],
-            [reverse for forward, reverse in reversed(ops)]
+            [reverse for forward, reverse in reversed(ops)],
         )
     ]

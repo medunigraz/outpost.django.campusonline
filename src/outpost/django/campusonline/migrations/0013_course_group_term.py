@@ -8,28 +8,28 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
     forward = [
-        '''
+        """
         DROP INDEX IF EXISTS campusonline_coursegroupterm_selection_idx;
-        ''',
-        '''
+        """,
+        """
         DROP INDEX IF EXISTS campusonline_coursegroupterm_person_idx;
-        ''',
-        '''
+        """,
+        """
         DROP INDEX IF EXISTS campusonline_coursegroupterm_room_idx;
-        ''',
-        '''
+        """,
+        """
         DROP INDEX IF EXISTS campusonline_coursegroupterm_timerange_idx;
-        ''',
-        '''
+        """,
+        """
         DROP INDEX IF EXISTS campusonline_coursegroupterm_id_idx;
-        ''',
-        '''
+        """,
+        """
         DROP MATERIALIZED VIEW IF EXISTS "public"."campusonline_coursegroupterm";
-        ''',
-        '''
+        """,
+        """
         DROP FOREIGN TABLE IF EXISTS "campusonline"."lv_grp_term";
-        ''',
-        '''
+        """,
+        """
         CREATE FOREIGN TABLE "campusonline"."lv_grp_term" (
             LV_GRP_NR numeric,
             PERS_NR numeric,
@@ -43,8 +43,10 @@ class Migration(migrations.Migration):
             tablename 'LV_GRP_TERM_V',
             db_url '{}'
         );
-        '''.format(settings.MULTICORN.get('campusonline')),
-        '''
+        """.format(
+            settings.MULTICORN.get("campusonline")
+        ),
+        """
         CREATE MATERIALIZED VIEW "public"."campusonline_coursegroupterm" AS SELECT
             format('%s-%s-%s', termin_nr::integer, lv_grp_nr::integer, pers_nr::integer) AS id,
             termin_nr::integer AS term,
@@ -56,47 +58,47 @@ class Migration(migrations.Migration):
             lerneinheit as title
         FROM "campusonline"."lv_grp_term"
         WITH DATA;
-        ''',
-        '''
+        """,
+        """
         CREATE INDEX campusonline_coursegroupterm_id_idx ON "public"."campusonline_coursegroupterm" ("id");
-        ''',
-        '''
+        """,
+        """
         CREATE INDEX campusonline_coursegroupterm_timerange_idx ON "public"."campusonline_coursegroupterm" ("start", "end");
-        ''',
-        '''
+        """,
+        """
         CREATE INDEX campusonline_coursegroupterm_room_idx ON "public"."campusonline_coursegroupterm" ("room_id");
-        ''',
-        '''
+        """,
+        """
         CREATE INDEX campusonline_coursegroupterm_person_idx ON "public"."campusonline_coursegroupterm" ("person_id");
-        ''',
-        '''
+        """,
+        """
         CREATE INDEX campusonline_coursegroupterm_selection_idx ON "public"."campusonline_coursegroupterm" ("person_id", "room_id", "start", "end");
-        ''',
+        """,
     ]
 
     reverse = [
-        '''
+        """
         DROP INDEX IF EXISTS campusonline_coursegroupterm_selection_idx;
-        ''',
-        '''
+        """,
+        """
         DROP INDEX IF EXISTS campusonline_coursegroupterm_person_idx;
-        ''',
-        '''
+        """,
+        """
         DROP INDEX IF EXISTS campusonline_coursegroupterm_room_idx;
-        ''',
-        '''
+        """,
+        """
         DROP INDEX IF EXISTS campusonline_coursegroupterm_timerange_idx;
-        ''',
-        '''
+        """,
+        """
         DROP INDEX IF EXISTS campusonline_coursegroupterm_id_idx;
-        ''',
-        '''
+        """,
+        """
         DROP MATERIALIZED VIEW IF EXISTS "public"."campusonline_coursegroupterm";
-        ''',
-        '''
+        """,
+        """
         DROP FOREIGN TABLE IF EXISTS "campusonline"."lv_grp_term";
-        ''',
-        '''
+        """,
+        """
         CREATE FOREIGN TABLE "campusonline"."lv_grp_term" (
             LV_GRP_NR numeric,
             PERS_NR numeric,
@@ -109,8 +111,10 @@ class Migration(migrations.Migration):
             tablename 'LV_GRP_TERM_V',
             db_url '{}'
         );
-        '''.format(settings.MULTICORN.get('campusonline')),
-        '''
+        """.format(
+            settings.MULTICORN.get("campusonline")
+        ),
+        """
         CREATE MATERIALIZED VIEW "public"."campusonline_coursegroupterm" AS SELECT
             format('%s-%s-%s', termin_nr, lv_grp_nr, pers_nr) AS id,
             termin_nr::integer AS termroom_id,
@@ -121,20 +125,20 @@ class Migration(migrations.Migration):
             raum_nr::integer AS room_id
         FROM "campusonline"."lv_grp_term"
         WITH DATA;
-        ''',
-        '''
+        """,
+        """
         CREATE INDEX campusonline_coursegroupterm_id_idx ON "public"."campusonline_coursegroupterm" ("id");
-        ''',
-        '''
+        """,
+        """
         CREATE INDEX campusonline_coursegroupterm_timerange_idx ON "public"."campusonline_coursegroupterm" ("start", "end");
-        ''',
-        '''
+        """,
+        """
         CREATE INDEX campusonline_coursegroupterm_room_idx ON "public"."campusonline_coursegroupterm" ("room_id");
-        ''',
-        '''
+        """,
+        """
         CREATE INDEX campusonline_coursegroupterm_person_idx ON "public"."campusonline_coursegroupterm" ("person_id");
-        ''',
-        '''
+        """,
+        """
         CREATE INDEX
             campusonline_coursegroupterm_selection_idx
         ON
@@ -145,16 +149,9 @@ class Migration(migrations.Migration):
             "start",
             "end"
         );
-        ''',
+        """,
     ]
 
-    dependencies = [
-        ('campusonline', '0012_event'),
-    ]
+    dependencies = [("campusonline", "0012_event")]
 
-    operations = [
-        migrations.RunSQL(
-            forward,
-            reverse
-        )
-    ]
+    operations = [migrations.RunSQL(forward, reverse)]

@@ -7,19 +7,15 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('campusonline', '0041_auto_20190205_1103'),
-    ]
+    dependencies = [("campusonline", "0041_auto_20190205_1103")]
 
     operations = [
         migrations.AddField(
-            model_name='bulletinpage',
-            name='harvest',
+            model_name="bulletinpage",
+            name="harvest",
             field=models.BooleanField(default=False),
         ),
         migrations.AlterField(
-            model_name='bulletinpage',
-            name='text',
-            field=models.TextField(null=True),
+            model_name="bulletinpage", name="text", field=models.TextField(null=True)
         ),
     ]

@@ -9,7 +9,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     forward = [
-        '''
+        """
         CREATE FOREIGN TABLE "campusonline"."stud_lv_anw" (
             BUCHUNG_NR numeric,
             STUD_NR numeric,
@@ -24,22 +24,17 @@ class Migration(migrations.Migration):
             tablename 'STUD_LV_ANW',
             db_url '{}'
         );
-        '''.format(settings.MULTICORN.get('campusonline')),
+        """.format(
+            settings.MULTICORN.get("campusonline")
+        )
     ]
 
     reverse = [
-        '''
+        """
         DROP FOREIGN TABLE IF EXISTS "campusonline"."stud_lv_anw";
-        ''',
+        """
     ]
 
-    dependencies = [
-        ('campusonline', '0013_course_group_term'),
-    ]
+    dependencies = [("campusonline", "0013_course_group_term")]
 
-    operations = [
-        migrations.RunSQL(
-            forward,
-            reverse
-        )
-    ]
+    operations = [migrations.RunSQL(forward, reverse)]

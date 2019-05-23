@@ -9,25 +9,12 @@ class PersonInline(admin.TabularInline):
 
 @admin.register(models.DistributionListInternal)
 class DistributionListInternalAdmin(admin.ModelAdmin):
-    inlines = [
-        PersonInline,
-    ]
+    inlines = [PersonInline]
 
 
 @admin.register(models.BulletinPage)
 class BulletinPageAdmin(admin.ModelAdmin):
-    list_display = (
-        'bulletin',
-        'index',
-        'clean',
-    )
-    list_display_links = (
-        'index',
-    )
-    list_filter = (
-        'clean',
-    )
-    readonly_fields = (
-        'bulletin',
-        'index',
-    )
+    list_display = ("bulletin", "index", "clean")
+    list_display_links = ("index",)
+    list_filter = ("clean",)
+    readonly_fields = ("bulletin", "index")

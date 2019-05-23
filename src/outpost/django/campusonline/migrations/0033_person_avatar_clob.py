@@ -18,7 +18,9 @@ class Migration(migrations.Migration):
             tablename 'PERSONEN_PROFILBILDER_DATEN_V',
             db_url '{}'
         );
-        """.format(settings.MULTICORN.get('campusonline')),
+        """.format(
+            settings.MULTICORN.get("campusonline")
+        ),
         """
         DROP MATERIALIZED VIEW IF EXISTS "public"."campusonline_person";
         """,
@@ -52,14 +54,14 @@ class Migration(migrations.Migration):
             p.pers_nr::integer = ppd.person_nr::integer
         WITH DATA;
         """,
-        '''
+        """
         CREATE UNIQUE INDEX campusonline_person_hash_idx ON "public"."campusonline_person" ("hash");
-        ''',
+        """,
     ]
     reverse = [
-        '''
+        """
         DROP INDEX IF EXISTS campusonline_person_avatar_private_hash_idx;
-        ''',
+        """,
         """
         DROP MATERIALIZED VIEW IF EXISTS "public"."campusonline_person";
         """,
@@ -83,13 +85,6 @@ class Migration(migrations.Migration):
         """,
     ]
 
-    dependencies = [
-        ('campusonline', '0032_person_organization'),
-    ]
+    dependencies = [("campusonline", "0032_person_organization")]
 
-    operations = [
-        migrations.RunSQL(
-            forward,
-            reverse
-        )
-    ]
+    operations = [migrations.RunSQL(forward, reverse)]

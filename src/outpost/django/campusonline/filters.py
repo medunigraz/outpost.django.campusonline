@@ -1,15 +1,12 @@
 from django.utils.translation import gettext_lazy as _
 from django_filters import CharFilter
-from django_filters.rest_framework import (
-    filters,
-    filterset,
-)
+from django_filters.rest_framework import filters, filterset
 
 from . import models
 
 
 class FunctionFilter(filterset.FilterSet):
-    '''
+    """
     ## Filters
 
     To filter for exact value matches:
@@ -23,39 +20,36 @@ class FunctionFilter(filterset.FilterSet):
     Possible lookups:
 
       - `name`: `iexact`, `contains`, `icontains`, `startswith`, `istartswith`, `endswith`, `iendswith`, `regex`, `iregex`
-    '''
+    """
+
     category = filters.ChoiceFilter(
-        label=_('Category'),
-        choices=models.Function.CATEGORY_CHOICES
+        label=_("Category"), choices=models.Function.CATEGORY_CHOICES
     )
     persons = filters.ModelMultipleChoiceFilter(
-        label=_('Person'),
-        queryset=models.Person.objects.all()
+        label=_("Person"), queryset=models.Person.objects.all()
     )
 
     class Meta:
         model = models.Function
         fields = {
-            'name': (
-                'exact',
-                'iexact',
-                'contains',
-                'icontains',
-                'startswith',
-                'istartswith',
-                'endswith',
-                'iendswith',
-                'regex',
-                'iregex',
+            "name": (
+                "exact",
+                "iexact",
+                "contains",
+                "icontains",
+                "startswith",
+                "istartswith",
+                "endswith",
+                "iendswith",
+                "regex",
+                "iregex",
             ),
-            'leader': (
-                'exact',
-            )
+            "leader": ("exact",),
         }
 
 
 class OrganizationFilter(filterset.FilterSet):
-    '''
+    """
     ## Filters
 
     To filter for exact value matches:
@@ -74,101 +68,100 @@ class OrganizationFilter(filterset.FilterSet):
       - `email`: `iexact`, `contains`, `icontains`, `startswith`, `istartswith`, `endswith`, `iendswith`, `isnull`, `regex`, `iregex`
       - `phone`: `iexact`, `contains`, `icontains`, `startswith`, `istartswith`, `endswith`, `iendswith`, `isnull`, `regex`, `iregex`
       - `url`: `iexact`, `contains`, `icontains`, `startswith`, `istartswith`, `endswith`, `iendswith`, `isnull`, `regex`, `iregex`
-    '''
+    """
+
     category = filters.ChoiceFilter(
-        label=_('Category'),
-        choices=models.Organization.CATEGORY_CHOICES
+        label=_("Category"), choices=models.Organization.CATEGORY_CHOICES
     )
     parent = filters.ModelChoiceFilter(
-        label=_('Parent'),
-        queryset=models.Organization.objects.all()
+        label=_("Parent"), queryset=models.Organization.objects.all()
     )
 
     class Meta:
         model = models.Organization
         fields = {
-            'name': (
-                'exact',
-                'iexact',
-                'contains',
-                'icontains',
-                'startswith',
-                'istartswith',
-                'endswith',
-                'iendswith',
-                'regex',
-                'iregex',
+            "name": (
+                "exact",
+                "iexact",
+                "contains",
+                "icontains",
+                "startswith",
+                "istartswith",
+                "endswith",
+                "iendswith",
+                "regex",
+                "iregex",
             ),
-            'short': (
-                'exact',
-                'iexact',
-                'contains',
-                'icontains',
-                'startswith',
-                'istartswith',
-                'endswith',
-                'iendswith',
-                'isnull',
-                'regex',
-                'iregex',
+            "short": (
+                "exact",
+                "iexact",
+                "contains",
+                "icontains",
+                "startswith",
+                "istartswith",
+                "endswith",
+                "iendswith",
+                "isnull",
+                "regex",
+                "iregex",
             ),
-            'address': (
-                'exact',
-                'iexact',
-                'contains',
-                'icontains',
-                'startswith',
-                'istartswith',
-                'endswith',
-                'iendswith',
-                'isnull',
-                'regex',
-                'iregex',
+            "address": (
+                "exact",
+                "iexact",
+                "contains",
+                "icontains",
+                "startswith",
+                "istartswith",
+                "endswith",
+                "iendswith",
+                "isnull",
+                "regex",
+                "iregex",
             ),
-            'email': (
-                'exact',
-                'iexact',
-                'contains',
-                'icontains',
-                'startswith',
-                'istartswith',
-                'endswith',
-                'iendswith',
-                'isnull',
-                'regex',
-                'iregex',
+            "email": (
+                "exact",
+                "iexact",
+                "contains",
+                "icontains",
+                "startswith",
+                "istartswith",
+                "endswith",
+                "iendswith",
+                "isnull",
+                "regex",
+                "iregex",
             ),
-            'phone': (
-                'exact',
-                'iexact',
-                'contains',
-                'icontains',
-                'startswith',
-                'istartswith',
-                'endswith',
-                'iendswith',
-                'isnull',
-                'regex',
-                'iregex',
+            "phone": (
+                "exact",
+                "iexact",
+                "contains",
+                "icontains",
+                "startswith",
+                "istartswith",
+                "endswith",
+                "iendswith",
+                "isnull",
+                "regex",
+                "iregex",
             ),
-            'url': (
-                'exact',
-                'iexact',
-                'contains',
-                'icontains',
-                'startswith',
-                'istartswith',
-                'endswith',
-                'iendswith',
-                'isnull',
-                'regex',
-                'iregex',
+            "url": (
+                "exact",
+                "iexact",
+                "contains",
+                "icontains",
+                "startswith",
+                "istartswith",
+                "endswith",
+                "iendswith",
+                "isnull",
+                "regex",
+                "iregex",
             ),
         }
 
 
 class PersonFilter(filterset.FilterSet):
-    '''
+    """
     ## Filters
 
     To filter for exact value matches:
@@ -186,108 +179,86 @@ class PersonFilter(filterset.FilterSet):
       - `title`: `iexact`, `contains`, `icontains`, `isnull`, `regex`, `iregex`
       - `consultation`: `contains`, `icontains`, `isnull`, `regex`, `iregex`
       - `appendix`: `contains`, `icontains`, `isnull`, `regex`, `iregex`
-    '''
-    sex = filters.ChoiceFilter(
-        label=_('Sex'),
-        choices=models.Person.GENDER_CHOICES
-    )
+    """
+
+    sex = filters.ChoiceFilter(label=_("Sex"), choices=models.Person.GENDER_CHOICES)
     functions = filters.ModelMultipleChoiceFilter(
-        label=_('Function'),
-        queryset=models.Function.objects.all()
+        label=_("Function"), queryset=models.Function.objects.all()
     )
 
     class Meta:
         model = models.Person
         fields = {
-            'first_name': (
-                'exact',
-                'iexact',
-                'contains',
-                'icontains',
-                'startswith',
-                'istartswith',
-                'endswith',
-                'iendswith',
-                'isnull',
-                'regex',
-                'iregex',
+            "first_name": (
+                "exact",
+                "iexact",
+                "contains",
+                "icontains",
+                "startswith",
+                "istartswith",
+                "endswith",
+                "iendswith",
+                "isnull",
+                "regex",
+                "iregex",
             ),
-            'last_name': (
-                'exact',
-                'iexact',
-                'contains',
-                'icontains',
-                'startswith',
-                'istartswith',
-                'endswith',
-                'iendswith',
-                'isnull',
-                'regex',
-                'iregex',
+            "last_name": (
+                "exact",
+                "iexact",
+                "contains",
+                "icontains",
+                "startswith",
+                "istartswith",
+                "endswith",
+                "iendswith",
+                "isnull",
+                "regex",
+                "iregex",
             ),
-            'title': (
-                'exact',
-                'iexact',
-                'contains',
-                'icontains',
-                'isnull',
-                'regex',
-                'iregex',
+            "title": (
+                "exact",
+                "iexact",
+                "contains",
+                "icontains",
+                "isnull",
+                "regex",
+                "iregex",
             ),
-            'consultation': (
-                'contains',
-                'icontains',
-                'isnull',
-                'regex',
-                'iregex',
-            ),
-            'appendix': (
-                'contains',
-                'icontains',
-                'isnull',
-                'regex',
-                'iregex',
-            ),
+            "consultation": ("contains", "icontains", "isnull", "regex", "iregex"),
+            "appendix": ("contains", "icontains", "isnull", "regex", "iregex"),
         }
 
 
 class PersonOrganizationFunctionFilter(filterset.FilterSet):
-    '''
+    """
     ## Filters
 
     To filter for exact value matches:
 
         ?<fieldname>=<value>
-    '''
+    """
 
     class Meta:
         model = models.PersonOrganizationFunction
-        fields = (
-            'person',
-            'organization',
-            'function',
-        )
+        fields = ("person", "organization", "function")
 
 
 class DistributionListFilter(filterset.FilterSet):
-    '''
+    """
     ## Filters
 
     To filter for exact value matches:
 
         ?<fieldname>=<value>
-    '''
+    """
 
     class Meta:
         model = models.DistributionList
-        fields = (
-            'name',
-            'persons',
-        )
+        fields = ("name", "persons")
 
 
 class CourseGroupTermFilter(filterset.FilterSet):
-    '''
+    """
     ## Filters
 
     To filter for exact value matches:
@@ -302,67 +273,48 @@ class CourseGroupTermFilter(filterset.FilterSet):
 
       - `start`: `exact`, `gt`, `gte`, `lt`, `lte`, `date`
       - `end`: `exact`, `gt`, `gte`, `lt`, `lte`, `date`
-    '''
-    room_title = CharFilter(field_name='room__title')
-    room_number = CharFilter(field_name='room__full')
+    """
+
+    room_title = CharFilter(field_name="room__title")
+    room_number = CharFilter(field_name="room__full")
 
     class Meta:
         model = models.CourseGroupTerm
         fields = {
-            'person': (
-                'exact',
+            "person": ("exact",),
+            "term": ("exact",),
+            "room": ("exact",),
+            "start": ("exact", "gt", "lt", "gte", "lte", "date"),
+            "end": ("exact", "gt", "lt", "gte", "lte", "date"),
+            "title": (
+                "contains",
+                "icontains",
+                "startswith",
+                "istartswith",
+                "endswith",
+                "iendswith",
             ),
-            'term': (
-                'exact',
+            "room_title": (
+                "contains",
+                "icontains",
+                "startswith",
+                "istartswith",
+                "endswith",
+                "iendswith",
             ),
-            'room': (
-                'exact',
-            ),
-            'start': (
-                'exact',
-                'gt',
-                'lt',
-                'gte',
-                'lte',
-                'date',
-            ),
-            'end': (
-                'exact',
-                'gt',
-                'lt',
-                'gte',
-                'lte',
-                'date',
-            ),
-            'title': (
-                'contains',
-                'icontains',
-                'startswith',
-                'istartswith',
-                'endswith',
-                'iendswith',
-            ),
-            'room_title': (
-                'contains',
-                'icontains',
-                'startswith',
-                'istartswith',
-                'endswith',
-                'iendswith',
-            ),
-            'room_number': (
-                'contains',
-                'icontains',
-                'startswith',
-                'istartswith',
-                'endswith',
-                'iendswith',
+            "room_number": (
+                "contains",
+                "icontains",
+                "startswith",
+                "istartswith",
+                "endswith",
+                "iendswith",
             ),
         }
 
 
 class EventFilter(filterset.FilterSet):
-    '''
+    """
     ## Filters
 
     To filter for exact value matches:
@@ -389,83 +341,30 @@ class EventFilter(filterset.FilterSet):
       - `start`: `gt`, `gte`, `lt`, `lte`
       - `end`: `gt`, `gte`, `lt`, `lte`
       - `show_end`: `gt`, `gte`, `lt`, `lte`
-    '''
+    """
 
     class Meta:
         model = models.Event
         fields = {
-            'building__short': (
-                'exact',
-                'startswith',
-                'contains',
-            ),
-            'room__category__name': (
-                'exact',
-            ),
-            'room__floor__name': (
-                'exact',
-            ),
-            'room__building__name': (
-                'exact',
-                'startswith',
-            ),
-            'room__building__short': (
-                'exact',
-            ),
-            'room__building__address': (
-                'exact',
-                'contains',
-                'startswith',
-            ),
-            'room__title': (
-                'exact',
-                'contains',
-                'startswith',
-            ),
-            'room__name_full': (
-                'exact',
-                'contains',
-                'startswith',
-            ),
-            'course__category': (
-                'exact',
-            ),
-            'category': (
-                'exact',
-            ),
-            'date': (
-                'exact',
-                'gt',
-                'gte',
-                'lt',
-                'lte',
-            ),
-            'start': (
-                'exact',
-                'gt',
-                'gte',
-                'lt',
-                'lte',
-            ),
-            'end': (
-                'exact',
-                'gt',
-                'gte',
-                'lt',
-                'lte',
-            ),
-            'show_end': (
-                'exact',
-                'gt',
-                'gte',
-                'lt',
-                'lte',
-            ),
+            "building__short": ("exact", "startswith", "contains"),
+            "room__category__name": ("exact",),
+            "room__floor__name": ("exact",),
+            "room__building__name": ("exact", "startswith"),
+            "room__building__short": ("exact",),
+            "room__building__address": ("exact", "contains", "startswith"),
+            "room__title": ("exact", "contains", "startswith"),
+            "room__name_full": ("exact", "contains", "startswith"),
+            "course__category": ("exact",),
+            "category": ("exact",),
+            "date": ("exact", "gt", "gte", "lt", "lte"),
+            "start": ("exact", "gt", "gte", "lt", "lte"),
+            "end": ("exact", "gt", "gte", "lt", "lte"),
+            "show_end": ("exact", "gt", "gte", "lt", "lte"),
         }
 
 
 class BulletinFilter(filterset.FilterSet):
-    '''
+    """
     ## Filters
 
     To filter for exact value matches:
@@ -480,32 +379,19 @@ class BulletinFilter(filterset.FilterSet):
 
       - `academic_year`: `contains`, `regex`
       - `published`: `gte`, `gt`, `lte`, `lt`
-    '''
+    """
 
     class Meta:
         model = models.Bulletin
         fields = {
-            'issue': (
-                'exact',
-            ),
-            'academic_year': (
-                'exact',
-                'contains',
-                'regex',
-            ),
-            'published': (
-                'exact',
-                'gt',
-                'lt',
-                'gte',
-                'lte',
-                'date',
-            ),
+            "issue": ("exact",),
+            "academic_year": ("exact", "contains", "regex"),
+            "published": ("exact", "gt", "lt", "gte", "lte", "date"),
         }
 
 
 class BulletinPageFilter(filterset.FilterSet):
-    '''
+    """
     ## Filters
 
     To filter for exact value matches:
@@ -520,30 +406,18 @@ class BulletinPageFilter(filterset.FilterSet):
 
       - `bulletin`: `gte`, `gt`, `lte`, `lt`
       - `index`: `gte`, `gt`, `lte`, `lt`
-    '''
+    """
 
     class Meta:
         model = models.BulletinPage
         fields = {
-            'bulletin': (
-                'exact',
-                'gt',
-                'lt',
-                'gte',
-                'lte',
-            ),
-            'index': (
-                'exact',
-                'gt',
-                'lt',
-                'gte',
-                'lte',
-            ),
+            "bulletin": ("exact", "gt", "lt", "gte", "lte"),
+            "index": ("exact", "gt", "lt", "gte", "lte"),
         }
 
 
 class FinalThesisFilter(filterset.FilterSet):
-    '''
+    """
     ## Filters
 
     To filter for exact value matches:
@@ -558,31 +432,14 @@ class FinalThesisFilter(filterset.FilterSet):
 
       - `year`: `contains`, `regex`
       - `modified`: `gte`, `gt`, `lte`, `lt`, `date`
-    '''
+    """
 
     class Meta:
         model = models.FinalThesis
         fields = {
-            'author': (
-                'exact',
-            ),
-            'tutor': (
-                'exact',
-            ),
-            'organization': (
-                'exact',
-            ),
-            'year': (
-                'exact',
-                'contains',
-                'regex',
-            ),
-            'modified': (
-                'exact',
-                'gt',
-                'lt',
-                'gte',
-                'lte',
-                'date',
-            ),
+            "author": ("exact",),
+            "tutor": ("exact",),
+            "organization": ("exact",),
+            "year": ("exact", "contains", "regex"),
+            "modified": ("exact", "gt", "lt", "gte", "lte", "date"),
         }

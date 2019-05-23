@@ -28,7 +28,9 @@ class Migration(migrations.Migration):
             tablename 'FUNKTIONEN_V',
             db_url '{}'
         );
-        """.format(settings.MULTICORN.get('campusonline')),
+        """.format(
+            settings.MULTICORN.get("campusonline")
+        ),
         """
         CREATE MATERIALIZED VIEW "public"."campusonline_function" AS SELECT
             funk_nr::integer AS id,
@@ -50,13 +52,6 @@ class Migration(migrations.Migration):
         """,
     ]
 
-    dependencies = [
-        ('campusonline', '0030_distributionlist'),
-    ]
+    dependencies = [("campusonline", "0030_distributionlist")]
 
-    operations = [
-        migrations.RunSQL(
-            forward,
-            reverse
-        )
-    ]
+    operations = [migrations.RunSQL(forward, reverse)]

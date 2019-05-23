@@ -32,7 +32,9 @@ class Migration(migrations.Migration):
             tablename 'PERSON_V',
             db_url '{}'
         );
-        """.format(settings.MULTICORN.get('campusonline')),
+        """.format(
+            settings.MULTICORN.get("campusonline")
+        ),
         """
         CREATE MATERIALIZED VIEW "public"."campusonline_person" AS SELECT
             pers_nr ::integer AS id,
@@ -68,7 +70,9 @@ class Migration(migrations.Migration):
             tablename 'PERSONEN_RAUM_V',
             db_url '{}'
         );
-        """.format(settings.MULTICORN.get('campusonline')),
+        """.format(
+            settings.MULTICORN.get("campusonline")
+        ),
         """
         CREATE MATERIALIZED VIEW "public"."campusonline_person" AS SELECT
             nr ::integer AS id,
@@ -81,13 +85,6 @@ class Migration(migrations.Migration):
         """,
     ]
 
-    dependencies = [
-        ('campusonline', '0018_indices'),
-    ]
+    dependencies = [("campusonline", "0018_indices")]
 
-    operations = [
-        migrations.RunSQL(
-            forward,
-            reverse
-        )
-    ]
+    operations = [migrations.RunSQL(forward, reverse)]

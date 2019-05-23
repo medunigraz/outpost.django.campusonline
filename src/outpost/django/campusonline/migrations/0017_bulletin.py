@@ -7,24 +7,19 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('campusonline', '0016_mitteilungsblatt'),
-    ]
+    dependencies = [("campusonline", "0016_mitteilungsblatt")]
 
     operations = [
         migrations.CreateModel(
-            name='Bulletin',
+            name="Bulletin",
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False)),
-                ('academic_year', models.CharField(max_length=256)),
-                ('issue', models.CharField(max_length=256)),
-                ('published', models.DateTimeField()),
-                ('teaser', models.TextField()),
-                ('url', models.URLField()),
+                ("id", models.IntegerField(primary_key=True, serialize=False)),
+                ("academic_year", models.CharField(max_length=256)),
+                ("issue", models.CharField(max_length=256)),
+                ("published", models.DateTimeField()),
+                ("teaser", models.TextField()),
+                ("url", models.URLField()),
             ],
-            options={
-                'db_table': 'campusonline_bulletin',
-                'managed': False,
-            },
-        ),
+            options={"db_table": "campusonline_bulletin", "managed": False},
+        )
     ]

@@ -7,26 +7,24 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('campusonline', '0011_events'),
-    ]
+    dependencies = [("campusonline", "0011_events")]
 
     operations = [
         migrations.CreateModel(
-            name='Event',
+            name="Event",
             fields=[
-                ('order', models.PositiveIntegerField(db_index=True, editable=False)),
-                ('id', models.CharField(max_length=32, primary_key=True, serialize=False)),
-                ('category', models.CharField(max_length=256)),
-                ('title', models.CharField(max_length=256)),
-                ('date', models.DateTimeField()),
-                ('start', models.DateTimeField()),
-                ('end', models.DateTimeField()),
-                ('show_end', models.DateTimeField()),
+                ("order", models.PositiveIntegerField(db_index=True, editable=False)),
+                (
+                    "id",
+                    models.CharField(max_length=32, primary_key=True, serialize=False),
+                ),
+                ("category", models.CharField(max_length=256)),
+                ("title", models.CharField(max_length=256)),
+                ("date", models.DateTimeField()),
+                ("start", models.DateTimeField()),
+                ("end", models.DateTimeField()),
+                ("show_end", models.DateTimeField()),
             ],
-            options={
-                'db_table': 'campusonline_event',
-                'managed': False,
-            },
-        ),
+            options={"db_table": "campusonline_event", "managed": False},
+        )
     ]

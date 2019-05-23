@@ -11,23 +11,16 @@ class Migration(migrations.Migration):
         ALTER FOREIGN TABLE "campusonline"."stud_lv_anw" OPTIONS (
             ADD primary_key 'BUCHUNG_NR'
         );
-        """,
+        """
     ]
     reverse = [
         """
         ALTER FOREIGN TABLE "campusonline"."stud_lv_anw" OPTIONS (
             DROP primary_key
         );
-        """,
+        """
     ]
 
-    dependencies = [
-        ('campusonline', '0042_auto_20190206_1640'),
-    ]
+    dependencies = [("campusonline", "0042_auto_20190206_1640")]
 
-    operations = [
-        migrations.RunSQL(
-            forward,
-            reverse
-        )
-    ]
+    operations = [migrations.RunSQL(forward, reverse)]

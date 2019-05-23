@@ -8,48 +8,41 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     forward = [
-        '''
+        """
         CREATE UNIQUE INDEX campusonline_distributionlist_id_idx ON "public"."campusonline_distributionlist" ("id");
-        ''',
-        '''
+        """,
+        """
         CREATE INDEX campusonline_distributionlist_name_idx ON "public"."campusonline_distributionlist" ("name");
-        ''',
-        '''
+        """,
+        """
         CREATE UNIQUE INDEX campusonline_distributionlist_person_distributionlist_id_person_id_idx ON "public"."campusonline_distributionlist_person" ("distributionlist_id", "person_id");
-        ''',
-        '''
+        """,
+        """
         CREATE INDEX campusonline_distributionlist_person_distributionlist_id_idx ON "public"."campusonline_distributionlist_person" ("distributionlist_id");
-        ''',
-        '''
+        """,
+        """
         CREATE INDEX campusonline_distributionlist_person_person_id_idx ON "public"."campusonline_distributionlist_person" ("person_id");
-        ''',
+        """,
     ]
 
     reverse = [
-        '''
+        """
         DROP INDEX IF EXISTS campusonline_distributionlist_person_person_id_idx;
-        ''',
-        '''
+        """,
+        """
         DROP INDEX IF EXISTS campusonline_distributionlist_person_distributionlist_id_idx;
-        ''',
-        '''
+        """,
+        """
         DROP INDEX IF EXISTS campusonline_distributionlist_person_distributionlist_id_person_id_idx;
-        ''',
-        '''
+        """,
+        """
         DROP INDEX IF EXISTS campusonline_distributionlist_name_idx;
-        ''',
-        '''
+        """,
+        """
         DROP INDEX IF EXISTS campusonline_distributionlist_id_idx;
-        ''',
+        """,
     ]
 
-    dependencies = [
-        ('campusonline', '0028_distributionlist'),
-    ]
+    dependencies = [("campusonline", "0028_distributionlist")]
 
-    operations = [
-        migrations.RunSQL(
-            forward,
-            reverse
-        )
-    ]
+    operations = [migrations.RunSQL(forward, reverse)]

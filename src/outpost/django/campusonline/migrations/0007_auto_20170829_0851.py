@@ -7,9 +7,7 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('campusonline', '0006_auto_20170828_1425'),
-    ]
+    dependencies = [("campusonline", "0006_auto_20170828_1425")]
 
     forward = [
         """
@@ -61,9 +59,4 @@ class Migration(migrations.Migration):
         """,
     ]
 
-    operations = [
-        migrations.RunSQL(
-            forward,
-            reverse
-        )
-    ]
+    operations = [migrations.RunSQL(forward, reverse)]

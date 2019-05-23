@@ -7,13 +7,10 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('campusonline', '0019_pers_typo'),
-    ]
+    dependencies = [("campusonline", "0019_pers_typo")]
 
     operations = [
         migrations.AlterModelOptions(
-            name='bulletin',
-            options={'managed': False, 'ordering': ('-published',)},
-        ),
+            name="bulletin", options={"managed": False, "ordering": ("-published",)}
+        )
     ]

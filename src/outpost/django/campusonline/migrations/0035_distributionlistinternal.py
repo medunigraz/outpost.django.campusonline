@@ -7,21 +7,26 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('campusonline', '0034_person_email'),
-    ]
+    dependencies = [("campusonline", "0034_person_email")]
 
     operations = [
         migrations.CreateModel(
-            name='DistributionListInternal',
+            name="DistributionListInternal",
             fields=[
-                ('id', models.CharField(max_length=128, primary_key=True, serialize=False)),
-                ('name', models.CharField(blank=True, max_length=256, null=True)),
-                ('persons', models.ManyToManyField(db_constraint=False, related_name='distribution_list_internal', to='campusonline.Person')),
+                (
+                    "id",
+                    models.CharField(max_length=128, primary_key=True, serialize=False),
+                ),
+                ("name", models.CharField(blank=True, max_length=256, null=True)),
+                (
+                    "persons",
+                    models.ManyToManyField(
+                        db_constraint=False,
+                        related_name="distribution_list_internal",
+                        to="campusonline.Person",
+                    ),
+                ),
             ],
-            options={
-                'ordering': ('name',),
-                'abstract': False,
-            },
-        ),
+            options={"ordering": ("name",), "abstract": False},
+        )
     ]

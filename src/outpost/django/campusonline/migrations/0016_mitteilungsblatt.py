@@ -9,7 +9,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     forward = [
-        '''
+        """
         CREATE FOREIGN TABLE "campusonline"."mitteilungsblatt" (
             NR numeric,
             STUDIENJAHR varchar,
@@ -22,8 +22,10 @@ class Migration(migrations.Migration):
             tablename 'MITTEILUNGSBLATT_V',
             db_url '{}'
         );
-        '''.format(settings.MULTICORN.get('campusonline')),
-        '''
+        """.format(
+            settings.MULTICORN.get("campusonline")
+        ),
+        """
         CREATE MATERIALIZED VIEW "public"."campusonline_bulletin" AS SELECT
             nr::integer AS id,
             studienjahr AS academic_year,
@@ -33,43 +35,36 @@ class Migration(migrations.Migration):
             link as url
         FROM "campusonline"."mitteilungsblatt"
         WITH DATA;
-        ''',
-        '''
+        """,
+        """
         CREATE INDEX campusonline_bulletin_id_idx ON "public"."campusonline_bulletin" ("id");
-        ''',
-        '''
+        """,
+        """
         CREATE INDEX campusonline_bulletin_issue_idx ON "public"."campusonline_bulletin" ("issue");
-        ''',
-        '''
+        """,
+        """
         CREATE INDEX campusonline_bulletin_published_idx ON "public"."campusonline_bulletin" ("published");
-        ''',
+        """,
     ]
 
     reverse = [
-        '''
+        """
         DROP INDEX IF EXISTS campusonline_bulletin_published_idx;
-        ''',
-        '''
+        """,
+        """
         DROP INDEX IF EXISTS campusonline_bulletin_issue_idx;
-        ''',
-        '''
+        """,
+        """
         DROP INDEX IF EXISTS campusonline_bulletin_id_idx;
-        ''',
-        '''
+        """,
+        """
         DROP MATERIALIZED VIEW IF EXISTS "public"."campusonline_bulletin";
-        ''',
-        '''
+        """,
+        """
         DROP FOREIGN TABLE IF EXISTS "campusonline"."mitteilungsblatt";
-        ''',
+        """,
     ]
 
-    dependencies = [
-        ('campusonline', '0015_auto_20180725_1913'),
-    ]
+    dependencies = [("campusonline", "0015_auto_20180725_1913")]
 
-    operations = [
-        migrations.RunSQL(
-            forward,
-            reverse
-        )
-    ]
+    operations = [migrations.RunSQL(forward, reverse)]

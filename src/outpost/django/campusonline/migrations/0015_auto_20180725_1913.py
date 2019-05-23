@@ -7,13 +7,17 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('campusonline', '0014_stud_lv_anw'),
-    ]
+    dependencies = [("campusonline", "0014_stud_lv_anw")]
 
     operations = [
         migrations.AlterModelOptions(
-            name='coursegroupterm',
-            options={'managed': False, 'ordering': ('start', 'end'), 'permissions': (('view_coursegroupterm', 'Can view course group term'),)},
-        ),
+            name="coursegroupterm",
+            options={
+                "managed": False,
+                "ordering": ("start", "end"),
+                "permissions": (
+                    ("view_coursegroupterm", "Can view course group term"),
+                ),
+            },
+        )
     ]

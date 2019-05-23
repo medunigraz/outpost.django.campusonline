@@ -7,37 +7,29 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('campusonline', '0004_organization'),
-    ]
+    dependencies = [("campusonline", "0004_organization")]
 
     operations = [
         migrations.CreateModel(
-            name='Organization',
+            name="Organization",
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False)),
-                ('name', models.CharField(blank=True, max_length=256, null=True)),
-                ('address', models.TextField(blank=True, null=True)),
-                ('email', models.CharField(blank=True, max_length=256, null=True)),
-                ('phone', models.CharField(blank=True, max_length=256, null=True)),
-                ('url', models.CharField(blank=True, max_length=256, null=True)),
+                ("id", models.IntegerField(primary_key=True, serialize=False)),
+                ("name", models.CharField(blank=True, max_length=256, null=True)),
+                ("address", models.TextField(blank=True, null=True)),
+                ("email", models.CharField(blank=True, max_length=256, null=True)),
+                ("phone", models.CharField(blank=True, max_length=256, null=True)),
+                ("url", models.CharField(blank=True, max_length=256, null=True)),
             ],
-            options={
-                'db_table': 'campusonline_organization',
-                'managed': False,
-            },
+            options={"db_table": "campusonline_organization", "managed": False},
         ),
         migrations.CreateModel(
-            name='Person',
+            name="Person",
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False)),
-                ('first_name', models.CharField(blank=True, max_length=256, null=True)),
-                ('last_name', models.CharField(blank=True, max_length=256, null=True)),
-                ('title', models.CharField(blank=True, max_length=256, null=True)),
+                ("id", models.IntegerField(primary_key=True, serialize=False)),
+                ("first_name", models.CharField(blank=True, max_length=256, null=True)),
+                ("last_name", models.CharField(blank=True, max_length=256, null=True)),
+                ("title", models.CharField(blank=True, max_length=256, null=True)),
             ],
-            options={
-                'db_table': 'campusonline_person',
-                'managed': False,
-            },
+            options={"db_table": "campusonline_person", "managed": False},
         ),
     ]

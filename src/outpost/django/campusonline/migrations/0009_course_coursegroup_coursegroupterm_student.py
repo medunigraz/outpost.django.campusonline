@@ -7,61 +7,53 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('campusonline', '0008_courses'),
-    ]
+    dependencies = [("campusonline", "0008_courses")]
 
     operations = [
         migrations.CreateModel(
-            name='Course',
+            name="Course",
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=256)),
-                ('category', models.CharField(max_length=256)),
-                ('year', models.CharField(max_length=256)),
-                ('semester', models.CharField(max_length=256)),
+                ("id", models.IntegerField(primary_key=True, serialize=False)),
+                ("name", models.CharField(max_length=256)),
+                ("category", models.CharField(max_length=256)),
+                ("year", models.CharField(max_length=256)),
+                ("semester", models.CharField(max_length=256)),
             ],
-            options={
-                'managed': False,
-                'db_table': 'campusonline_course',
-            },
+            options={"managed": False, "db_table": "campusonline_course"},
         ),
         migrations.CreateModel(
-            name='CourseGroup',
+            name="CourseGroup",
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=256)),
+                ("id", models.IntegerField(primary_key=True, serialize=False)),
+                ("name", models.CharField(max_length=256)),
             ],
-            options={
-                'managed': False,
-                'db_table': 'campusonline_coursegroup',
-            },
+            options={"managed": False, "db_table": "campusonline_coursegroup"},
         ),
         migrations.CreateModel(
-            name='CourseGroupTerm',
+            name="CourseGroupTerm",
             fields=[
-                ('id', models.CharField(max_length=128, primary_key=True, serialize=False)),
-                ('start', models.DateTimeField()),
-                ('end', models.DateTimeField()),
+                (
+                    "id",
+                    models.CharField(max_length=128, primary_key=True, serialize=False),
+                ),
+                ("start", models.DateTimeField()),
+                ("end", models.DateTimeField()),
             ],
-            options={
-                'managed': False,
-                'db_table': 'campusonline_coursegroupterm',
-            },
+            options={"managed": False, "db_table": "campusonline_coursegroupterm"},
         ),
         migrations.CreateModel(
-            name='Student',
+            name="Student",
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False)),
-                ('matriculation', models.CharField(blank=True, max_length=16, null=True)),
-                ('first_name', models.CharField(max_length=256)),
-                ('last_name', models.CharField(max_length=256)),
-                ('title', models.CharField(blank=True, max_length=256, null=True)),
-                ('cardid', models.CharField(blank=True, max_length=16, null=True)),
+                ("id", models.IntegerField(primary_key=True, serialize=False)),
+                (
+                    "matriculation",
+                    models.CharField(blank=True, max_length=16, null=True),
+                ),
+                ("first_name", models.CharField(max_length=256)),
+                ("last_name", models.CharField(max_length=256)),
+                ("title", models.CharField(blank=True, max_length=256, null=True)),
+                ("cardid", models.CharField(blank=True, max_length=16, null=True)),
             ],
-            options={
-                'managed': False,
-                'db_table': 'campusonline_student',
-            },
+            options={"managed": False, "db_table": "campusonline_student"},
         ),
     ]

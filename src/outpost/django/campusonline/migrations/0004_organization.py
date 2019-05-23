@@ -22,7 +22,9 @@ class Migration(migrations.Migration):
             tablename 'ORGANISATIONEN_V',
             db_url '{}'
         );
-        """.format(settings.MULTICORN.get('campusonline')),
+        """.format(
+            settings.MULTICORN.get("campusonline")
+        ),
         """
         CREATE FOREIGN TABLE "campusonline"."personen" (
             PERS_NR numeric,
@@ -35,7 +37,9 @@ class Migration(migrations.Migration):
             tablename 'PERSON_V',
             db_url '{}'
         );
-        """.format(settings.MULTICORN.get('campusonline')),
+        """.format(
+            settings.MULTICORN.get("campusonline")
+        ),
         """
         CREATE MATERIALIZED VIEW "public"."campusonline_organization" AS SELECT
             nr::integer AS id,
@@ -73,13 +77,6 @@ class Migration(migrations.Migration):
         """,
     ]
 
-    dependencies = [
-        ('campusonline', '0003_materialized'),
-    ]
+    dependencies = [("campusonline", "0003_materialized")]
 
-    operations = [
-        migrations.RunSQL(
-            forward,
-            reverse
-        )
-    ]
+    operations = [migrations.RunSQL(forward, reverse)]

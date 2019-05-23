@@ -9,61 +9,60 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-        ('campusonline', '0001_initial'),
-    ]
+    dependencies = [("campusonline", "0001_initial")]
 
     operations = [
         migrations.CreateModel(
-            name='Building',
+            name="Building",
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False)),
-                ('name', models.CharField(blank=True, max_length=256, null=True)),
-                ('short', models.CharField(blank=True, max_length=64, null=True)),
-                ('address', models.CharField(blank=True, max_length=256, null=True)),
+                ("id", models.IntegerField(primary_key=True, serialize=False)),
+                ("name", models.CharField(blank=True, max_length=256, null=True)),
+                ("short", models.CharField(blank=True, max_length=64, null=True)),
+                ("address", models.CharField(blank=True, max_length=256, null=True)),
             ],
-            options={
-                'db_table': 'campusonline_building',
-                'managed': False,
-            },
+            options={"db_table": "campusonline_building", "managed": False},
         ),
         migrations.CreateModel(
-            name='Floor',
+            name="Floor",
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False)),
-                ('short', models.CharField(blank=True, max_length=64, null=True)),
-                ('name', models.CharField(blank=True, max_length=256, null=True)),
+                ("id", models.IntegerField(primary_key=True, serialize=False)),
+                ("short", models.CharField(blank=True, max_length=64, null=True)),
+                ("name", models.CharField(blank=True, max_length=256, null=True)),
             ],
-            options={
-                'db_table': 'campusonline_floor',
-                'managed': False,
-            },
+            options={"db_table": "campusonline_floor", "managed": False},
         ),
         migrations.CreateModel(
-            name='Room',
+            name="Room",
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False)),
-                ('title', models.CharField(blank=True, max_length=256, null=True)),
-                ('name_short', models.CharField(blank=True, max_length=256, null=True)),
-                ('name_full', models.CharField(blank=True, max_length=256, null=True)),
-                ('area', models.DecimalField(blank=True, decimal_places=1, max_digits=65535, null=True)),
-                ('height', models.DecimalField(blank=True, decimal_places=1, max_digits=65535, null=True)),
-                ('organization', models.CharField(blank=True, max_length=256, null=True)),
+                ("id", models.IntegerField(primary_key=True, serialize=False)),
+                ("title", models.CharField(blank=True, max_length=256, null=True)),
+                ("name_short", models.CharField(blank=True, max_length=256, null=True)),
+                ("name_full", models.CharField(blank=True, max_length=256, null=True)),
+                (
+                    "area",
+                    models.DecimalField(
+                        blank=True, decimal_places=1, max_digits=65535, null=True
+                    ),
+                ),
+                (
+                    "height",
+                    models.DecimalField(
+                        blank=True, decimal_places=1, max_digits=65535, null=True
+                    ),
+                ),
+                (
+                    "organization",
+                    models.CharField(blank=True, max_length=256, null=True),
+                ),
             ],
-            options={
-                'db_table': 'campusonline_room',
-                'managed': False,
-            },
+            options={"db_table": "campusonline_room", "managed": False},
         ),
         migrations.CreateModel(
-            name='RoomCategory',
+            name="RoomCategory",
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False)),
-                ('name', models.CharField(blank=True, max_length=256, null=True)),
+                ("id", models.IntegerField(primary_key=True, serialize=False)),
+                ("name", models.CharField(blank=True, max_length=256, null=True)),
             ],
-            options={
-                'db_table': 'campusonline_room_category',
-                'managed': False,
-            },
+            options={"db_table": "campusonline_room_category", "managed": False},
         ),
     ]

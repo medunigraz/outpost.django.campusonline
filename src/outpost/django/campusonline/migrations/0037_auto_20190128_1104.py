@@ -8,26 +8,41 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('campusonline', '0036_distributionlist_union'),
-    ]
+    dependencies = [("campusonline", "0036_distributionlist_union")]
 
     operations = [
         migrations.CreateModel(
-            name='BulletinPage',
+            name="BulletinPage",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('number', models.PositiveSmallIntegerField()),
-                ('text', models.TextField()),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("number", models.PositiveSmallIntegerField()),
+                ("text", models.TextField()),
             ],
         ),
         migrations.AlterModelOptions(
-            name='bulletin',
-            options={'get_latest_by': 'published', 'managed': False, 'ordering': ('-published',)},
+            name="bulletin",
+            options={
+                "get_latest_by": "published",
+                "managed": False,
+                "ordering": ("-published",),
+            },
         ),
         migrations.AddField(
-            model_name='bulletinpage',
-            name='bulletin',
-            field=models.ForeignKey(db_constraint=False, on_delete=django.db.models.deletion.DO_NOTHING, related_name='pages', to='campusonline.Bulletin'),
+            model_name="bulletinpage",
+            name="bulletin",
+            field=models.ForeignKey(
+                db_constraint=False,
+                on_delete=django.db.models.deletion.DO_NOTHING,
+                related_name="pages",
+                to="campusonline.Bulletin",
+            ),
         ),
     ]

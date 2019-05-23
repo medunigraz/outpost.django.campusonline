@@ -9,9 +9,9 @@ from django.conf import settings
 class Migration(migrations.Migration):
 
     forward = [
-        '''
+        """
         DROP INDEX IF EXISTS campusonline_person_hash_idx;
-        ''',
+        """,
         """
         DROP MATERIALIZED VIEW IF EXISTS "public"."campusonline_person";
         """,
@@ -36,7 +36,9 @@ class Migration(migrations.Migration):
             tablename 'PERSON_V',
             db_url '{}'
         );
-        """.format(settings.MULTICORN.get('campusonline')),
+        """.format(
+            settings.MULTICORN.get("campusonline")
+        ),
         """
         CREATE MATERIALIZED VIEW "public"."campusonline_person" AS SELECT
             p.pers_nr::integer AS id,
@@ -68,44 +70,44 @@ class Migration(migrations.Migration):
             p.pers_nr::integer = ppd.person_nr::integer
         WITH DATA;
         """,
-        '''
+        """
         CREATE UNIQUE INDEX campusonline_person_id_idx ON "public"."campusonline_person" ("id");
-        ''',
-        '''
+        """,
+        """
         CREATE UNIQUE INDEX campusonline_person_email_idx ON "public"."campusonline_person" ("email");
-        ''',
-        '''
+        """,
+        """
         CREATE UNIQUE INDEX campusonline_person_hash_idx ON "public"."campusonline_person" ("hash");
-        ''',
-        '''
+        """,
+        """
         CREATE INDEX campusonline_person_sex_idx ON "public"."campusonline_person" ("sex");
-        ''',
-        '''
+        """,
+        """
         CREATE INDEX campusonline_person_first_name_idx ON "public"."campusonline_person" ("first_name");
-        ''',
-        '''
+        """,
+        """
         CREATE INDEX campusonline_person_last_name_idx ON "public"."campusonline_person" ("last_name");
-        ''',
+        """,
     ]
     reverse = [
-        '''
+        """
         DROP INDEX IF EXISTS campusonline_person_last_name_idx;
-        ''',
-        '''
+        """,
+        """
         DROP INDEX IF EXISTS campusonline_person_first_name_idx;
-        ''',
-        '''
+        """,
+        """
         DROP INDEX IF EXISTS campusonline_person_sex_idx;
-        ''',
-        '''
+        """,
+        """
         DROP INDEX IF EXISTS campusonline_person_hash_idx;
-        ''',
-        '''
+        """,
+        """
         DROP INDEX IF EXISTS campusonline_person_email_idx;
-        ''',
-        '''
+        """,
+        """
         DROP INDEX IF EXISTS campusonline_person_id_idx;
-        ''',
+        """,
         """
         DROP MATERIALIZED VIEW IF EXISTS "public"."campusonline_person";
         """,
@@ -129,7 +131,9 @@ class Migration(migrations.Migration):
             tablename 'PERSON_V',
             db_url '{}'
         );
-        """.format(settings.MULTICORN.get('campusonline')),
+        """.format(
+            settings.MULTICORN.get("campusonline")
+        ),
         """
         CREATE MATERIALIZED VIEW "public"."campusonline_person" AS SELECT
             pers_nr ::integer AS id,
@@ -175,18 +179,11 @@ class Migration(migrations.Migration):
             p.pers_nr::integer = ppd.person_nr::integer
         WITH DATA;
         """,
-        '''
+        """
         CREATE UNIQUE INDEX campusonline_person_hash_idx ON "public"."campusonline_person" ("hash");
-        ''',
+        """,
     ]
 
-    dependencies = [
-        ('campusonline', '0033_person_avatar_clob'),
-    ]
+    dependencies = [("campusonline", "0033_person_avatar_clob")]
 
-    operations = [
-        migrations.RunSQL(
-            forward,
-            reverse
-        )
-    ]
+    operations = [migrations.RunSQL(forward, reverse)]

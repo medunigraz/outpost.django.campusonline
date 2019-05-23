@@ -7,21 +7,22 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('campusonline', '0029_indices'),
-    ]
+    dependencies = [("campusonline", "0029_indices")]
 
     operations = [
         migrations.CreateModel(
-            name='DistributionList',
+            name="DistributionList",
             fields=[
-                ('id', models.CharField(max_length=128, primary_key=True, serialize=False)),
-                ('name', models.CharField(blank=True, max_length=256, null=True)),
+                (
+                    "id",
+                    models.CharField(max_length=128, primary_key=True, serialize=False),
+                ),
+                ("name", models.CharField(blank=True, max_length=256, null=True)),
             ],
             options={
-                'db_table': 'campusonline_distributionlist',
-                'ordering': ('name',),
-                'managed': False,
+                "db_table": "campusonline_distributionlist",
+                "ordering": ("name",),
+                "managed": False,
             },
-        ),
+        )
     ]

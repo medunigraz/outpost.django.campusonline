@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
 
     ops = [
         (
-            '''
+            """
             CREATE FOREIGN TABLE "campusonline"."abschlussarbeiten" (
                 ID numeric,
                 STUDIENBEZEICHNUNG varchar,
@@ -35,13 +35,15 @@ class Migration(migrations.Migration):
                 tablename 'F_ABSCHLUSSARBEIT',
                 db_url '{}'
             );
-            '''.format(settings.MULTICORN.get('campusonline')),
-            '''
+            """.format(
+                settings.MULTICORN.get("campusonline")
+            ),
+            """
             DROP FOREIGN TABLE IF EXISTS "campusonline"."abschlussarbeiten";
-            ''',
+            """,
         ),
         (
-            '''
+            """
             CREATE MATERIALIZED VIEW "public"."campusonline_finalthesis" AS SELECT
                 aa.ID::integer AS id,
                 aa.STUDIENBEZEICHNUNG AS study_designation,
@@ -64,68 +66,66 @@ class Migration(migrations.Migration):
             INNER JOIN "campusonline"."organisationen" o
                 ON aa.ORGANISATIONS_ID::integer = o.NR::integer
             WITH DATA;
-            ''',
-            '''
+            """,
+            """
             DROP MATERIALIZED VIEW IF EXISTS "public"."campusonline_finalthesis";
-            ''',
+            """,
         ),
         (
-            '''
+            """
             CREATE INDEX campusonline_finalthesis_id_idx ON "public"."campusonline_finalthesis" ("id");
-            ''',
-            '''
+            """,
+            """
             DROP INDEX IF EXISTS campusonline_finalthesis_id_idx;
-            ''',
+            """,
         ),
         (
-            '''
+            """
             CREATE INDEX campusonline_finalthesis_modified_idx ON "public"."campusonline_finalthesis" ("modified");
-            ''',
-            '''
+            """,
+            """
             DROP INDEX IF EXISTS campusonline_finalthesis_modified_idx;
-            ''',
+            """,
         ),
         (
-            '''
+            """
             CREATE INDEX campusonline_finalthesis_author_id_idx ON "public"."campusonline_finalthesis" ("author_id");
-            ''',
-            '''
+            """,
+            """
             DROP INDEX IF EXISTS campusonline_finalthesis_author_id_idx;
-            ''',
+            """,
         ),
         (
-            '''
+            """
             CREATE INDEX campusonline_finalthesis_tutor_id_idx ON "public"."campusonline_finalthesis" ("tutor_id");
-            ''',
-            '''
+            """,
+            """
             DROP INDEX IF EXISTS campusonline_finalthesis_tutor_id_idx;
-            ''',
+            """,
         ),
         (
-            '''
+            """
             CREATE INDEX campusonline_finalthesis_year_idx ON "public"."campusonline_finalthesis" ("year");
-            ''',
-            '''
+            """,
+            """
             DROP INDEX IF EXISTS campusonline_finalthesis_year_idx;
-            ''',
+            """,
         ),
         (
-            '''
+            """
             CREATE INDEX campusonline_finalthesis_organization_id_idx ON "public"."campusonline_finalthesis" ("organization_id");
-            ''',
-            '''
+            """,
+            """
             DROP INDEX IF EXISTS campusonline_finalthesis_organization_id_idx;
-            ''',
+            """,
         ),
     ]
 
-    dependencies = [
-        ('campusonline', '0046_student_username'),
-    ]
+    dependencies = [("campusonline", "0046_student_username")]
 
     operations = [
         migrations.RunSQL(
             [forward for forward, reverse in ops],
-            [reverse for forward, reverse in reversed(ops)]
+            [reverse for forward, reverse in reversed(ops)],
         )
     ]

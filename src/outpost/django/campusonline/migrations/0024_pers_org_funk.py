@@ -19,7 +19,9 @@ class Migration(migrations.Migration):
             tablename 'PERS_ORG_FUNK_V',
             db_url '{}'
         );
-        """.format(settings.MULTICORN.get('campusonline')),
+        """.format(
+            settings.MULTICORN.get("campusonline")
+        ),
         """
         CREATE MATERIALIZED VIEW "public"."campusonline_personorganizationfunction" AS SELECT
             format('%s-%s-%s', pers_nr::integer, org_nr::integer, funk_nr::integer) AS id,
@@ -39,13 +41,6 @@ class Migration(migrations.Migration):
         """,
     ]
 
-    dependencies = [
-        ('campusonline', '0023_function'),
-    ]
+    dependencies = [("campusonline", "0023_function")]
 
-    operations = [
-        migrations.RunSQL(
-            forward,
-            reverse
-        )
-    ]
+    operations = [migrations.RunSQL(forward, reverse)]

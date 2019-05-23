@@ -7,22 +7,20 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('campusonline', '0022_functions'),
-    ]
+    dependencies = [("campusonline", "0022_functions")]
 
     operations = [
         migrations.CreateModel(
-            name='Function',
+            name="Function",
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False)),
-                ('name', models.CharField(blank=True, max_length=256, null=True)),
-                ('category', models.CharField(blank=True, max_length=32, null=True)),
+                ("id", models.IntegerField(primary_key=True, serialize=False)),
+                ("name", models.CharField(blank=True, max_length=256, null=True)),
+                ("category", models.CharField(blank=True, max_length=32, null=True)),
             ],
             options={
-                'db_table': 'campusonline_function',
-                'ordering': ('name', 'category'),
-                'managed': False,
+                "db_table": "campusonline_function",
+                "ordering": ("name", "category"),
+                "managed": False,
             },
-        ),
+        )
     ]

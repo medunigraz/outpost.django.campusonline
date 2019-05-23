@@ -7,20 +7,21 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('campusonline', '0024_pers_org_funk'),
-    ]
+    dependencies = [("campusonline", "0024_pers_org_funk")]
 
     operations = [
         migrations.CreateModel(
-            name='PersonOrganizationFunction',
+            name="PersonOrganizationFunction",
             fields=[
-                ('id', models.CharField(max_length=128, primary_key=True, serialize=False)),
+                (
+                    "id",
+                    models.CharField(max_length=128, primary_key=True, serialize=False),
+                )
             ],
             options={
-                'db_table': 'campusonline_personorganizationfunction',
-                'ordering': ('id',),
-                'managed': False,
+                "db_table": "campusonline_personorganizationfunction",
+                "ordering": ("id",),
+                "managed": False,
             },
-        ),
+        )
     ]

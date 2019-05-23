@@ -32,7 +32,9 @@ class Migration(migrations.Migration):
             tablename 'ORGANISATIONEN_V',
             db_url '{}'
         );
-        """.format(settings.MULTICORN.get('campusonline')),
+        """.format(
+            settings.MULTICORN.get("campusonline")
+        ),
         """
         CREATE MATERIALIZED VIEW "public"."campusonline_organization" AS SELECT
             nr::integer AS id,
@@ -69,7 +71,9 @@ class Migration(migrations.Migration):
             tablename 'ORGANISATIONEN_V',
             db_url '{}'
         );
-        """.format(settings.MULTICORN.get('campusonline')),
+        """.format(
+            settings.MULTICORN.get("campusonline")
+        ),
         """
         CREATE MATERIALIZED VIEW "public"."campusonline_organization" AS SELECT
             nr::integer AS id,
@@ -83,13 +87,6 @@ class Migration(migrations.Migration):
         """,
     ]
 
-    dependencies = [
-        ('campusonline', '0020_auto_20180828_1050'),
-    ]
+    dependencies = [("campusonline", "0020_auto_20180828_1050")]
 
-    operations = [
-        migrations.RunSQL(
-            forward,
-            reverse
-        )
-    ]
+    operations = [migrations.RunSQL(forward, reverse)]
