@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                 SEITEN_ANZAHL numeric,
                 BETREUER_ID numeric,
                 BETREUER varchar,
-                ERSCHEINUNGSJAHR numeric,
+                ERSCHEINUNGSJAHR varchar,
                 LINK varchar,
                 WERK_TYP numeric,
                 PUBLIZIERT varchar,
