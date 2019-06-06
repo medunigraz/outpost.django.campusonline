@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                 SEITEN_ANZAHL numeric,
                 BETREUER_ID numeric,
                 BETREUER varchar,
-                ERSCHEINUNGSJAHR varchar,
+                ERSCHEINUNGSJAHR numeric,
                 LINK varchar,
                 WERK_TYP numeric,
                 PUBLIZIERT varchar,
@@ -54,7 +54,7 @@ class Migration(migrations.Migration):
                 aa.KURZFASSUNG AS abstract,
                 aa.SEITEN_ANZAHL::integer AS pages,
                 p.PERS_NR::integer AS tutor_id,
-                abs(aa.ERSCHEINUNGSJAHR::integer) AS year,
+                aa.ERSCHEINUNGSJAHR::integer AS year,
                 aa.LINK AS url,
                 aa.PUBLIZIERT AS category,
                 o.NR::integer AS organization_id
