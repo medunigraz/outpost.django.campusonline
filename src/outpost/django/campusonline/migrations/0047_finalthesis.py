@@ -54,7 +54,7 @@ class Migration(migrations.Migration):
                 aa.KURZFASSUNG AS abstract,
                 aa.SEITEN_ANZAHL::integer AS pages,
                 p.PERS_NR::integer AS tutor_id,
-                aa.ERSCHEINUNGSJAHR::integer AS year,
+                abs(aa.ERSCHEINUNGSJAHR::integer) AS year,
                 aa.LINK AS url,
                 aa.PUBLIZIERT AS category,
                 o.NR::integer AS organization_id
