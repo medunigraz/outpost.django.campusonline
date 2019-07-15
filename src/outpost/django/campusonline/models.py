@@ -349,6 +349,7 @@ class Person(models.Model):
     hash = models.CharField(max_length=64)
     phone = models.CharField(max_length=256, blank=True, null=True)
     mobile = models.CharField(max_length=256, blank=True, null=True)
+    employed = models.BooleanField()
 
     class Meta:
         managed = False

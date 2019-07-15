@@ -229,6 +229,7 @@ class AuthenticatedPersonSerializer(PersonSerializer):
             "mobile",
             "functions",
             "organizations",
+            "employed",
         )
 
     def get_avatar(self, obj):
