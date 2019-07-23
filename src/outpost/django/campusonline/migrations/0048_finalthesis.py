@@ -8,29 +8,40 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('campusonline', '0047_finalthesis'),
-    ]
+    dependencies = [("campusonline", "0047_finalthesis")]
 
     operations = [
         migrations.CreateModel(
-            name='FinalThesis',
+            name="FinalThesis",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('study_designation', models.CharField(max_length=256)),
-                ('modified', models.DateTimeField()),
-                ('authors', django.contrib.postgres.fields.ArrayField(base_field=models.CharField(max_length=256), size=None)),
-                ('title', models.CharField(max_length=256)),
-                ('abstract', models.TextField()),
-                ('year', models.PositiveIntegerField()),
-                ('url', models.URLField()),
-                ('category', models.CharField(max_length=256)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("study_designation", models.CharField(max_length=256)),
+                ("modified", models.DateTimeField()),
+                (
+                    "authors",
+                    django.contrib.postgres.fields.ArrayField(
+                        base_field=models.CharField(max_length=256), size=None
+                    ),
+                ),
+                ("title", models.CharField(max_length=256)),
+                ("abstract", models.TextField()),
+                ("year", models.PositiveIntegerField()),
+                ("url", models.URLField()),
+                ("category", models.CharField(max_length=256)),
             ],
             options={
-                'db_table': 'campusonline_finalthesis',
-                'ordering': ('-modified',),
-                'get_latest_by': 'modified',
-                'managed': False,
+                "db_table": "campusonline_finalthesis",
+                "ordering": ("-modified",),
+                "get_latest_by": "modified",
+                "managed": False,
             },
-        ),
+        )
     ]
