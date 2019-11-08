@@ -190,7 +190,7 @@ class CourseGroupTermViewSet(ReadOnlyModelViewSet):
     serializer_class = serializers.CourseGroupTermSerializer
     filter_backends = (DjangoFilterBackend,)
     filter_class = filters.CourseGroupTermFilter
-    permission_classes = (ExtendedDjangoModelPermissions,)
+    permission_classes = (IsAuthenticated,)
 
 
 @docstring_format(model=models.Bulletin.__doc__, filter=filters.BulletinFilter.__doc__)
