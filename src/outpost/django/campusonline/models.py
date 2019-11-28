@@ -503,7 +503,7 @@ class CourseGroup(models.Model):
         db_constraint=False,
         null=True,
         blank=True,
-        related_name="+",
+        related_name="groups",
     )
     name = models.CharField(max_length=256)
     students = models.ManyToManyField("Student")
