@@ -118,11 +118,26 @@ class PersonViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
         "education",
     )
 
-    def get_serializer_class(self):
-        if self.request.user and self.request.user.is_authenticated():
-            return serializers.AuthenticatedPersonSerializer
-        else:
-            return self.serializer_class
+
+@docstring_format(
+    model=models.Student.__doc__,
+    filter=filters.StudentFilter.__doc__,
+    serializer=serializers.StudentSerializer.__doc__,
+)
+class StudentViewSet(ReadOnlyModelViewSet):
+    """
+    List student accounts from CAMPUSonline.
+
+    {model}
+    {filter}
+    {serializer}
+    """
+
+    queryset = models.Student.objects.all()
+    serializer_class = serializers.StudentSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_class = filters.StudentFilter
+    permission_classes = (IsAuthenticated,)
 
 
 @docstring_format(filter=filters.PersonOrganizationFunctionFilter.__doc__)

@@ -457,6 +457,7 @@ class Student(models.Model):
     title = models.CharField(max_length=256, blank=True, null=True)
     cardid = models.CharField(max_length=16, blank=True, null=True)
     username = models.CharField(max_length=256, blank=True, null=True)
+    avatar = models.URLField(blank=True, null=True)
 
     class Meta:
         managed = False

@@ -229,6 +229,66 @@ class PersonFilter(filterset.FilterSet):
         }
 
 
+class StudentFilter(filterset.FilterSet):
+    """
+    ## Filters
+
+    To filter for exact value matches:
+
+        ?<fieldname>=<value>
+
+    For advanced filtering use lookups:
+
+        ?<fieldname>__<lookup>=<value>
+
+    Possible lookups:
+
+      - `first_name`: `iexact`, `contains`, `icontains`, `startswith`, `istartswith`, `endswith`, `iendswith`, `isnull`, `regex`, `iregex`
+      - `last_name`: `iexact`, `contains`, `icontains`, `startswith`, `istartswith`, `endswith`, `iendswith`, `isnull`, `regex`, `iregex`
+      - `title`: `iexact`, `contains`, `icontains`, `isnull`, `regex`, `iregex`
+    """
+
+    class Meta:
+        model = models.Student
+        fields = {
+            "first_name": (
+                "exact",
+                "iexact",
+                "contains",
+                "icontains",
+                "startswith",
+                "istartswith",
+                "endswith",
+                "iendswith",
+                "isnull",
+                "regex",
+                "iregex",
+            ),
+            "last_name": (
+                "exact",
+                "iexact",
+                "contains",
+                "icontains",
+                "startswith",
+                "istartswith",
+                "endswith",
+                "iendswith",
+                "isnull",
+                "regex",
+                "iregex",
+            ),
+            "title": (
+                "exact",
+                "iexact",
+                "contains",
+                "icontains",
+                "isnull",
+                "regex",
+                "iregex",
+            ),
+        }
+
+
 class PersonOrganizationFunctionFilter(filterset.FilterSet):
     """
     ## Filters

@@ -9,6 +9,7 @@ v1 = [
         "campusonline-organization",
     ),
     (r"campusonline/person", api.PersonViewSet, "campusonline-person"),
+    (r"campusonline/student", api.StudentViewSet, "campusonline-student"),
     (
         r"campusonline/personorganizationfunction",
         api.PersonOrganizationFunctionViewSet,
