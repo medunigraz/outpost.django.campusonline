@@ -118,6 +118,12 @@ class PersonViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
         "education",
     )
 
+    def get_serializer_class(self):
+        if self.request.user and self.request.user.is_authenticated():
+            return serializers.AuthenticatedPersonSerializer
+        else:
+            return self.serializer_class
+
 
 @docstring_format(
     model=models.Student.__doc__,
