@@ -438,7 +438,13 @@ class DistributionList(AbstractDistributionList):
         "Person",
         db_table="campusonline_distributionlist_person",
         db_constraint=False,
-        related_name="+",
+        related_name="distributionslists",
+    )
+    students = models.ManyToManyField(
+        "Student",
+        db_table="campusonline_distributionlist_student",
+        db_constraint=False,
+        related_name="distributionslists",
     )
 
     class Meta(AbstractDistributionList.Meta):
@@ -446,7 +452,7 @@ class DistributionList(AbstractDistributionList):
         db_table = "campusonline_distributionlist"
 
     class Refresh:
-        interval = 86400
+        interval = 1800
 
 
 class Student(models.Model):

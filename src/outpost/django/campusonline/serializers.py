@@ -271,21 +271,26 @@ class DistributionListSerializer(FlexFieldsModelSerializer):
     The following relational fields can be expanded:
 
      * `persons`
+     * `student`
 
     """
 
     @property
     def expandable_fields(self):
-        serializer = "PersonSerializer"
+        person = "PersonSerializer"
         request = self.context.get("request", None)
         if request:
             if request.user:
                 if request.user.is_authenticated():
-                    serializer = "AuthenticatedPersonSerializer"
+                    person = "AuthenticatedPersonSerializer"
         return {
             "persons": (
-                f"outpost.django.campusonline.serializers.{serializer}",
+                f"outpost.django.campusonline.serializers.{person}",
                 {"source": "persons", "many": True},
+            ),
+            "students": (
+                f"outpost.django.campusonline.serializers.StudentSerializer",
+                {"source": "students", "many": True},
             )
         }
 
