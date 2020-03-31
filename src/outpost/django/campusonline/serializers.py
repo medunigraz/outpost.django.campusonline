@@ -302,7 +302,7 @@ class DistributionListSerializer(FlexFieldsModelSerializer):
 class StudentSerializer(ModelSerializer):
     class Meta:
         model = models.Student
-        fields = ("first_name", "last_name", "title", "avatar")
+        fields = ("id", "first_name", "last_name", "title", "avatar")
 
 
 class CourseSerializer(ModelSerializer):
