@@ -184,7 +184,7 @@ class DistributionListViewSet(
     filter_backends = (DjangoFilterBackend,)
     filter_class = filters.DistributionListFilter
     permission_classes = (IsAuthenticated,)
-    permit_list_expands = ("persons",)
+    permit_list_expands = ("persons", "students")
 
 
 @docstring_format(model=models.Event.__doc__, filter=filters.EventFilter.__doc__)
