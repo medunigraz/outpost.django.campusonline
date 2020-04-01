@@ -271,7 +271,7 @@ class DistributionListSerializer(FlexFieldsModelSerializer):
     The following relational fields can be expanded:
 
      * `persons`
-     * `student`
+     * `students`
 
     """
 
