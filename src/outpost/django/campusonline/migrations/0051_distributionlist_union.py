@@ -8,7 +8,6 @@ from django.conf import settings
 
 class Migration(migrations.Migration):
 
-
     ops = [
         (
             """
@@ -73,9 +72,7 @@ class Migration(migrations.Migration):
         ),
     ]
 
-    dependencies = [
-        ('campusonline', '0050_stud_photo'),
-    ]
+    dependencies = [("campusonline", "0050_stud_photo")]
 
     operations = [
         migrations.RunSQL(

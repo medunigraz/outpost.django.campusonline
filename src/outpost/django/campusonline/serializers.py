@@ -291,7 +291,7 @@ class DistributionListSerializer(FlexFieldsModelSerializer):
             "students": (
                 f"outpost.django.campusonline.serializers.StudentSerializer",
                 {"source": "students", "many": True},
-            )
+            ),
         }
 
     class Meta:
