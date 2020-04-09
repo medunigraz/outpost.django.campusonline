@@ -23,11 +23,11 @@ class UsernameSyncTask(PeriodicTask):
 
         persons = Person.objects.all()
         for p in persons:
-            cache.set(f"username:{p.username}", p.pk)
-            cache.set(f"id:{p.pk}", p.username)
+            cache.set(f"{p.__class__.__name__}:username:{p.username}", p.pk)
+            cache.set(f"{p.__class__.__name__}:id:{p.pk}", p.username)
 
         students = Student.objects.all()
         for s in students:
-            cache.set(f"username:{s.username}", s.pk)
-            cache.set(f"id:{s.pk}", s.username)
+            cache.set(f"{s.__class__.__name__}:username:{s.username}", s.pk)
+            cache.set(f"{s.__class__.__name__}:id:{s.pk}", s.username)
 
