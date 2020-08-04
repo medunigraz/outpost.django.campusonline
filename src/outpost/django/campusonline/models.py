@@ -1,4 +1,6 @@
 import logging
+
+import django
 from io import BytesIO
 from locale import LC_ALL, LC_CTYPE, LC_NUMERIC
 from typing import Optional
@@ -548,7 +550,11 @@ class CourseGroupTerm(models.Model):
         db_table = "campusonline_coursegroupterm"
         get_latest_by = "start"
         ordering = ("start", "end")
-        permissions = (("view_coursegroupterm", _("Can view course group term")),)
+        permissions = (
+            (("view_coursegroupterm", _("Can view course group term")),)
+            if django.VERSION < (2, 1)
+            else tuple()
+        )
 
     class Refresh:
         interval = 86400
