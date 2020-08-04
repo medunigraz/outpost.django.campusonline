@@ -30,4 +30,3 @@ class UsernameSyncTask(PeriodicTask):
         for s in students:
             cache.set(f"{s.__class__.__name__}:username:{s.username}", s.pk)
             cache.set(f"{s.__class__.__name__}:id:{s.pk}", s.username)
-
