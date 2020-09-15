@@ -249,6 +249,15 @@ class AuthenticatedPersonSerializer(PersonSerializer):
             return None
 
 
+class ExternalSerializer(ModelSerializer):
+    """
+    """
+
+    class Meta:
+        model = models.External
+        fields = ("id", "first_name", "last_name", "title")
+
+
 class PersonOrganizationFunctionSerializer(ModelSerializer):
     person = PersonSerializer()
     organization = OrganizationSerializer()
