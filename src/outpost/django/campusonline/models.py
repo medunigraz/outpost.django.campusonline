@@ -298,6 +298,9 @@ class Person(models.Model):
     ### `room` (`integer`)
     Foreign key to [CAMPUSonline room](../room) where this person has their primary workplace.
 
+    ### `card` (`string`)
+    URL to CAMPUSonline business card.
+
     ### `sex` (`string`)
     Sex of person:
 
@@ -340,6 +343,7 @@ class Person(models.Model):
     consultation = models.TextField(blank=True, null=True)
     appendix = models.TextField(blank=True, null=True)
     avatar = models.URLField(blank=True, null=True)
+    card = models.URLField(blank=True, null=True)
     functions = models.ManyToManyField("Function", through="PersonOrganizationFunction")
     organizations = models.ManyToManyField(
         "Organization",

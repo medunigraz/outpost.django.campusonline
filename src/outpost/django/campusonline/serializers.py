@@ -188,6 +188,7 @@ class PersonSerializer(FlexFieldsModelSerializer):
             "id",
             "room",
             "avatar",
+            "card",
             "first_name",
             "last_name",
             "title",
