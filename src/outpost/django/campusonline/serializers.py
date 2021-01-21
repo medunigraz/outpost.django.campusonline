@@ -136,6 +136,8 @@ class OrganizationSerializer(FlexFieldsModelSerializer):
             "phone",
             "url",
             "parent",
+            "fax",
+            "office",
             "persons",
             "publication_authorship",
         )

@@ -262,7 +262,9 @@ class Organization(AL_Node):
     address = models.TextField(blank=True, null=True)
     email = models.CharField(max_length=256, blank=True, null=True)
     phone = models.CharField(max_length=256, blank=True, null=True)
+    fax = models.CharField(max_length=256, blank=True, null=True)
     url = models.CharField(max_length=256, blank=True, null=True)
+    office = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
