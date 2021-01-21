@@ -226,10 +226,16 @@ class Organization(AL_Node):
     Official email address of organization.
 
     ### `phone` (`string`)
-    Official email address of organization.
+    Official phone number of organization.
+
+    ### `fax` (`string`)
+    Official fax number of organization.
 
     ### `url` (`string`)
     Official website URL of organization.
+
+    ### `office` (`string`)
+    Free-form text information about the office of this organization.
 
     ### `persons` (`[integer]`)
     List of foreign keys to [CAMPUSonline persons](../person) that are
@@ -317,6 +323,15 @@ class Person(models.Model):
 
     ### `avatar` (`string`)
     URL to user avatar picture. May point to an empty image.
+
+    ### `phone` (`string`)
+    Office phone number of person.
+
+    ### `phone_external` (`string`)
+    External phone number of person.
+
+    ### `fax` (`string`)
+    Office fax number of person.
 
     ### `functions` (`[integer]`) <i class="glyphicon glyphicon-lock"></i>
     List of foreign keys to [CAMPUSonline functions](../function) this person carries.
