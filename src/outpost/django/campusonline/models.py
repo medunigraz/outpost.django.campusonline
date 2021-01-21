@@ -356,6 +356,9 @@ class Person(models.Model):
     phone = models.CharField(max_length=256, blank=True, null=True)
     mobile = models.CharField(max_length=256, blank=True, null=True)
     employed = models.BooleanField()
+    card = models.URLField(blank=True, null=True)
+    fax = models.CharField(max_length=256, blank=True, null=True)
+    phone_external = models.CharField(max_length=256, blank=True, null=True)
 
     class Meta:
         managed = False
