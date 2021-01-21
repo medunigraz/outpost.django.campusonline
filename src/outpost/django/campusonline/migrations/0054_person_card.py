@@ -218,9 +218,7 @@ class Migration(migrations.Migration):
         ),
     ]
 
-    dependencies = [
-        ('campusonline', '0053_external'),
-    ]
+    dependencies = [("campusonline", "0053_external")]
 
     operations = [
         migrations.RunSQL(
