@@ -98,29 +98,18 @@ class OrganizationSerializer(FlexFieldsModelSerializer):
 
     The following relational fields can be expanded:
 
-     * `persons`
+     * `persons` <i class="glyphicon glyphicon-lock"></i>
+     * `persons_leave` <i class="glyphicon glyphicon-lock"></i>
 
     """
 
-    persons = PrimaryKeyRelatedField(many=True, read_only=True)
-
     @property
     def expandable_fields(self):
-        serializer = "PersonSerializer"
-        request = self.context.get("request", None)
-        if request:
-            if request.user:
-                if request.user.is_authenticated():
-                    serializer = "AuthenticatedPersonSerializer"
         return {
-            "persons": (
-                f"outpost.django.campusonline.serializers.{serializer}",
-                {"source": "persons", "many": True},
-            ),
             "publication_authorship": (
                 f"outpost.django.research.serializers.PublicationOrganizationSerializer",
                 {"source": "publication_authorship", "many": True},
-            ),
+            )
         }
 
     class Meta:
@@ -138,9 +127,32 @@ class OrganizationSerializer(FlexFieldsModelSerializer):
             "parent",
             "fax",
             "office",
-            "persons",
             "publication_authorship",
         )
+
+
+class AuthenticatedOrganizationSerializer(OrganizationSerializer):
+    persons = PrimaryKeyRelatedField(many=True, read_only=True)
+
+    @property
+    def expandable_fields(self):
+        base = "outpost.django.campusonline.serializers"
+        return {
+            **super().expandable_fields,
+            **{
+                "persons": (
+                    f"{base}.AuthenticatedPersonSerializer",
+                    {"source": "persons", "many": True},
+                ),
+                "persons_leave": (
+                    f"{base}.AuthenticatedPersonSerializer",
+                    {"source": "persons_leave", "many": True},
+                ),
+            },
+        }
+
+    class Meta(OrganizationSerializer.Meta):
+        fields = OrganizationSerializer.Meta.fields + ("persons", "persons_leave")
 
 
 class PersonSerializer(FlexFieldsModelSerializer):
@@ -156,6 +168,7 @@ class PersonSerializer(FlexFieldsModelSerializer):
 
      * `functions` <i class="glyphicon glyphicon-lock"></i>
      * `organizations` <i class="glyphicon glyphicon-lock"></i>
+     * `organizations_leave` <i class="glyphicon glyphicon-lock"></i>
      * `classification`
      * `expertise`
      * `knowledge`
@@ -225,6 +238,10 @@ class AuthenticatedPersonSerializer(PersonSerializer):
                     f"{base}.OrganizationSerializer",
                     {"source": "organizations", "many": True},
                 ),
+                "organizations_leave": (
+                    f"{base}.OrganizationSerializer",
+                    {"source": "organizations_leave", "many": True},
+                ),
             },
         }
 
@@ -235,6 +252,7 @@ class AuthenticatedPersonSerializer(PersonSerializer):
             "mobile",
             "functions",
             "organizations",
+            "organizations_leave",
             "employed",
         )
 

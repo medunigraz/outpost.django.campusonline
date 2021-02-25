@@ -337,7 +337,10 @@ class Person(models.Model):
     List of foreign keys to [CAMPUSonline functions](../function) this person carries.
 
     ### `organizations` (`[integer]`) <i class="glyphicon glyphicon-lock"></i>
-    List of foreign keys to [CAMPUSonline organizations](../organization) this person belongs to.
+    List of foreign keys to [CAMPUSonline organizations](../organization) where this person is currently active.
+
+    ### `organizations_leave` (`[integer]`) <i class="glyphicon glyphicon-lock"></i>
+    List of foreign keys to [CAMPUSonline organizations](../organization) where this person is currently on leave.
     """
 
     GENDER_CHOICES = (("W", _("Female")), ("M", _("Male")))
@@ -367,6 +370,12 @@ class Person(models.Model):
         db_table="campusonline_person_organization",
         db_constraint=False,
         related_name="persons",
+    )
+    organizations_leave = models.ManyToManyField(
+        "Organization",
+        db_table="campusonline_person_organization_leave",
+        db_constraint=False,
+        related_name="persons_leave",
     )
     avatar_private = models.BinaryField()
     hash = models.CharField(max_length=64)
