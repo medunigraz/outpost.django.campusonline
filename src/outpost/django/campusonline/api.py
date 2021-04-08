@@ -165,6 +165,12 @@ class StudentViewSet(ReadOnlyModelViewSet):
     filter_class = filters.StudentFilter
     permission_classes = (IsAuthenticated,)
 
+    def get_serializer_class(self):
+        if self.request.user and self.request.user.is_authenticated():
+            return serializers.AuthenticatedStudentSerializer
+        else:
+            return self.serializer_class
+
 
 @docstring_format(filter=filters.PersonOrganizationFunctionFilter.__doc__)
 class PersonOrganizationFunctionViewSet(ReadOnlyModelViewSet):

@@ -345,6 +345,14 @@ class StudentSerializer(ModelSerializer):
         fields = ("id", "first_name", "last_name", "title", "avatar")
 
 
+class AuthenticatedStudentSerializer(StudentSerializer):
+
+    class Meta(StudentSerializer.Meta):
+        fields = StudentSerializer.Meta.fields + (
+            "email",
+        )
+
+
 class CourseSerializer(ModelSerializer):
     class Meta:
         model = models.Course

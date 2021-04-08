@@ -543,6 +543,7 @@ class Student(models.Model):
     cardid = models.CharField(max_length=16, blank=True, null=True)
     username = models.CharField(max_length=256, blank=True, null=True)
     avatar = models.URLField(blank=True, null=True)
+    email = models.EmailField()
 
     class Meta:
         managed = False
