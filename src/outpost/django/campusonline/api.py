@@ -95,6 +95,9 @@ class OrganizationViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
         else:
             return self.serializer_class
 
+    def get_serializer_context(self):
+        return {"request": self.request}
+
 
 @docstring_format(
     model=models.Person.__doc__,
@@ -130,6 +133,16 @@ class PersonViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
             return serializers.AuthenticatedPersonSerializer
         else:
             return self.serializer_class
+
+    def get_serializer_context(self):
+        return {"request": self.request}
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        if self.request.user and self.request.user.is_authenticated():
+            return qs
+        else:
+            return qs.filter(employed=True)
 
 
 @docstring_format(
