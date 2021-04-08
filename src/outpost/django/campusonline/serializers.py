@@ -224,6 +224,13 @@ class AuthenticatedPersonSerializer(PersonSerializer):
     avatar = SerializerMethodField()
     mobile = SerializerMethodField()
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        request = self.context.get("request", None)
+        if request is not None:
+            # TODO: Handle special fields only available with certain permissions.
+            pass
+
     @property
     def expandable_fields(self):
         base = "outpost.django.campusonline.serializers"
