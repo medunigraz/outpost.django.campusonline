@@ -18,7 +18,7 @@ from treebeard.al_tree import AL_Node
 from outpost.django.base.decorators import locale
 from outpost.django.base.models import RelatedManager
 from outpost.django.base.signals import materialized_view_refreshed
-from outpost.django.base.tasks import RefreshMaterializedViewTask
+from outpost.django.base.tasks import MaterializedViewTasks
 
 from .conf import settings
 
@@ -797,7 +797,7 @@ class Bulletin(models.Model):
             b.extract()
 
 
-materialized_view_refreshed.connect(Bulletin.update, sender=RefreshMaterializedViewTask)
+materialized_view_refreshed.connect(Bulletin.update, sender=MaterializedViewTasks.refresh)
 
 
 class BulletinPage(models.Model):
@@ -813,9 +813,9 @@ class BulletinPage(models.Model):
         ordering = ("-bulletin", "index")
         unique_together = ("bulletin", "index")
 
-    @locale(LC_ALL, "C")
-    @locale(LC_CTYPE, "C")
-    @locale(LC_NUMERIC, "C")
+    @locale(cat=LC_ALL, loc="C")
+    @locale(cat=LC_CTYPE, loc="C")
+    @locale(cat=LC_NUMERIC, loc="C")
     def extract(self, page: Poppler.Page):
         from tesserocr import PyTessBaseAPI  # NOQA Stupid assert on LC_* == 'C'
 
