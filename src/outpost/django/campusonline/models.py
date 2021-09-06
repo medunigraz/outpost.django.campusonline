@@ -865,3 +865,20 @@ class FinalThesis(models.Model):
 
     def __str__(self):
         return f"{self.author}: {self.title} ({self.year})"
+
+
+class RoomAllocation(models.Model):
+    id = models.CharField(primary_key=True, max_length=128)
+    room = models.ForeignKey("Room", models.DO_NOTHING, db_constraint=False)
+    term = models.IntegerField()
+    student = models.ForeignKey("Student", models.DO_NOTHING, db_constraint=False)
+    start = models.DateTimeField()
+    end = models.DateTimeField()
+    onsite = models.BooleanField()
+
+    class Meta:
+        managed = False
+        db_table = "campusonline_roomallocation"
+
+    def __str__(self):
+        return f"{self.student}: {self.room} ({self.term})"
