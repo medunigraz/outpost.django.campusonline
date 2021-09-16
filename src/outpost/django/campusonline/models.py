@@ -544,6 +544,7 @@ class Student(models.Model):
     username = models.CharField(max_length=256, blank=True, null=True)
     avatar = models.URLField(blank=True, null=True)
     email = models.EmailField()
+    immunized = models.BooleanField()
 
     class Meta:
         managed = False
