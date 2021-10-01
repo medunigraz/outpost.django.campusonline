@@ -4,6 +4,10 @@ from __future__ import unicode_literals
 
 from django.db import migrations
 from django.conf import settings
+from django.utils.timezone import get_current_timezone
+
+
+tz = get_current_timezone()
 
 
 class Migration(migrations.Migration):
@@ -43,8 +47,8 @@ class Migration(migrations.Migration):
                 ha.termin_nr::integer AS term,
                 ha.raum_nr::integer AS room_id,
                 ha.st_person_nr::integer AS student_id,
-                MIN(lgt.lv_beginn) AS start,
-                MAX(lgt.lv_ende) AS "end",
+                MIN(lgt.lv_beginn) AT TIME ZONE '{tz}' AS start,
+                MAX(lgt.lv_ende) AT TIME ZONE '{tz}' AS "end",
                 UPPER(ha.angemeldet::text) = 'J'::text AS onsite
             FROM
                 campusonline.hybrid_angemeldete ha,
@@ -57,7 +61,9 @@ class Migration(migrations.Migration):
                 ha.st_person_nr,
                 ha.angemeldet
             WITH DATA;
-            """,
+            """.format(
+                tz=tz.zone
+            ),
             """
             DROP MATERIALIZED VIEW IF EXISTS "public"."campusonline_roomallocation";
             """,
