@@ -490,6 +490,7 @@ class FinalThesisFilter(filterset.FilterSet):
 
     Possible lookups:
 
+      - `category`: `regex`
       - `year`: `contains`, `regex`
       - `modified`: `gte`, `gt`, `lte`, `lt`, `date`
     """
@@ -500,6 +501,7 @@ class FinalThesisFilter(filterset.FilterSet):
             "author": ("exact",),
             "tutor": ("exact",),
             "organization": ("exact",),
+            "category": ("exact", "regex"),
             "year": ("exact", "contains", "regex"),
             "modified": ("exact", "gt", "lt", "gte", "lte", "date"),
         }
