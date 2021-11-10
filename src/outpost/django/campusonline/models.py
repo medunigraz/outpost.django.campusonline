@@ -7,7 +7,7 @@ from typing import Optional
 
 import requests
 from django.contrib.gis.db import models
-from django.contrib.postgres.fields import ArrayField
+from django.contrib.postgres.fields import HStoreField
 from django.utils.translation import gettext_lazy as _
 from ordered_model.models import OrderedModel
 from PIL import Image
@@ -846,16 +846,19 @@ class BulletinPage(models.Model):
 class FinalThesis(models.Model):
     study_designation = models.CharField(max_length=256)
     modified = models.DateTimeField()
-    author = models.ForeignKey("Student", models.DO_NOTHING, db_constraint=False)
-    authors = ArrayField(models.CharField(max_length=256))
-    title = models.CharField(max_length=256)
-    abstract = models.TextField()
-    tutor = models.ForeignKey("Person", models.DO_NOTHING, db_constraint=False)
+    author = models.ForeignKey("Student", models.DO_NOTHING, db_constraint=False, null=True)
+    author_lastname = models.CharField(max_length=256)
+    author_firstname = models.CharField(max_length=256)
+    author_title = models.CharField(max_length=256)
+    title = HStoreField()
+    abstract = HStoreField()
+    tutor = models.ForeignKey("Person", models.DO_NOTHING, db_constraint=False, null=True)
+    tutor_name = models.CharField(max_length=256)
     year = models.PositiveIntegerField()
     url = models.URLField()
     category = models.CharField(max_length=256)
     organization = models.ForeignKey(
-        "Organization", models.DO_NOTHING, db_constraint=False
+        "Organization", models.DO_NOTHING, db_constraint=False, null=True
     )
 
     class Meta:
