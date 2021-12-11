@@ -90,7 +90,7 @@ class OrganizationViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
     permit_list_expands = ("persons", "persons_leave", "publication_authorship")
 
     def get_serializer_class(self):
-        if self.request.user and self.request.user.is_authenticated():
+        if self.request.user and self.request.user.is_authenticated:
             return serializers.AuthenticatedOrganizationSerializer
         else:
             return self.serializer_class
@@ -129,7 +129,7 @@ class PersonViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
     )
 
     def get_serializer_class(self):
-        if self.request.user and self.request.user.is_authenticated():
+        if self.request.user and self.request.user.is_authenticated:
             return serializers.AuthenticatedPersonSerializer
         else:
             return self.serializer_class
@@ -139,7 +139,7 @@ class PersonViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
 
     def get_queryset(self):
         qs = super().get_queryset()
-        if self.request.user and self.request.user.is_authenticated():
+        if self.request.user and self.request.user.is_authenticated:
             return qs
         else:
             return qs.filter(employed=True)
@@ -166,7 +166,7 @@ class StudentViewSet(ReadOnlyModelViewSet):
     permission_classes = (IsAuthenticated,)
 
     def get_serializer_class(self):
-        if self.request.user and self.request.user.is_authenticated():
+        if self.request.user and self.request.user.is_authenticated:
             return serializers.AuthenticatedStudentSerializer
         else:
             return self.serializer_class
