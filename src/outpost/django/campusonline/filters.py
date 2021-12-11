@@ -336,7 +336,19 @@ class CourseGroupTermFilter(filterset.FilterSet):
     """
 
     room_title = CharFilter(field_name="room__title")
-    room_number = CharFilter(field_name="room__full")
+    room_title__contains = CharFilter(field_name="room__title", lookup_expr="contains")
+    room_title__icontains = CharFilter(field_name="room__title", lookup_expr="icontains")
+    room_title__startswith = CharFilter(field_name="room__title", lookup_expr="startswith")
+    room_title__istartswith = CharFilter(field_name="room__title", lookup_expr="istartswith")
+    room_title__endswith = CharFilter(field_name="room__title", lookup_expr="endswith")
+    room_title__iendswith = CharFilter(field_name="room__title", lookup_expr="iendswith")
+    room_number = CharFilter(field_name="room__name_full")
+    room_number__contains = CharFilter(field_name="room__name_full", lookup_expr="contains")
+    room_number__icontains = CharFilter(field_name="room__name_full", lookup_expr="icontains")
+    room_number__startswith = CharFilter(field_name="room__name_full", lookup_expr="startswith")
+    room_number__istartswith = CharFilter(field_name="room__name_full", lookup_expr="istartswith")
+    room_number__endswith = CharFilter(field_name="room__name_full", lookup_expr="endswith")
+    room_number__iendswith = CharFilter(field_name="room__name_full", lookup_expr="iendswith")
 
     class Meta:
         model = models.CourseGroupTerm
@@ -354,7 +366,7 @@ class CourseGroupTermFilter(filterset.FilterSet):
                 "endswith",
                 "iendswith",
             ),
-            "room_title": (
+            "room__title": (
                 "contains",
                 "icontains",
                 "startswith",
@@ -362,7 +374,15 @@ class CourseGroupTermFilter(filterset.FilterSet):
                 "endswith",
                 "iendswith",
             ),
-            "room_number": (
+            "room__name_short": (
+                "contains",
+                "icontains",
+                "startswith",
+                "istartswith",
+                "endswith",
+                "iendswith",
+            ),
+            "room__name_full": (
                 "contains",
                 "icontains",
                 "startswith",
@@ -490,7 +510,6 @@ class FinalThesisFilter(filterset.FilterSet):
 
     Possible lookups:
 
-      - `category`: `regex`
       - `year`: `contains`, `regex`
       - `modified`: `gte`, `gt`, `lte`, `lt`, `date`
     """
@@ -501,7 +520,6 @@ class FinalThesisFilter(filterset.FilterSet):
             "author": ("exact",),
             "tutor": ("exact",),
             "organization": ("exact",),
-            "category": ("exact", "regex"),
             "year": ("exact", "contains", "regex"),
             "modified": ("exact", "gt", "lt", "gte", "lte", "date"),
         }
