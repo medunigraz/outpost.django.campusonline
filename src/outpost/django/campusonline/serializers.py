@@ -73,7 +73,7 @@ class FunctionSerializer(FlexFieldsModelSerializer):
         request = self.context.get("request", None)
         if request:
             if request.user:
-                if request.user.is_authenticated():
+                if request.user.is_authenticated:
                     serializer = "AuthenticatedPersonSerializer"
         return {
             "persons": (
@@ -321,7 +321,7 @@ class DistributionListSerializer(FlexFieldsModelSerializer):
         request = self.context.get("request", None)
         if request:
             if request.user:
-                if request.user.is_authenticated():
+                if request.user.is_authenticated:
                     person = "AuthenticatedPersonSerializer"
         return {
             "persons": (
@@ -439,7 +439,7 @@ class FinalThesisSerializer(FlexFieldsModelSerializer):
         request = self.context.get("request", None)
         if request:
             if request.user:
-                if request.user.is_authenticated():
+                if request.user.is_authenticated:
                     serializer = "AuthenticatedPersonSerializer"
         return {
             "author": (f"{__name__}.StudentSerializer", {"source": "author"}),
