@@ -343,7 +343,15 @@ class Person(models.Model):
     List of foreign keys to [CAMPUSonline organizations](../organization) where this person is currently on leave.
     """
 
-    GENDER_CHOICES = (("W", _("Female")), ("M", _("Male")))
+    GENDER_CHOICES = (
+        ("W", _("Female")),
+        ("M", _("Male")),
+        ("X", _("Divers")),
+        ("U", _("Unknown")),
+        ("O", _("Open")),
+        ("I", _("Inter")),
+        ("K", _("No record")),
+    )
 
     id = models.IntegerField(primary_key=True)
     first_name = models.CharField(max_length=256, blank=True, null=True)
