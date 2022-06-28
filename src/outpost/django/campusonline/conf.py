@@ -9,6 +9,7 @@ class CAMPUSonlineAppConf(AppConf):
     BULLETIN_OCR_DPI = 300
     BULLETIN_OCR_THRESHOLD = 50
     PHONE_NUMBER_REGION = "AT"
+    VIRTUAL_ROOMS = list()
 
     class Meta:
         prefix = "campusonline"

@@ -1,8 +1,9 @@
 from django.utils.translation import gettext_lazy as _
-from django_filters import CharFilter
+from django_filters import CharFilter, BooleanFilter
 from django_filters.rest_framework import filters, filterset
 
 from . import models
+from .conf import settings
 
 
 class FunctionFilter(filterset.FilterSet):
@@ -349,6 +350,7 @@ class CourseGroupTermFilter(filterset.FilterSet):
     room_number__istartswith = CharFilter(field_name="room__name_full", lookup_expr="istartswith")
     room_number__endswith = CharFilter(field_name="room__name_full", lookup_expr="endswith")
     room_number__iendswith = CharFilter(field_name="room__name_full", lookup_expr="iendswith")
+    virtual = BooleanFilter(method='filter_virtual')
 
     class Meta:
         model = models.CourseGroupTerm
@@ -391,6 +393,13 @@ class CourseGroupTermFilter(filterset.FilterSet):
                 "iendswith",
             ),
         }
+
+    def filter_virtual(self, queryset, name, value):
+        kwargs = {"room_id__in": settings.CAMPUSONLINE_VIRTUAL_ROOMS}
+        if value:
+            return queryset.filter(**kwargs)
+        else:
+            return queryset.exclude(**kwargs)
 
 
 class EventFilter(filterset.FilterSet):
