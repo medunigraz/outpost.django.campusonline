@@ -153,7 +153,7 @@ class Migration(migrations.Migration):
     ]
 
     dependencies = [
-        ('campusonline', '0061_finalthesis_category_index'),
+        ("campusonline", "0061_finalthesis_category_index"),
     ]
 
     operations = [

@@ -128,7 +128,7 @@ class Migration(migrations.Migration):
     ]
 
     dependencies = [
-        ('campusonline', '0057_organization_leave'),
+        ("campusonline", "0057_organization_leave"),
     ]
 
     operations = [

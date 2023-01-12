@@ -6,26 +6,34 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('campusonline', '0064_lv_anw'),
+        ("campusonline", "0064_lv_anw"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='RoomAllocation',
+            name="RoomAllocation",
             fields=[
-                ('id', models.CharField(max_length=128, primary_key=True, serialize=False)),
-                ('term', models.IntegerField()),
-                ('start', models.DateTimeField()),
-                ('end', models.DateTimeField()),
-                ('onsite', models.BooleanField()),
+                (
+                    "id",
+                    models.CharField(max_length=128, primary_key=True, serialize=False),
+                ),
+                ("term", models.IntegerField()),
+                ("start", models.DateTimeField()),
+                ("end", models.DateTimeField()),
+                ("onsite", models.BooleanField()),
             ],
             options={
-                'db_table': 'campusonline_roomallocation',
-                'managed': False,
+                "db_table": "campusonline_roomallocation",
+                "managed": False,
             },
         ),
         migrations.AlterModelOptions(
-            name='coursegroupterm',
-            options={'get_latest_by': 'start', 'managed': False, 'ordering': ('start', 'end'), 'permissions': ()},
+            name="coursegroupterm",
+            options={
+                "get_latest_by": "start",
+                "managed": False,
+                "ordering": ("start", "end"),
+                "permissions": (),
+            },
         ),
     ]

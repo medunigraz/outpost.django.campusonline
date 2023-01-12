@@ -53,7 +53,7 @@ class Migration(migrations.Migration):
     ]
 
     dependencies = [
-        ('campusonline', '0065_auto_20221021_2308'),
+        ("campusonline", "0065_auto_20221021_2308"),
     ]
 
     operations = [

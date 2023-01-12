@@ -103,7 +103,7 @@ class Migration(migrations.Migration):
     ]
 
     dependencies = [
-        ('campusonline', '0058_student_email'),
+        ("campusonline", "0058_student_email"),
     ]
 
     operations = [

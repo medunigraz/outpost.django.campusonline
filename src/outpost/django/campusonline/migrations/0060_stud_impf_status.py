@@ -143,7 +143,7 @@ class Migration(migrations.Migration):
     ]
 
     dependencies = [
-        ('campusonline', '0059_roomallocation'),
+        ("campusonline", "0059_roomallocation"),
     ]
 
     operations = [

@@ -7,21 +7,24 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('campusonline', '0066_country'),
+        ("campusonline", "0066_country"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Country',
+            name="Country",
             fields=[
-                ('alpha2', models.CharField(max_length=2, primary_key=True, serialize=False)),
-                ('alpha3', models.CharField(max_length=3)),
-                ('name', django.contrib.postgres.fields.hstore.HStoreField()),
+                (
+                    "alpha2",
+                    models.CharField(max_length=2, primary_key=True, serialize=False),
+                ),
+                ("alpha3", models.CharField(max_length=3)),
+                ("name", django.contrib.postgres.fields.hstore.HStoreField()),
             ],
             options={
-                'db_table': 'campusonline_country',
-                'ordering': ('alpha2',),
-                'managed': False,
+                "db_table": "campusonline_country",
+                "ordering": ("alpha2",),
+                "managed": False,
             },
         ),
     ]
