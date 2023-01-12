@@ -38,4 +38,9 @@ v1 = [
         api.CourseGroupTermViewSet,
         "campusonline-course-group-term",
     ),
+    (
+        r"campusonline/country",
+        api.CountryViewSet,
+        "campusonline-country",
+    ),
 ]

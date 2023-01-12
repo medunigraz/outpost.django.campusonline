@@ -894,3 +894,17 @@ class RoomAllocation(models.Model):
 
     def __str__(self):
         return f"{self.student}: {self.room} ({self.term})"
+
+
+class Country(models.Model):
+    alpha2 = models.CharField(max_length=2, primary_key=True)
+    alpha3 = models.CharField(max_length=3)
+    name = HStoreField()
+
+    class Meta:
+        managed = False
+        db_table = "campusonline_country"
+        ordering = ("alpha2",)
+
+    def __str__(self):
+        return f"{self.alpha2} ({self.alpha3})"

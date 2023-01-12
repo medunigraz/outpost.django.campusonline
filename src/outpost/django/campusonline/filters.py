@@ -532,3 +532,17 @@ class FinalThesisFilter(filterset.FilterSet):
             "year": ("exact", "contains", "regex"),
             "modified": ("exact", "gt", "lt", "gte", "lte", "date"),
         }
+
+
+class CountryFilter(filterset.FilterSet):
+    """
+    ## Filters
+
+    To filter for exact value matches:
+
+        ?<fieldname>=<value>
+    """
+
+    class Meta:
+        model = models.Country
+        fields = ("alpha2", "alpha3")

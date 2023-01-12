@@ -299,3 +299,11 @@ class FinalThesisViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
     filter_class = filters.FinalThesisFilter
     permission_classes = (IsAuthenticated,)
     permit_list_expands = ("author", "tutor", "organization")
+
+
+class CountryViewSet(ReadOnlyModelViewSet):
+    queryset = models.Country.objects.all()
+    serializer_class = serializers.CountrySerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_class = filters.CountryFilter
+    permission_classes = (AllowAny,)

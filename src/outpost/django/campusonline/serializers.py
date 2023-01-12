@@ -453,3 +453,9 @@ class FinalThesisSerializer(FlexFieldsModelSerializer):
     class Meta:
         model = models.FinalThesis
         fields = "__all__"
+
+
+class CountrySerializer(ModelSerializer):
+    class Meta:
+        model = models.Country
+        fields = "__all__"
