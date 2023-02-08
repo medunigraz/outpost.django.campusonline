@@ -196,7 +196,9 @@ class Migration(migrations.Migration):
             FROM
                 campusonline.pv_termine
             WITH DATA;
-            """.format(tz=settings.TIME_ZONE),
+            """.format(
+                tz=settings.TIME_ZONE
+            ),
             """
             DROP MATERIALIZED VIEW IF EXISTS "public"."campusonline_exam";
             """,
@@ -214,7 +216,9 @@ class Migration(migrations.Migration):
             FROM
                 campusonline.pv_kandidaten
             WITH DATA;
-            """.format(tz=settings.TIME_ZONE),
+            """.format(
+                tz=settings.TIME_ZONE
+            ),
             """
             DROP MATERIALIZED VIEW IF EXISTS "public"."campusonline_examinee";
             """,
@@ -222,7 +226,7 @@ class Migration(migrations.Migration):
     ]
 
     dependencies = [
-        ('campusonline', '0068_lw_anv_lehrender'),
+        ("campusonline", "0068_lw_anv_lehrender"),
     ]
 
     operations = [

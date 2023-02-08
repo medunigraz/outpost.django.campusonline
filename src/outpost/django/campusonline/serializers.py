@@ -1,6 +1,9 @@
 from django.urls import reverse
 from drf_haystack.serializers import HaystackSerializerMixin
-from phonenumbers import PhoneNumberFormat, format_number
+from phonenumbers import (
+    PhoneNumberFormat,
+    format_number,
+)
 from phonenumbers import parse as parse_number
 from phonenumbers import phonenumberutil
 from rest_flex_fields import FlexFieldsModelSerializer
@@ -281,8 +284,7 @@ class AuthenticatedPersonSerializer(PersonSerializer):
 
 
 class ExternalSerializer(ModelSerializer):
-    """
-    """
+    """"""
 
     class Meta:
         model = models.External
@@ -346,7 +348,6 @@ class StudentSerializer(ModelSerializer):
 
 
 class AuthenticatedStudentSerializer(StudentSerializer):
-
     class Meta(StudentSerializer.Meta):
         fields = StudentSerializer.Meta.fields + (
             "email",
@@ -456,24 +457,24 @@ class FinalThesisSerializer(FlexFieldsModelSerializer):
 
 
 class CountrySerializer(ModelSerializer):
-    """
-    """
+    """"""
+
     class Meta:
         model = models.Country
         fields = "__all__"
 
 
 class ExamModeSerializer(ModelSerializer):
-    """
-    """
+    """"""
+
     class Meta:
         model = models.ExamMode
         fields = "__all__"
 
 
 class ExamTypeSerializer(ModelSerializer):
-    """
-    """
+    """"""
+
     class Meta:
         model = models.ExamType
         fields = "__all__"
@@ -523,8 +524,8 @@ class ExamSerializer(FlexFieldsModelSerializer):
 
 
 class ExamineeStatusSerializer(ModelSerializer):
-    """
-    """
+    """"""
+
     class Meta:
         model = models.ExamineeStatus
         fields = "__all__"

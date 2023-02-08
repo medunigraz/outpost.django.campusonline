@@ -1,24 +1,30 @@
 import logging
-
-import django
 from io import BytesIO
-from locale import LC_ALL, LC_CTYPE, LC_NUMERIC
+from locale import (
+    LC_ALL,
+    LC_CTYPE,
+    LC_NUMERIC,
+)
 from typing import Optional
 
+import django
 import requests
 from django.contrib.gis.db import models
 from django.contrib.postgres.fields import HStoreField
 from django.utils.translation import gettext_lazy as _
 from ordered_model.models import OrderedModel
-from PIL import Image
-from popplerqt5 import Poppler
-from PyQt5.QtCore import QBuffer, QIODevice, QRectF
-from treebeard.al_tree import AL_Node
-
 from outpost.django.base.decorators import locale
 from outpost.django.base.models import RelatedManager
 from outpost.django.base.signals import materialized_view_refreshed
 from outpost.django.base.tasks import MaterializedViewTasks
+from PIL import Image
+from popplerqt5 import Poppler
+from PyQt5.QtCore import (
+    QBuffer,
+    QIODevice,
+    QRectF,
+)
+from treebeard.al_tree import AL_Node
 
 from .conf import settings
 
@@ -806,7 +812,9 @@ class Bulletin(models.Model):
             b.extract()
 
 
-materialized_view_refreshed.connect(Bulletin.update, sender=MaterializedViewTasks.refresh)
+materialized_view_refreshed.connect(
+    Bulletin.update, sender=MaterializedViewTasks.refresh
+)
 
 
 class BulletinPage(models.Model):
@@ -854,13 +862,17 @@ class BulletinPage(models.Model):
 class FinalThesis(models.Model):
     study_designation = models.CharField(max_length=256)
     modified = models.DateTimeField()
-    author = models.ForeignKey("Student", models.DO_NOTHING, db_constraint=False, null=True)
+    author = models.ForeignKey(
+        "Student", models.DO_NOTHING, db_constraint=False, null=True
+    )
     author_lastname = models.CharField(max_length=256)
     author_firstname = models.CharField(max_length=256)
     author_title = models.CharField(max_length=256)
     title = HStoreField()
     abstract = HStoreField()
-    tutor = models.ForeignKey("Person", models.DO_NOTHING, db_constraint=False, null=True)
+    tutor = models.ForeignKey(
+        "Person", models.DO_NOTHING, db_constraint=False, null=True
+    )
     tutor_name = models.CharField(max_length=256)
     year = models.PositiveIntegerField()
     url = models.URLField()

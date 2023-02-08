@@ -1,6 +1,12 @@
 from django.utils.translation import gettext_lazy as _
-from django_filters import CharFilter, BooleanFilter
-from django_filters.rest_framework import filters, filterset
+from django_filters import (
+    BooleanFilter,
+    CharFilter,
+)
+from django_filters.rest_framework import (
+    filters,
+    filterset,
+)
 
 from . import models
 from .conf import settings
@@ -338,19 +344,39 @@ class CourseGroupTermFilter(filterset.FilterSet):
 
     room_title = CharFilter(field_name="room__title")
     room_title__contains = CharFilter(field_name="room__title", lookup_expr="contains")
-    room_title__icontains = CharFilter(field_name="room__title", lookup_expr="icontains")
-    room_title__startswith = CharFilter(field_name="room__title", lookup_expr="startswith")
-    room_title__istartswith = CharFilter(field_name="room__title", lookup_expr="istartswith")
+    room_title__icontains = CharFilter(
+        field_name="room__title", lookup_expr="icontains"
+    )
+    room_title__startswith = CharFilter(
+        field_name="room__title", lookup_expr="startswith"
+    )
+    room_title__istartswith = CharFilter(
+        field_name="room__title", lookup_expr="istartswith"
+    )
     room_title__endswith = CharFilter(field_name="room__title", lookup_expr="endswith")
-    room_title__iendswith = CharFilter(field_name="room__title", lookup_expr="iendswith")
+    room_title__iendswith = CharFilter(
+        field_name="room__title", lookup_expr="iendswith"
+    )
     room_number = CharFilter(field_name="room__name_full")
-    room_number__contains = CharFilter(field_name="room__name_full", lookup_expr="contains")
-    room_number__icontains = CharFilter(field_name="room__name_full", lookup_expr="icontains")
-    room_number__startswith = CharFilter(field_name="room__name_full", lookup_expr="startswith")
-    room_number__istartswith = CharFilter(field_name="room__name_full", lookup_expr="istartswith")
-    room_number__endswith = CharFilter(field_name="room__name_full", lookup_expr="endswith")
-    room_number__iendswith = CharFilter(field_name="room__name_full", lookup_expr="iendswith")
-    virtual = BooleanFilter(method='filter_virtual')
+    room_number__contains = CharFilter(
+        field_name="room__name_full", lookup_expr="contains"
+    )
+    room_number__icontains = CharFilter(
+        field_name="room__name_full", lookup_expr="icontains"
+    )
+    room_number__startswith = CharFilter(
+        field_name="room__name_full", lookup_expr="startswith"
+    )
+    room_number__istartswith = CharFilter(
+        field_name="room__name_full", lookup_expr="istartswith"
+    )
+    room_number__endswith = CharFilter(
+        field_name="room__name_full", lookup_expr="endswith"
+    )
+    room_number__iendswith = CharFilter(
+        field_name="room__name_full", lookup_expr="iendswith"
+    )
+    virtual = BooleanFilter(method="filter_virtual")
 
     class Meta:
         model = models.CourseGroupTerm
