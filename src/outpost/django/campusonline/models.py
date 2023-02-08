@@ -696,7 +696,7 @@ class Event(OrderedModel):
     )
     category = models.CharField(max_length=256)
     title = models.CharField(max_length=256)
-    date = models.DateTimeField()
+    date = models.DateField()
     start = models.DateTimeField()
     end = models.DateTimeField()
     building = models.ForeignKey(
