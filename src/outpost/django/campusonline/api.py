@@ -301,7 +301,20 @@ class FinalThesisViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
     permit_list_expands = ("author", "tutor", "organization")
 
 
+@docstring_format(
+    model=models.Country.__doc__,
+    filter=filters.CountryFilter.__doc__,
+    serializer=serializers.CountrySerializer.__doc__,
+)
 class CountryViewSet(ReadOnlyModelViewSet):
+    """
+    List countries from CAMPUSonline.
+
+    {model}
+    {filter}
+    {serializer}
+    """
+
     queryset = models.Country.objects.all()
     serializer_class = serializers.CountrySerializer
     filter_backends = (DjangoFilterBackend,)
