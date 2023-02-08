@@ -459,3 +459,100 @@ class CountrySerializer(ModelSerializer):
     class Meta:
         model = models.Country
         fields = "__all__"
+
+
+class ExamModeSerializer(ModelSerializer):
+    """
+    """
+    class Meta:
+        model = models.ExamMode
+        fields = "__all__"
+
+
+class ExamTypeSerializer(ModelSerializer):
+    """
+    """
+    class Meta:
+        model = models.ExamType
+        fields = "__all__"
+
+
+class ExamSerializer(FlexFieldsModelSerializer):
+    """
+    ## Expansions
+
+    To activate relation expansion add the desired fields as a comma separated
+    list to the `expand` query parameter like this:
+
+        ?expand=<field>,<field>,<field>,...
+
+    The following relational fields can be expanded:
+
+     * `organization`
+     * `mode`
+     * `type`
+     * `examiner`
+     * `course`
+
+    """
+
+    @property
+    def expandable_fields(self):
+        serializer = "PersonSerializer"
+        request = self.context.get("request", None)
+        if request:
+            if request.user:
+                if request.user.is_authenticated:
+                    serializer = "AuthenticatedPersonSerializer"
+        return {
+            "organization": (
+                f"{__name__}.OrganizationSerializer",
+                {"source": "organization"},
+            ),
+            "modes": (f"{__name__}.ExamModeSerializer", {"source": "mode"}),
+            "type": (f"{__name__}.ExamTypeSerializer", {"source": "type"}),
+            "examiner": (f"{__name__}.{serializer}", {"source": "examiner"}),
+            "course": (f"{__name__}.CourseSerializer", {"source": "course"}),
+        }
+
+    class Meta:
+        model = models.Exam
+        fields = "__all__"
+
+
+class ExamineeStatusSerializer(ModelSerializer):
+    """
+    """
+    class Meta:
+        model = models.ExamineeStatus
+        fields = "__all__"
+
+
+class ExamineeSerializer(FlexFieldsModelSerializer):
+    """
+    ## Expansions
+
+    To activate relation expansion add the desired fields as a comma separated
+    list to the `expand` query parameter like this:
+
+        ?expand=<field>,<field>,<field>,...
+
+    The following relational fields can be expanded:
+
+     * `exam`
+     * `student`
+     * `status`
+
+    """
+
+    @property
+    def expandable_fields(self):
+        return {
+            "exam": (f"{__name__}.ExamSerializer", {"source": "exam"}),
+            "student": (f"{__name__}.StudentSerializer", {"source": "student"}),
+            "status": (f"{__name__}.ExamineeStatusSerializer", {"source": "status"}),
+        }
+
+    class Meta:
+        model = models.Examinee
+        fields = "__all__"

@@ -908,3 +908,140 @@ class Country(models.Model):
 
     def __str__(self):
         return f"{self.alpha2} ({self.alpha3})"
+
+
+class ExamMode(models.Model):
+    short = models.CharField(max_length=8)
+    name = HStoreField()
+
+    class Meta:
+        managed = False
+        db_table = "campusonline_exam_mode"
+        ordering = ("short",)
+
+    def __str__(self):
+        return self.short
+
+
+class ExamType(models.Model):
+    short = models.CharField(max_length=8)
+    name = HStoreField()
+    certificate = HStoreField()
+
+    class Meta:
+        managed = False
+        db_table = "campusonline_exam_type"
+        ordering = ("short",)
+
+    def __str__(self):
+        return self.short
+
+
+class Exam(models.Model):
+    organization = models.ForeignKey(
+        "Organization",
+        models.DO_NOTHING,
+        db_constraint=False,
+        null=False,
+        blank=False,
+        related_name="+",
+    )
+    mode = models.ForeignKey(
+        "ExamMode",
+        models.DO_NOTHING,
+        db_constraint=False,
+        null=False,
+        blank=False,
+        related_name="+",
+    )
+    type = models.ForeignKey(
+        "ExamType",
+        models.DO_NOTHING,
+        db_constraint=False,
+        null=False,
+        blank=False,
+        related_name="+",
+    )
+    examiner = models.ForeignKey(
+        "Person",
+        models.DO_NOTHING,
+        db_constraint=False,
+        null=False,
+        blank=False,
+        related_name="+",
+    )
+    course = models.ForeignKey(
+        "Course",
+        models.DO_NOTHING,
+        db_constraint=False,
+        null=False,
+        blank=False,
+        related_name="+",
+    )
+    registration_start = models.DateTimeField()
+    registration_end = models.DateTimeField()
+    start = models.DateTimeField()
+    online_registration = models.BooleanField()
+    note = models.TextField()
+    valid = models.BooleanField()
+    deregistration_end = models.DateTimeField()
+    location = models.TextField()
+
+    class Meta:
+        managed = False
+        db_table = "campusonline_exam"
+        ordering = ("start",)
+
+    def __str__(self):
+        return f"{self.type} ({self.mode})"
+
+
+class ExamineeStatus(models.Model):
+    short = models.CharField(max_length=8)
+    name = HStoreField()
+
+    class Meta:
+        managed = False
+        db_table = "campusonline_examinee_status"
+        ordering = ("short",)
+
+    def __str__(self):
+        return self.short
+
+
+class Examinee(models.Model):
+    exam = models.ForeignKey(
+        "Exam",
+        models.DO_NOTHING,
+        db_constraint=False,
+        null=False,
+        blank=False,
+        related_name="+",
+    )
+    student = models.ForeignKey(
+        "Student",
+        models.DO_NOTHING,
+        db_constraint=False,
+        null=False,
+        blank=False,
+        related_name="+",
+    )
+    status = models.ForeignKey(
+        "ExamineeStatus",
+        models.DO_NOTHING,
+        db_constraint=False,
+        null=False,
+        blank=False,
+        related_name="+",
+    )
+    status_datetime = models.DateTimeField()
+    registration = models.DateField()
+    assessment_closure = models.DateField()
+
+    class Meta:
+        managed = False
+        db_table = "campusonline_examinee"
+        ordering = ("id",)
+
+    def __str__(self):
+        return self.student

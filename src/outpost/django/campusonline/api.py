@@ -307,3 +307,110 @@ class CountryViewSet(ReadOnlyModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filter_class = filters.CountryFilter
     permission_classes = (AllowAny,)
+
+
+@docstring_format(
+    model=models.ExamMode.__doc__,
+    filter=filters.ExamModeFilter.__doc__,
+    serializer=serializers.ExamModeSerializer.__doc__,
+)
+class ExamModeViewSet(ReadOnlyModelViewSet):
+    """
+    List exam modes from CAMPUSonline.
+
+    {model}
+    {filter}
+    {serializer}
+    """
+
+    queryset = models.ExamMode.objects.all()
+    serializer_class = serializers.ExamModeSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_class = filters.ExamModeFilter
+    permission_classes = (AllowAny,)
+
+
+@docstring_format(
+    model=models.ExamType.__doc__,
+    filter=filters.ExamTypeFilter.__doc__,
+    serializer=serializers.ExamTypeSerializer.__doc__,
+)
+class ExamTypeViewSet(ReadOnlyModelViewSet):
+    """
+    List exam types from CAMPUSonline.
+
+    {model}
+    {filter}
+    {serializer}
+    """
+
+    queryset = models.ExamType.objects.all()
+    serializer_class = serializers.ExamTypeSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_class = filters.ExamTypeFilter
+    permission_classes = (AllowAny,)
+
+
+@docstring_format(
+    model=models.Exam.__doc__,
+    filter=filters.ExamFilter.__doc__,
+    serializer=serializers.ExamSerializer.__doc__,
+)
+class ExamViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
+    """
+    List exams from CAMPUSonline.
+
+    {model}
+    {filter}
+    {serializer}
+    """
+
+    queryset = models.Exam.objects.all()
+    serializer_class = serializers.ExamSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_class = filters.ExamFilter
+    permission_classes = (ExtendedDjangoModelPermissions,)
+    permit_list_expands = ("organization", "mode", "type", "course", "examiner")
+
+
+@docstring_format(
+    model=models.ExamineeStatus.__doc__,
+    filter=filters.ExamineeStatusFilter.__doc__,
+    serializer=serializers.ExamineeStatusSerializer.__doc__,
+)
+class ExamineeStatusViewSet(ReadOnlyModelViewSet):
+    """
+    List examinee status from CAMPUSonline.
+
+    {model}
+    {filter}
+    {serializer}
+    """
+
+    queryset = models.ExamineeStatus.objects.all()
+    serializer_class = serializers.ExamineeStatusSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_class = filters.ExamineeStatusFilter
+    permission_classes = (AllowAny,)
+
+
+@docstring_format(
+    model=models.Exam.__doc__,
+    filter=filters.ExamFilter.__doc__,
+    serializer=serializers.ExamSerializer.__doc__,
+)
+class ExamineeViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
+    """
+    List examinees from CAMPUSonline.
+
+    {model}
+    {filter}
+    {serializer}
+    """
+
+    queryset = models.Examinee.objects.all()
+    serializer_class = serializers.ExamineeSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_class = filters.ExamineeFilter
+    permission_classes = (ExtendedDjangoModelPermissions,)
+    permit_list_expands = ("exam", "student", "status")

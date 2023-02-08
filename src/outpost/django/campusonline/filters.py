@@ -546,3 +546,113 @@ class CountryFilter(filterset.FilterSet):
     class Meta:
         model = models.Country
         fields = ("alpha2", "alpha3")
+
+
+class ExamModeFilter(filterset.FilterSet):
+    """
+    ## Filters
+
+    To filter for exact value matches:
+
+        ?<fieldname>=<value>
+    """
+
+    class Meta:
+        model = models.ExamMode
+        fields = ("short",)
+
+
+class ExamTypeFilter(filterset.FilterSet):
+    """
+    ## Filters
+
+    To filter for exact value matches:
+
+        ?<fieldname>=<value>
+    """
+
+    class Meta:
+        model = models.ExamType
+        fields = ("short",)
+
+
+class ExamFilter(filterset.FilterSet):
+    """
+    ## Filters
+
+    To filter for exact value matches:
+
+        ?<fieldname>=<value>
+
+    For advanced filtering use lookups:
+
+        ?<fieldname>__<lookup>=<value>
+
+    Possible lookups:
+
+      - `registration_start`: `gt`, `lt`, `gte`, `lte`, `date`
+      - `registration_end`: `gt`, `lt`, `gte`, `lte`, `date`
+      - `start`: `gt`, `lt`, `gte`, `lte`, `date`
+      - `deregistration_end`: `gte`, `gt`, `lte`, `lt`, `date`
+    """
+
+    class Meta:
+        model = models.Exam
+        fields = {
+            "organization": ("exact",),
+            "mode": ("exact",),
+            "type": ("exact",),
+            "examiner": ("exact",),
+            "course": ("exact",),
+            "registration_start": ("exact", "gt", "lt", "gte", "lte", "date"),
+            "registration_end": ("exact", "gt", "lt", "gte", "lte", "date"),
+            "start": ("exact", "gt", "lt", "gte", "lte", "date"),
+            "online_registration": ("exact",),
+            "valid": ("exact",),
+            "deregistration_end": ("exact", "gt", "lt", "gte", "lte", "date"),
+        }
+
+
+class ExamineeStatusFilter(filterset.FilterSet):
+    """
+    ## Filters
+
+    To filter for exact value matches:
+
+        ?<fieldname>=<value>
+    """
+
+    class Meta:
+        model = models.ExamineeStatus
+        fields = ("short",)
+
+
+class ExamineeFilter(filterset.FilterSet):
+    """
+    ## Filters
+
+    To filter for exact value matches:
+
+        ?<fieldname>=<value>
+
+    For advanced filtering use lookups:
+
+        ?<fieldname>__<lookup>=<value>
+
+    Possible lookups:
+
+      - `status_datetime`: `gt`, `lt`, `gte`, `lte`, `date`
+      - `registration`: `gt`, `lt`, `gte`, `lte`
+      - `assessment_closure`: `gt`, `lt`, `gte`, `lte`
+    """
+
+    class Meta:
+        model = models.Examinee
+        fields = {
+            "exam": ("exact",),
+            "student": ("exact",),
+            "status": ("exact",),
+            "status_datetime": ("exact", "gt", "lt", "gte", "lte", "date"),
+            "registration": ("exact", "gt", "lt", "gte", "lte"),
+            "assessment_closure": ("exact", "gt", "lt", "gte", "lte"),
+        }

@@ -43,4 +43,29 @@ v1 = [
         api.CountryViewSet,
         "campusonline-country",
     ),
+    (
+        r"campusonline/exam:mode",
+        api.ExamModeViewSet,
+        "campusonline-exam-mode",
+    ),
+    (
+        r"campusonline/exam:type",
+        api.ExamTypeViewSet,
+        "campusonline-exam-type",
+    ),
+    (
+        r"campusonline/exam",
+        api.ExamViewSet,
+        "campusonline-exam",
+    ),
+    (
+        r"campusonline/examinee:status",
+        api.ExamineeStatusViewSet,
+        "campusonline-examinee-status",
+    ),
+    (
+        r"campusonline/examinee",
+        api.ExamineeViewSet,
+        "campusonline-examinee",
+    ),
 ]
