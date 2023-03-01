@@ -41,7 +41,7 @@ class Migration(migrations.Migration):
         (
             """
             CREATE MATERIALIZED VIEW "public"."campusonline_event" AS SELECT
-                md5(concat(reihung,typ,titel,datum,zeit_von,zeit_bis,pk_geb,pk_raum)) AS id,
+                md5(concat(pk_vl,reihung,typ,titel,datum,zeit_von,zeit_bis,pk_geb,pk_raum,anzeige_bis)) AS id,
                 pk_lv::integer AS course_id,
                 reihung::integer AS order,
                 typ AS category,
