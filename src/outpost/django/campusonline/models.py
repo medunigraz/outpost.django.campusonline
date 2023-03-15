@@ -399,6 +399,9 @@ class Person(models.Model):
     card = models.URLField(blank=True, null=True)
     fax = models.CharField(max_length=256, blank=True, null=True)
     phone_external = models.CharField(max_length=256, blank=True, null=True)
+    academic_title = HStoreField()
+    miscellaneous_title = HStoreField()
+    official_title = HStoreField()
 
     class Meta:
         managed = False

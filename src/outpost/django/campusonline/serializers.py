@@ -220,6 +220,9 @@ class PersonSerializer(FlexFieldsModelSerializer):
             "expertise",
             "knowledge",
             "education",
+            "academic_title",
+            "miscellaneous_title",
+            "official_title",
         )
 
 
