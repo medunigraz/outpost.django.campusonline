@@ -8,6 +8,11 @@ v1 = [
         api.OrganizationViewSet,
         "campusonline-organization",
     ),
+    (
+        r"campusonline/organization:type",
+        api.OrganizationTypeViewSet,
+        "campusonline-organization-type",
+    ),
     (r"campusonline/person", api.PersonViewSet, "campusonline-person"),
     (r"campusonline/student", api.StudentViewSet, "campusonline-student"),
     (

@@ -83,6 +83,9 @@ class OrganizationFilter(filterset.FilterSet):
     parent = filters.ModelChoiceFilter(
         label=_("Parent"), queryset=models.Organization.objects.all()
     )
+    type = filters.ModelChoiceFilter(
+        label=_("Type"), queryset=models.OrganizationType.objects.all()
+    )
 
     class Meta:
         model = models.Organization
@@ -164,6 +167,7 @@ class OrganizationFilter(filterset.FilterSet):
                 "regex",
                 "iregex",
             ),
+            "university_law": ("exact",),
         }
 
 

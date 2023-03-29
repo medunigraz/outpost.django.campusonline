@@ -90,6 +90,12 @@ class FunctionSerializer(FlexFieldsModelSerializer):
         fields = "__all__"
 
 
+class OrganizationTypeSerializer(ModelSerializer):
+    class Meta:
+        model = models.OrganizationType
+        fields = "__all__"
+
+
 class OrganizationSerializer(FlexFieldsModelSerializer):
     """
     ## Expansions
@@ -101,8 +107,11 @@ class OrganizationSerializer(FlexFieldsModelSerializer):
 
     The following relational fields can be expanded:
 
+     * `parent`
      * `persons` <i class="glyphicon glyphicon-lock"></i>
      * `persons_leave` <i class="glyphicon glyphicon-lock"></i>
+     * `publication_authorship`
+     * `type`
 
     """
 
@@ -112,7 +121,15 @@ class OrganizationSerializer(FlexFieldsModelSerializer):
             "publication_authorship": (
                 f"outpost.django.research.serializers.PublicationOrganizationSerializer",
                 {"source": "publication_authorship", "many": True},
-            )
+            ),
+            "parent": (
+                f"{self.__class__.__module__}.{self.__class__.__name__}",
+                {"source": "parent", "many": False},
+            ),
+            "type": (
+                f"outpost.django.campusonline.serializers.OrganizationTypeSerializer",
+                {"source": "type", "many": False},
+            ),
         }
 
     class Meta:
@@ -131,6 +148,8 @@ class OrganizationSerializer(FlexFieldsModelSerializer):
             "fax",
             "office",
             "publication_authorship",
+            "type",
+            "university_law",
         )
 
 
@@ -143,6 +162,10 @@ class AuthenticatedOrganizationSerializer(OrganizationSerializer):
         return {
             **super().expandable_fields,
             **{
+                "parent": (
+                    f"{self.__class__.__module__}.{self.__class__.__name__}",
+                    {"source": "parent", "many": False},
+                ),
                 "persons": (
                     f"{base}.AuthenticatedPersonSerializer",
                     {"source": "persons", "many": True},

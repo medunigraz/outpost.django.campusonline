@@ -277,6 +277,16 @@ class Organization(AL_Node):
     fax = models.CharField(max_length=256, blank=True, null=True)
     url = models.CharField(max_length=256, blank=True, null=True)
     office = models.TextField(blank=True, null=True)
+    type = models.ForeignKey(
+        "OrganizationType",
+        models.DO_NOTHING,
+        related_name="organizations",
+        db_constraint=False,
+        db_index=False,
+        null=True,
+        blank=True,
+    )
+    university_law = models.BooleanField()
 
     class Meta:
         managed = False
@@ -285,6 +295,22 @@ class Organization(AL_Node):
 
     class Refresh:
         interval = 7200
+
+    def __str__(self):
+        return self.name
+
+
+class OrganizationType(models.Model):
+    name = models.TextField(max_length=256)
+    short = models.CharField(max_length=128, null=True, blank=True)
+
+    class Meta:
+        managed = False
+        db_table = "campusonline_organization_type"
+        ordering = ("name",)
+
+    class Refresh:
+        interval = 86400
 
     def __str__(self):
         return self.name

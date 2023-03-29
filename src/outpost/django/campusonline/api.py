@@ -75,6 +75,12 @@ class FunctionViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
     permit_list_expands = ("persons",)
 
 
+class OrganizationTypeViewSet(ReadOnlyModelViewSet):
+    queryset = models.OrganizationType.objects.all()
+    serializer_class = serializers.OrganizationTypeSerializer
+    permission_classes = (AllowAny,)
+
+
 @docstring_format(
     model=models.Organization.__doc__,
     filter=filters.OrganizationFilter.__doc__,
@@ -94,7 +100,13 @@ class OrganizationViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filter_class = filters.OrganizationFilter
     permission_classes = (AllowAny,)
-    permit_list_expands = ("persons", "persons_leave", "publication_authorship")
+    permit_list_expands = (
+        "persons",
+        "persons_leave",
+        "publication_authorship",
+        "type",
+        "parent",
+    )
 
     def get_serializer_class(self):
         if self.request.user and self.request.user.is_authenticated:
