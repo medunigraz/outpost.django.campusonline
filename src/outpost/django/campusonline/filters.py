@@ -237,6 +237,7 @@ class PersonFilter(filterset.FilterSet):
             ),
             "consultation": ("contains", "icontains", "isnull", "regex", "iregex"),
             "appendix": ("contains", "icontains", "isnull", "regex", "iregex"),
+            "employed": ("exact",),
         }
 
 
