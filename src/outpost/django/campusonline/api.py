@@ -446,3 +446,25 @@ class ExamineeViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
     filter_class = filters.ExamineeFilter
     permission_classes = (ExtendedDjangoModelPermissions,)
     permit_list_expands = ("exam", "student", "status")
+
+
+@docstring_format(
+    model=models.ScienceBranch.__doc__,
+    filter=filters.ScienceBranchFilter.__doc__,
+    serializer=serializers.ScienceBranchSerializer.__doc__,
+)
+class ScienceBranchViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
+    """
+    List science branches from CAMPUSonline.
+
+    {model}
+    {filter}
+    {serializer}
+    """
+
+    queryset = models.ScienceBranch.objects.all()
+    serializer_class = serializers.ScienceBranchSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_class = filters.ScienceBranchFilter
+    permission_classes = (AllowAny,)
+    permit_list_expands = ("parent",)

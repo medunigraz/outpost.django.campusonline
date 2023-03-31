@@ -585,3 +585,32 @@ class ExamineeSerializer(FlexFieldsModelSerializer):
     class Meta:
         model = models.Examinee
         fields = "__all__"
+
+
+class ScienceBranchSerializer(FlexFieldsModelSerializer):
+    """
+    ## Expansions
+
+    To activate relation expansion add the desired fields as a comma separated
+    list to the `expand` query parameter like this:
+
+        ?expand=<field>,<field>,<field>,...
+
+    The following relational fields can be expanded:
+
+     * `parent`
+
+    """
+
+    @property
+    def expandable_fields(self):
+        return {
+            "parent": (
+                f"{self.__class__.__module__}.{self.__class__.__name__}",
+                {"source": "parent", "many": False},
+            ),
+        }
+
+    class Meta:
+        model = models.ScienceBranch
+        fields = "__all__"

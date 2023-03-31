@@ -73,4 +73,9 @@ v1 = [
         api.ExamineeViewSet,
         "campusonline-examinee",
     ),
+    (
+        r"campusonline/sciencebranch",
+        api.ScienceBranchViewSet,
+        "campusonline-science-branch",
+    ),
 ]

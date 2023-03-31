@@ -687,3 +687,20 @@ class ExamineeFilter(filterset.FilterSet):
             "registration": ("exact", "gt", "lt", "gte", "lte"),
             "assessment_closure": ("exact", "gt", "lt", "gte", "lte"),
         }
+
+
+class ScienceBranchFilter(filterset.FilterSet):
+    """
+    ## Filters
+
+    To filter for exact value matches:
+
+        ?<fieldname>=<value>
+    """
+
+    class Meta:
+        model = models.ScienceBranch
+        fields = {
+            "code": ("exact",),
+            "level": ("exact",),
+        }

@@ -1086,3 +1086,57 @@ class Examinee(models.Model):
 
     def __str__(self):
         return self.student
+
+
+class ScienceBranch(AL_Node):
+    """
+    ## Fields
+
+    ### `id` (`integer`)
+    Primary key.
+
+    ### `code` (`string`)
+    Extended code, an expanded form of the primary key.
+
+    ### `level` (`integer`)
+    The level (1-4) where this science branch is located.
+
+    ### `name` (`object`)
+    A dictionary of names using language as its key.
+
+    ### `short` (`object`)
+    A dictionary of short names using language as its key.
+
+    ### `parent` (`integer`)
+    Foreign key to parent [CAMPUSonline science branch](../sciencebranch). A value
+    of `null` inidcated a root branch.
+    """
+
+    code = models.CharField(max_length=32)
+    level = models.PositiveSmallIntegerField()
+    name = HStoreField()
+    short = HStoreField()
+    parent = models.ForeignKey(
+        "self",
+        models.DO_NOTHING,
+        related_name="children_set",
+        db_constraint=False,
+        db_index=False,
+        null=True,
+        blank=True,
+    )
+    node_order_by = ("code",)
+
+    class Meta:
+        managed = False
+        db_table = "campusonline_science_branch"
+        ordering = (
+            "parent_id",
+            "code",
+        )
+
+    class Refresh:
+        interval = 86400
+
+    def __str__(self):
+        return self.code
