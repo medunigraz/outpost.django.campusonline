@@ -427,9 +427,9 @@ class ExamineeStatusViewSet(ReadOnlyModelViewSet):
 
 
 @docstring_format(
-    model=models.Exam.__doc__,
-    filter=filters.ExamFilter.__doc__,
-    serializer=serializers.ExamSerializer.__doc__,
+    model=models.Examinee.__doc__,
+    filter=filters.ExamineeFilter.__doc__,
+    serializer=serializers.ExamineeSerializer.__doc__,
 )
 class ExamineeViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
     """
