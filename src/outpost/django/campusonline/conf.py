@@ -8,6 +8,7 @@ class CAMPUSonlineAppConf(AppConf):
     BULLETIN_OCR_THRESHOLD = 50
     PHONE_NUMBER_REGION = "AT"
     VIRTUAL_ROOMS = list()
+    XML_CACHE_KEY = "campusonlineXML"
 
     class Meta:
         prefix = "campusonline"

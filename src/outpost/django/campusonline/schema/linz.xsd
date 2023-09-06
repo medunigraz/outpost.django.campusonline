@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified" version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="https://api.medunigraz.at/campusonline/linz/schema" xmlns="https://api.medunigraz.at/campusonline/linz/schema">
+  <xsd:element name="EXCHANGE" type="EXCHANGEType"/>
+  <xsd:complexType name="EXCHANGEType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="STPL" type="STPLType"/>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="LV" type="LVType"/>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="PV" type="PVType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PVType">
+    <xsd:attribute name="NR" type="xsd:int"/>
+    <xsd:attribute name="LV_NR" type="xsd:int" use="required"/>
+    <xsd:attribute name="DATUM_DER_LETZTBEURTEILUNG" type="xsd:dateTime"/>
+    <xsd:attribute name="NOTE" type="xsd:string"/>
+    <xsd:attribute name="PRF_VERSUCH" type="xsd:int"/>
+    <xsd:attribute name="TITEL" type="xsd:string"/>
+    <xsd:attribute name="PRUEFER_VORNAME" type="xsd:string"/>
+    <xsd:attribute name="PRUEFER_NACHNAME" type="xsd:string"/>
+    <xsd:attribute name="GESCHLECHT" type="xsd:string"/>
+    <xsd:attribute name="MATRIKELNUMMER" type="xsd:int"/>
+    <xsd:attribute name="SKZ" type="xsd:string"/>
+    <xsd:attribute name="STUDIENPLANVERSION" type="xsd:string"/>
+    <xsd:attribute name="ANERKENNUNG_JA_NEIN" type="xsd:string"/>
+    <xsd:attribute name="ANERKENNUNGSTITEL_DT" type="xsd:string"/>
+    <xsd:attribute name="ANERKENNUNGSTITEL_ENGL" type="xsd:string"/>
+    <xsd:attribute name="ANERKENNUNGS_ECTS" type="xsd:int"/>
+    <xsd:attribute name="ANERKENNUNGS_GHK" type="xsd:int"/>
+  </xsd:complexType>
+  <xsd:complexType name="LVType">
+    <xsd:attribute name="NR" type="xsd:int" use="required"/>
+    <xsd:attribute name="GHK" type="xsd:int" use="required"/>
+    <xsd:attribute name="LVNR" type="xsd:string"/>
+    <xsd:attribute name="STOFFSEMESTER" type="xsd:string"/>
+    <xsd:attribute name="TITEL" type="xsd:string"/>
+    <xsd:attribute name="UNTERTITEL" type="xsd:string"/>
+    <xsd:attribute name="TITEL_ENGL" type="xsd:string"/>
+    <xsd:attribute name="UNTERTITEL_ENG" type="xsd:string"/>
+    <xsd:attribute name="LV_ART" type="xsd:string"/>
+    <xsd:attribute name="SWS" type="xsd:int"/>
+    <xsd:attribute name="CREDITS" type="xsd:decimal"/>
+  </xsd:complexType>
+  <xsd:complexType name="STPLType">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" name="FACH" type="FACHType"/>
+    </xsd:sequence>
+    <xsd:attribute name="SKZ_UNI" type="xsd:string"/>
+    <xsd:attribute name="SKZ_KEY" type="xsd:string"/>
+    <xsd:attribute name="SKZKEY" type="xsd:int"/>
+    <xsd:attribute name="SKZBEZ" type="xsd:string"/>
+    <xsd:attribute name="VERSION" type="xsd:string"/>
+    <xsd:attribute name="GUELTIG_AB" type="xsd:dateTime"/>
+    <xsd:attribute name="GUELTIG_BIS" type="xsd:string"/>
+    <xsd:attribute name="STUDIERBAR_BIS" type="xsd:string"/>
+    <xsd:attribute name="ABSCHNITT" type="xsd:int"/>
+    <xsd:attribute name="SEMESTER" type="xsd:int"/>
+    <xsd:attribute name="SWS" type="xsd:int"/>
+    <xsd:attribute name="CREDITS" type="xsd:decimal"/>
+  </xsd:complexType>
+  <xsd:complexType name="FACHType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="GHK" type="GHKType"/>
+    </xsd:sequence>
+    <xsd:attribute name="CREDITS" type="xsd:decimal"/>
+    <xsd:attribute name="SWS" type="xsd:int"/>
+    <xsd:attribute name="KENNUNG" type="xsd:string"/>
+    <xsd:attribute name="NAME" type="xsd:string"/>
+    <xsd:attribute name="NAME_ENGL" type="xsd:string"/>
+  </xsd:complexType>
+  <xsd:complexType name="GHKType">
+    <xsd:attribute name="TITEL" type="xsd:string" use="required"/>
+    <xsd:attribute name="KURZBEZEICHNUNG" type="xsd:string" use="required"/>
+    <xsd:attribute name="CREDITS" type="xsd:decimal"/>
+    <xsd:attribute name="STP_LV_NR" type="xsd:int" use="required"/>
+    <xsd:attribute name="NR" type="xsd:int"/>
+    <xsd:attribute name="SWS" type="xsd:int"/>
+  </xsd:complexType>
+</xsd:schema>
