@@ -6,6 +6,7 @@ from django.http import (
     FileResponse,
     HttpResponse,
     HttpResponseNotFound,
+    HttpResponseForbidden,
 )
 from django.shortcuts import get_object_or_404
 from django.utils.decorators import method_decorator
@@ -46,6 +47,8 @@ class XMLView(APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request, format=None):
+        if not request.user.has_perm("global_permissions.linz"):
+            return HttpResponseForbidden()
         response = HttpResponse()
         response["Content-Type"] = "application/xml"
         xml = cache.get(settings.CAMPUSONLINE_XML_CACHE_KEY, None)
