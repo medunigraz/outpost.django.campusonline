@@ -37,7 +37,7 @@
     <xsd:attribute name="TITEL_ENGL" type="xsd:string"/>
     <xsd:attribute name="UNTERTITEL_ENG" type="xsd:string"/>
     <xsd:attribute name="LV_ART" type="xsd:string"/>
-    <xsd:attribute name="SWS" type="xsd:int"/>
+    <xsd:attribute name="SWS" type="xsd:decimal"/>
     <xsd:attribute name="CREDITS" type="xsd:decimal"/>
   </xsd:complexType>
   <xsd:complexType name="STPLType">
@@ -54,7 +54,7 @@
     <xsd:attribute name="STUDIERBAR_BIS" type="xsd:string"/>
     <xsd:attribute name="ABSCHNITT" type="xsd:int"/>
     <xsd:attribute name="SEMESTER" type="xsd:int"/>
-    <xsd:attribute name="SWS" type="xsd:int"/>
+    <xsd:attribute name="SWS" type="xsd:decimal"/>
     <xsd:attribute name="CREDITS" type="xsd:decimal"/>
   </xsd:complexType>
   <xsd:complexType name="FACHType">
@@ -62,7 +62,7 @@
       <xsd:element minOccurs="0" maxOccurs="unbounded" name="GHK" type="GHKType"/>
     </xsd:sequence>
     <xsd:attribute name="CREDITS" type="xsd:decimal"/>
-    <xsd:attribute name="SWS" type="xsd:int"/>
+    <xsd:attribute name="SWS" type="xsd:decimal"/>
     <xsd:attribute name="KENNUNG" type="xsd:string"/>
     <xsd:attribute name="NAME" type="xsd:string"/>
     <xsd:attribute name="NAME_ENGL" type="xsd:string"/>
@@ -73,6 +73,6 @@
     <xsd:attribute name="CREDITS" type="xsd:decimal"/>
     <xsd:attribute name="STP_LV_NR" type="xsd:int" use="required"/>
     <xsd:attribute name="NR" type="xsd:int"/>
-    <xsd:attribute name="SWS" type="xsd:int"/>
+    <xsd:attribute name="SWS" type="xsd:decimal"/>
   </xsd:complexType>
 </xsd:schema>

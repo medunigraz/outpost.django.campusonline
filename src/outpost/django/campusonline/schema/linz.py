@@ -56,7 +56,7 @@ class GhkType:
             "type": "Attribute",
         },
     )
-    sws: Optional[int] = field(
+    sws: Optional[Decimal] = field(
         default=None,
         metadata={
             "name": "SWS",
@@ -135,7 +135,7 @@ class LvType:
             "type": "Attribute",
         },
     )
-    sws: Optional[int] = field(
+    sws: Optional[Decimal] = field(
         default=None,
         metadata={
             "name": "SWS",
@@ -299,7 +299,7 @@ class FachType:
             "type": "Attribute",
         },
     )
-    sws: Optional[int] = field(
+    sws: Optional[Decimal] = field(
         default=None,
         metadata={
             "name": "SWS",
@@ -416,7 +416,7 @@ class StplType:
             "type": "Attribute",
         },
     )
-    sws: Optional[int] = field(
+    sws: Optional[Decimal] = field(
         default=None,
         metadata={
             "name": "SWS",
