@@ -2,6 +2,8 @@ from django.utils.translation import gettext_lazy as _
 from django_filters import (
     BooleanFilter,
     CharFilter,
+    BaseInFilter,
+    NumberFilter,
 )
 from django_filters.rest_framework import (
     filters,
@@ -10,6 +12,10 @@ from django_filters.rest_framework import (
 
 from . import models
 from .conf import settings
+
+
+class NumberInFilter(BaseInFilter, NumberFilter):
+    pass
 
 
 class FunctionFilter(filterset.FilterSet):
@@ -196,6 +202,7 @@ class PersonFilter(filterset.FilterSet):
     functions = filters.ModelMultipleChoiceFilter(
         label=_("Function"), queryset=models.Function.objects.all()
     )
+    organizations_set = NumberInFilter(field_name="organizations", lookup_expr="in")
 
     class Meta:
         model = models.Person
