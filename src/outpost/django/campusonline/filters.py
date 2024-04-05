@@ -317,6 +317,7 @@ class PersonOrganizationFunctionFilter(filterset.FilterSet):
 
         ?<fieldname>=<value>
     """
+
     leader = BooleanFilter(field_name="function__leader")
 
     class Meta:

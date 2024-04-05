@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
             """,
             """
             DROP SCHEMA IF EXISTS linz;
-            """
+            """,
         ),
         (
             """
@@ -160,7 +160,7 @@ class Migration(migrations.Migration):
     ]
 
     dependencies = [
-        ('campusonline', '0077_organizationtype_sciencebranch'),
+        ("campusonline", "0077_organizationtype_sciencebranch"),
     ]
 
     operations = [

@@ -7,36 +7,52 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('campusonline', '0076_science_branches'),
+        ("campusonline", "0076_science_branches"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='OrganizationType',
+            name="OrganizationType",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.TextField(max_length=256)),
-                ('short', models.CharField(blank=True, max_length=128, null=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.TextField(max_length=256)),
+                ("short", models.CharField(blank=True, max_length=128, null=True)),
             ],
             options={
-                'db_table': 'campusonline_organization_type',
-                'ordering': ('name',),
-                'managed': False,
+                "db_table": "campusonline_organization_type",
+                "ordering": ("name",),
+                "managed": False,
             },
         ),
         migrations.CreateModel(
-            name='ScienceBranch',
+            name="ScienceBranch",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('code', models.CharField(max_length=32)),
-                ('level', models.PositiveSmallIntegerField()),
-                ('name', django.contrib.postgres.fields.hstore.HStoreField()),
-                ('short', django.contrib.postgres.fields.hstore.HStoreField()),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("code", models.CharField(max_length=32)),
+                ("level", models.PositiveSmallIntegerField()),
+                ("name", django.contrib.postgres.fields.hstore.HStoreField()),
+                ("short", django.contrib.postgres.fields.hstore.HStoreField()),
             ],
             options={
-                'db_table': 'campusonline_science_branch',
-                'ordering': ('parent_id', 'code'),
-                'managed': False,
+                "db_table": "campusonline_science_branch",
+                "ordering": ("parent_id", "code"),
+                "managed": False,
             },
         ),
     ]
