@@ -203,6 +203,9 @@ class PersonFilter(filterset.FilterSet):
         label=_("Function"), queryset=models.Function.objects.all()
     )
     organizations_set = NumberInFilter(field_name="organizations", lookup_expr="in")
+    organizations_leave_set = NumberInFilter(
+        field_name="organizations_leave", lookup_expr="in"
+    )
 
     class Meta:
         model = models.Person
