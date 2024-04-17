@@ -1,8 +1,9 @@
+from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
 from django_filters import (
+    BaseInFilter,
     BooleanFilter,
     CharFilter,
-    BaseInFilter,
     NumberFilter,
 )
 from django_filters.rest_framework import (
@@ -206,6 +207,7 @@ class PersonFilter(filterset.FilterSet):
     organizations_leave_set = NumberInFilter(
         field_name="organizations_leave", lookup_expr="in"
     )
+    name = CharFilter(method="filter_name", label="Name")
 
     class Meta:
         model = models.Person
@@ -250,6 +252,13 @@ class PersonFilter(filterset.FilterSet):
             "employed": ("exact",),
             "organizations": ("exact",),
         }
+
+    def filter_name(self, queryset, name, value):
+        if len(value) < 4:
+            return queryset.empty()
+        return queryset.filter(
+            Q(first_name__icontains=value) | Q(last_name__icontains=value)
+        )
 
 
 class StudentFilter(filterset.FilterSet):
