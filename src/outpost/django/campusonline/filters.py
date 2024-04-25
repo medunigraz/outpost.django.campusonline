@@ -254,7 +254,7 @@ class PersonFilter(filterset.FilterSet):
         }
 
     def filter_name(self, queryset, name, value):
-        if len(value) < 4:
+        if len(value) < settings.CAMPUSONLINE_NAME_FILTER_MIN_LENGHT:
             return queryset.empty()
         return queryset.filter(
             Q(first_name__icontains=value) | Q(last_name__icontains=value)

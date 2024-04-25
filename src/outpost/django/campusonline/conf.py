@@ -9,6 +9,7 @@ class CAMPUSonlineAppConf(AppConf):
     PHONE_NUMBER_REGION = "AT"
     VIRTUAL_ROOMS = list()
     XML_CACHE_KEY = "campusonlineXML"
+    NAME_FILTER_MIN_LENGHT = 2
 
     class Meta:
         prefix = "campusonline"
