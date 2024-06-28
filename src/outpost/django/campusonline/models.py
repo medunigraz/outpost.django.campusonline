@@ -720,7 +720,6 @@ class Event(OrderedModel):
     When to stop showing this event.
     """
 
-    id = models.CharField(primary_key=True, max_length=32)
     course = models.ForeignKey(
         "Course",
         models.SET_NULL,
