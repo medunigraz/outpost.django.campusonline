@@ -127,7 +127,7 @@ class OrganizationSerializer(FlexFieldsModelSerializer):
                 {"source": "parent", "many": False},
             ),
             "type": (
-                f"{{self.__class__.__module__}.OrganizationTypeSerializer",
+                f"{self.__class__.__module__}.OrganizationTypeSerializer",
                 {"source": "type", "many": False},
             ),
         }
