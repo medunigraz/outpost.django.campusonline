@@ -87,7 +87,7 @@ class OrganizationFilter(filterset.FilterSet):
       - `url`: `iexact`, `contains`, `icontains`, `startswith`, `istartswith`, `endswith`, `iendswith`, `isnull`, `regex`, `iregex`
     """
 
-    name = CharFilter(method="name_filter", label=_("Name"))
+    name = CharFilter(method="name_filter", label=_("Name"), lookup_expr="icontains")
     category = filters.ChoiceFilter(
         label=_("Category"), choices=models.Organization.CATEGORY_CHOICES
     )
@@ -182,13 +182,11 @@ class OrganizationFilter(filterset.FilterSet):
         }
 
     def name_filter(self, queryset, name, value):
-        import pudb
-
-        pu.db
+        lookup = self.filters.get(name).lookup_expr
         f = reduce(
             or_,
             [
-                Q(**{f"{name}__{lang}__icontains": value})
+                Q(**{f"{name}__{lang}__{lookup}": value})
                 for lang, _ in settings.LANGUAGES
             ],
         )
