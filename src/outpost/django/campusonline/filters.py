@@ -1,3 +1,6 @@
+from functools import reduce
+from operator import or_
+
 from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
 from django_filters import (
@@ -84,6 +87,7 @@ class OrganizationFilter(filterset.FilterSet):
       - `url`: `iexact`, `contains`, `icontains`, `startswith`, `istartswith`, `endswith`, `iendswith`, `isnull`, `regex`, `iregex`
     """
 
+    name = CharFilter(method="name_filter", label=_("Name"))
     category = filters.ChoiceFilter(
         label=_("Category"), choices=models.Organization.CATEGORY_CHOICES
     )
@@ -97,18 +101,18 @@ class OrganizationFilter(filterset.FilterSet):
     class Meta:
         model = models.Organization
         fields = {
-            "name": (
-                "exact",
-                "iexact",
-                "contains",
-                "icontains",
-                "startswith",
-                "istartswith",
-                "endswith",
-                "iendswith",
-                "regex",
-                "iregex",
-            ),
+            # "name": (
+            #    "exact",
+            #    "iexact",
+            #    "contains",
+            #    "icontains",
+            #    "startswith",
+            #    "istartswith",
+            #    "endswith",
+            #    "iendswith",
+            #    "regex",
+            #    "iregex",
+            # ),
             "short": (
                 "exact",
                 "iexact",
@@ -176,6 +180,19 @@ class OrganizationFilter(filterset.FilterSet):
             ),
             "university_law": ("exact",),
         }
+
+    def name_filter(self, queryset, name, value):
+        import pudb
+
+        pu.db
+        f = reduce(
+            or_,
+            [
+                Q(**{f"{name}__{lang}__icontains": value})
+                for lang, _ in settings.LANGUAGES
+            ],
+        )
+        return queryset.filter(f)
 
 
 class PersonFilter(filterset.FilterSet):

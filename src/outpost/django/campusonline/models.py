@@ -11,6 +11,7 @@ import django
 import requests
 from django.contrib.gis.db import models
 from django.contrib.postgres.fields import HStoreField
+from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 from ordered_model.models import OrderedModel
 from outpost.django.base.decorators import locale
@@ -256,7 +257,7 @@ class Organization(AL_Node):
     )
 
     id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=256, blank=True, null=True)
+    name = HStoreField()
     short = models.CharField(max_length=32, blank=True, null=True)
     parent = models.ForeignKey(
         "self",
@@ -297,7 +298,10 @@ class Organization(AL_Node):
         interval = 7200
 
     def __str__(self):
-        return self.name
+        lang = get_language()
+        if lang in self.name:
+            return self.name.get(lang)
+        return self.get(set(self.name.keys()).pop())
 
 
 class OrganizationType(models.Model):

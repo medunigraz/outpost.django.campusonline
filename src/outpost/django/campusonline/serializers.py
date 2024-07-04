@@ -80,7 +80,7 @@ class FunctionSerializer(FlexFieldsModelSerializer):
                     serializer = "AuthenticatedPersonSerializer"
         return {
             "persons": (
-                f"outpost.django.campusonline.serializers.{serializer}",
+                f"{self.__class__.__module__}.{serializer}",
                 {"source": "persons", "many": True},
             )
         }
@@ -119,7 +119,7 @@ class OrganizationSerializer(FlexFieldsModelSerializer):
     def expandable_fields(self):
         return {
             "publication_authorship": (
-                f"outpost.django.research.serializers.PublicationOrganizationSerializer",
+                "outpost.django.research.serializers.PublicationOrganizationSerializer",
                 {"source": "publication_authorship", "many": True},
             ),
             "parent": (
@@ -127,7 +127,7 @@ class OrganizationSerializer(FlexFieldsModelSerializer):
                 {"source": "parent", "many": False},
             ),
             "type": (
-                f"outpost.django.campusonline.serializers.OrganizationTypeSerializer",
+                f"{{self.__class__.__module__}.OrganizationTypeSerializer",
                 {"source": "type", "many": False},
             ),
         }
@@ -158,7 +158,6 @@ class AuthenticatedOrganizationSerializer(OrganizationSerializer):
 
     @property
     def expandable_fields(self):
-        base = "outpost.django.campusonline.serializers"
         return {
             **super().expandable_fields,
             **{
@@ -167,11 +166,11 @@ class AuthenticatedOrganizationSerializer(OrganizationSerializer):
                     {"source": "parent", "many": False},
                 ),
                 "persons": (
-                    f"{base}.AuthenticatedPersonSerializer",
+                    f"{self.__class__.__module__}.AuthenticatedPersonSerializer",
                     {"source": "persons", "many": True},
                 ),
                 "persons_leave": (
-                    f"{base}.AuthenticatedPersonSerializer",
+                    f"{self.__class__.__module__}.AuthenticatedPersonSerializer",
                     {"source": "persons_leave", "many": True},
                 ),
             },
@@ -262,20 +261,19 @@ class AuthenticatedPersonSerializer(PersonSerializer):
 
     @property
     def expandable_fields(self):
-        base = "outpost.django.campusonline.serializers"
         return {
             **super().expandable_fields,
             **{
                 "functions": (
-                    f"{base}.FunctionSerializer",
+                    f"{self.__class__.__module__}.FunctionSerializer",
                     {"source": "functions", "many": True},
                 ),
                 "organizations": (
-                    f"{base}.OrganizationSerializer",
+                    f"{self.__class__.__module__}.OrganizationSerializer",
                     {"source": "organizations", "many": True},
                 ),
                 "organizations_leave": (
-                    f"{base}.OrganizationSerializer",
+                    f"{self.__class__.__module__}.OrganizationSerializer",
                     {"source": "organizations_leave", "many": True},
                 ),
             },
@@ -353,11 +351,11 @@ class DistributionListSerializer(FlexFieldsModelSerializer):
                     person = "AuthenticatedPersonSerializer"
         return {
             "persons": (
-                f"outpost.django.campusonline.serializers.{person}",
+                f"{self.__class__.__module__}.{person}",
                 {"source": "persons", "many": True},
             ),
             "students": (
-                f"outpost.django.campusonline.serializers.StudentSerializer",
+                f"{self.__class__.__module__}.StudentSerializer",
                 {"source": "students", "many": True},
             ),
         }
