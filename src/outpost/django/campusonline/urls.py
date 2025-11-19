@@ -1,22 +1,22 @@
-from django.conf.urls import url
+from django.urls import re_path, path
 
 from . import views
 
 app_name = "campusonline"
 
 urlpatterns = [
-    url(
+    re_path(
         r"^avatar/(?P<hash>[\w\d]+)$",
         views.PrivateAvatarView.as_view(),
         name="avatar-private",
     ),
-    url(
-        r"^linz/xml$",
+    path(
+        "linz/xml",
         views.XMLView.as_view(),
         name="linz-xml",
     ),
-    url(
-        r"^linz/schema$",
+    path(
+        "linz/schema",
         views.SchemaView.as_view(),
         name="linz-schema",
     ),

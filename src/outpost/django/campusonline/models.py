@@ -755,7 +755,7 @@ class Event(OrderedModel):
     )
     show_end = models.DateTimeField()
 
-    class Meta:
+    class Meta(OrderedModel.Meta):
         managed = False
         db_table = "campusonline_event"
 
