@@ -62,7 +62,7 @@ class Migration(migrations.Migration):
                 ha.angemeldet
             WITH DATA;
             """.format(
-                tz=tz.zone
+                tz=tz.key
             ),
             """
             DROP MATERIALIZED VIEW IF EXISTS "public"."campusonline_roomallocation";
