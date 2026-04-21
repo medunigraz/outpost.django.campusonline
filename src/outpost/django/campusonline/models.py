@@ -108,6 +108,7 @@ class Floor(models.Model):
     id = models.IntegerField(primary_key=True)
     short = models.CharField(max_length=64, blank=True, null=True)
     name = models.CharField(max_length=256, blank=True, null=True)
+    name_en = models.CharField(max_length=256, blank=True, null=True)
 
     class Meta:
         managed = False
