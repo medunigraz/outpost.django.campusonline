@@ -6,7 +6,7 @@ from django.db.models import CharField
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('campusonline', '0079_add_multilingual_organization_name'),
+        ('campusonline', '0078_linz'),
     ]
 
     operations = [
