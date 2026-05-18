@@ -1,8 +1,12 @@
+from functools import reduce
+from operator import or_
+
+from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
 from django_filters import (
+    BaseInFilter,
     BooleanFilter,
     CharFilter,
-    BaseInFilter,
     NumberFilter,
 )
 from django_filters.rest_framework import (
@@ -83,6 +87,7 @@ class OrganizationFilter(filterset.FilterSet):
       - `url`: `iexact`, `contains`, `icontains`, `startswith`, `istartswith`, `endswith`, `iendswith`, `isnull`, `regex`, `iregex`
     """
 
+    name = CharFilter(method="name_filter", label=_("Name"), lookup_expr="icontains")
     category = filters.ChoiceFilter(
         label=_("Category"), choices=models.Organization.CATEGORY_CHOICES
     )
@@ -96,18 +101,18 @@ class OrganizationFilter(filterset.FilterSet):
     class Meta:
         model = models.Organization
         fields = {
-            "name": (
-                "exact",
-                "iexact",
-                "contains",
-                "icontains",
-                "startswith",
-                "istartswith",
-                "endswith",
-                "iendswith",
-                "regex",
-                "iregex",
-            ),
+            # "name": (
+            #    "exact",
+            #    "iexact",
+            #    "contains",
+            #    "icontains",
+            #    "startswith",
+            #    "istartswith",
+            #    "endswith",
+            #    "iendswith",
+            #    "regex",
+            #    "iregex",
+            # ),
             "short": (
                 "exact",
                 "iexact",
@@ -176,6 +181,17 @@ class OrganizationFilter(filterset.FilterSet):
             "university_law": ("exact",),
         }
 
+    def name_filter(self, queryset, name, value):
+        lookup = self.filters.get(name).lookup_expr
+        f = reduce(
+            or_,
+            [
+                Q(**{f"{name}__{lang}__{lookup}": value})
+                for lang, _ in settings.LANGUAGES
+            ],
+        )
+        return queryset.filter(f)
+
 
 class PersonFilter(filterset.FilterSet):
     """
@@ -206,6 +222,7 @@ class PersonFilter(filterset.FilterSet):
     organizations_leave_set = NumberInFilter(
         field_name="organizations_leave", lookup_expr="in"
     )
+    name = CharFilter(method="filter_name", label="Name")
 
     class Meta:
         model = models.Person
@@ -250,6 +267,13 @@ class PersonFilter(filterset.FilterSet):
             "employed": ("exact",),
             "organizations": ("exact",),
         }
+
+    def filter_name(self, queryset, name, value):
+        if len(value) < settings.CAMPUSONLINE_NAME_FILTER_MIN_LENGHT:
+            return queryset.empty()
+        return queryset.filter(
+            Q(first_name__icontains=value) | Q(last_name__icontains=value)
+        )
 
 
 class StudentFilter(filterset.FilterSet):
@@ -481,7 +505,7 @@ class EventFilter(filterset.FilterSet):
         fields = {
             "building__short": ("exact", "startswith", "contains"),
             "room__category__name": ("exact",),
-            "room__floor__name": ("exact",),
+            # "room__floor__name": ("exact",),
             "room__building__name": ("exact", "startswith"),
             "room__building__short": ("exact",),
             "room__building__address": ("exact", "contains", "startswith"),
