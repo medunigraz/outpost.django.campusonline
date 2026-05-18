@@ -301,7 +301,7 @@ class Organization(AL_Node):
         lang = get_language()
         if lang in self.name:
             return self.name.get(lang)
-        return self.get(set(self.name.keys()).pop())
+        return str(self.name)
 
 
 class OrganizationType(models.Model):
