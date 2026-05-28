@@ -505,7 +505,7 @@ class EventFilter(filterset.FilterSet):
         fields = {
             "building__short": ("exact", "startswith", "contains"),
             "room__category__name": ("exact",),
-            "room__floor__name": ("exact",),
+            # "room__floor__name": ("exact",),
             "room__building__name": ("exact", "startswith"),
             "room__building__short": ("exact",),
             "room__building__address": ("exact", "contains", "startswith"),

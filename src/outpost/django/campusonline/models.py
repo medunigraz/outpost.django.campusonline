@@ -107,7 +107,7 @@ class Room(models.Model):
 class Floor(models.Model):
     id = models.IntegerField(primary_key=True)
     short = models.CharField(max_length=64, blank=True, null=True)
-    name = models.CharField(max_length=256, blank=True, null=True)
+    name = HStoreField()
 
     class Meta:
         managed = False
@@ -301,7 +301,7 @@ class Organization(AL_Node):
         lang = get_language()
         if lang in self.name:
             return self.name.get(lang)
-        return self.get(set(self.name.keys()).pop())
+        return str(self.name)
 
 
 class OrganizationType(models.Model):
