@@ -1,6 +1,14 @@
 from django.contrib import admin
 
+from outpost.django.base.admin import ReadOnlyAdminMixin
+
 from . import models
+
+
+@admin.register(models.Person)
+class PersonAdmin(ReadOnlyAdminMixin, admin.ModelAdmin):
+    search_fields = ("first_name", "last_name", "email")
+    exclude = ("avatar_private", "hash")
 
 
 class PersonInline(admin.TabularInline):
