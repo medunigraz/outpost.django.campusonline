@@ -103,7 +103,6 @@ class OrganizationViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
     permit_list_expands = (
         "persons",
         "persons_leave",
-        "publication_authorship",
         "type",
         "parent",
     )

@@ -110,7 +110,6 @@ class OrganizationSerializer(FlexFieldsModelSerializer):
      * `parent`
      * `persons` <i class="glyphicon glyphicon-lock"></i>
      * `persons_leave` <i class="glyphicon glyphicon-lock"></i>
-     * `publication_authorship`
      * `type`
 
     """
@@ -118,10 +117,6 @@ class OrganizationSerializer(FlexFieldsModelSerializer):
     @property
     def expandable_fields(self):
         return {
-            "publication_authorship": (
-                "outpost.django.research.serializers.PublicationOrganizationSerializer",
-                {"source": "publication_authorship", "many": True},
-            ),
             "parent": (
                 f"{self.__class__.__module__}.{self.__class__.__name__}",
                 {"source": "parent", "many": False},
@@ -147,7 +142,6 @@ class OrganizationSerializer(FlexFieldsModelSerializer):
             "parent",
             "fax",
             "office",
-            "publication_authorship",
             "type",
             "university_law",
         )
