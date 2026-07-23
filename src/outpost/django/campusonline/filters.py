@@ -62,6 +62,7 @@ class FunctionFilter(filterset.FilterSet):
                 "iregex",
             ),
             "leader": ("exact",),
+            "deputy_leader": ("exact",),
         }
 
 

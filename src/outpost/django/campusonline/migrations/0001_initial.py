@@ -1580,6 +1580,7 @@ class Migration(migrations.Migration):
                             funk_bez character varying,
                             funk_gruppe character varying,
                             funk_leiter character varying,
+                            funk_stv_leiter character varying,
                             funk_name_w character varying,
                             funk_name_m character varying
                         )
@@ -1603,6 +1604,10 @@ class Migration(migrations.Migration):
                                     WHEN 'X'::text THEN true
                                     ELSE false
                                 END AS leader,
+                                CASE upper((funk_stv_leiter)::text)
+                                    WHEN 'X'::text THEN true
+                                    ELSE false
+                                END AS deputy_leader,
                             funk_name_w AS name_female,
                             funk_name_m AS name_male
                         FROM campusonline.funktionen
@@ -1651,6 +1656,7 @@ class Migration(migrations.Migration):
                             ),
                         ),
                         ("leader", models.BooleanField()),
+                        ("deputy_leader", models.BooleanField()),
                     ],
                     options={
                         "db_table": "campusonline_function",

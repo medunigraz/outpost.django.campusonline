@@ -164,6 +164,9 @@ class Function(models.Model):
     ### `leader` (`boolean`)
     Indicate if function is associated with leadership.
 
+    ### `deputy_leader` (`boolean`)
+    Indicate if function is associated with deputy leadership.
+    
     ### `persons` (`[integer]`)
     List of foreign keys to [CAMPUSonline persons](../person) associated with this function.
     """
@@ -178,6 +181,7 @@ class Function(models.Model):
         choices=CATEGORY_CHOICES, max_length=32, blank=True, null=True
     )
     leader = models.BooleanField(null=False)
+    deputy_leader = models.BooleanField(null=False)
     persons = models.ManyToManyField("Person", through="PersonOrganizationFunction")
 
     class Meta:
