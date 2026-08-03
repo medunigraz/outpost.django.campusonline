@@ -15,18 +15,15 @@ class Migration(migrations.Migration):
         migrations.RunSQL(
             sql="""
                 CREATE FOREIGN TABLE campusonline.lv_anw (
-                    buchung_nr numeric OPTIONS (key 'true'),
-                    grp_nr numeric,
-                    termin_nr numeric,
-                    lv_begin timestamp without time zone,
-                    lv_ende timestamp without time zone,
-                    lehrender_nr integer
-                )
-                SERVER campusonline
-                OPTIONS (
-                    schema 'CO_LOC_API',
-                    "table" 'LV_ANW'
-                )
+                    buchung_nr numeric OPTIONS (key 'true')
+                  , grp_nr numeric
+                  , termin_nr numeric
+                  , lv_begin timestamp
+                  , lv_ende timestamp
+                  , lehrender_nr integer
+                ) SERVER campusonline
+                  OPTIONS (schema 'CO_LOC_API'
+                         , table 'LV_ANW')
             """,
             reverse_sql="""
                 DROP FOREIGN TABLE campusonline.lv_anw
@@ -35,27 +32,24 @@ class Migration(migrations.Migration):
         migrations.RunSQL(
             sql="""
                 CREATE FOREIGN TABLE campusonline.organisationen (
-                    nr numeric,
-                    name_kurz character varying,
-                    org_name character varying,
-                    basisorganisation numeric,
-                    typ character varying,
-                    adresse character varying,
-                    email_adresse character varying,
-                    telefon_nummer character varying,
-                    www_homepage character varying,
-                    sort_hierarchie numeric,
-                    fax_nummer character varying,
-                    sekretariat character varying,
-                    orgtyp_nr integer,
-                    oeug_flag character varying,
-                    org_name_engl character varying
-                )
-                SERVER campusonline
-                OPTIONS (
-                    schema 'CO_LOC_API',
-                    "table" 'ORGANISATIONEN_V'
-                )
+                    nr numeric
+                  , name_kurz varchar
+                  , org_name varchar
+                  , basisorganisation numeric
+                  , typ varchar
+                  , adresse varchar
+                  , email_adresse varchar
+                  , telefon_nummer varchar
+                  , www_homepage varchar
+                  , sort_hierarchie numeric
+                  , fax_nummer varchar
+                  , sekretariat varchar
+                  , orgtyp_nr integer
+                  , oeug_flag varchar
+                  , org_name_engl varchar
+                ) SERVER campusonline
+                  OPTIONS (schema 'CO_LOC_API'
+                         , table 'ORGANISATIONEN_V')
             """,
             reverse_sql="""
                 DROP FOREIGN TABLE campusonline.organisationen
@@ -64,35 +58,32 @@ class Migration(migrations.Migration):
         migrations.RunSQL(
             sql="""
                 CREATE FOREIGN TABLE campusonline.personen (
-                    pers_nr numeric,
-                    pers_vorname character varying,
-                    pers_famnam character varying,
-                    pers_titel character varying,
-                    pers_sex character varying,
-                    pers_benutzername character varying,
-                    pers_sprechstunde character varying,
-                    pers_zusatz_info character varying,
-                    pers_profilbild character varying,
-                    raum_nr numeric,
-                    pers_email character varying,
-                    tel_nr character varying,
-                    mobil_tel_nr character varying,
-                    dv character varying,
-                    visitenkarte character varying,
-                    pers_fax_nummer character varying,
-                    pers_externe_telefon_nummer character varying,
-                    akad_grad_vor character varying,
-                    akad_grad_nach character varying,
-                    sonstiger_titel_vor character varying,
-                    sonstiger_titel_nach character varying,
-                    amtstitel_vor character varying,
-                    amtstitel_nach character varying
-                )
-                SERVER campusonline
-                OPTIONS (
-                    schema 'CO_LOC_API',
-                    "table" 'PERSON_V'
-                )
+                    pers_nr numeric
+                  , pers_vorname varchar
+                  , pers_famnam varchar
+                  , pers_titel varchar
+                  , pers_sex varchar
+                  , pers_benutzername varchar
+                  , pers_sprechstunde varchar
+                  , pers_zusatz_info varchar
+                  , pers_profilbild varchar
+                  , raum_nr numeric
+                  , pers_email varchar
+                  , tel_nr varchar
+                  , mobil_tel_nr varchar
+                  , dv varchar
+                  , visitenkarte varchar
+                  , pers_fax_nummer varchar
+                  , pers_externe_telefon_nummer varchar
+                  , akad_grad_vor varchar
+                  , akad_grad_nach varchar
+                  , sonstiger_titel_vor varchar
+                  , sonstiger_titel_nach varchar
+                  , amtstitel_vor varchar
+                  , amtstitel_nach varchar
+                ) SERVER campusonline
+                  OPTIONS (schema 'CO_LOC_API'
+                         , table 'PERSON_V')
             """,
             reverse_sql="""
                 DROP FOREIGN TABLE campusonline.personen
@@ -101,22 +92,19 @@ class Migration(migrations.Migration):
         migrations.RunSQL(
             sql="""
                 CREATE FOREIGN TABLE campusonline.stud (
-                    stud_nr numeric,
-                    stud_mnr character varying,
-                    stud_famnam character varying,
-                    stud_vorname character varying,
-                    stud_akadgrad character varying,
-                    stud_sex character varying,
-                    stud_mifare character varying,
-                    stud_benutzername character varying,
-                    pers_profilbild character varying,
-                    email character varying
-                )
-                SERVER campusonline
-                OPTIONS (
-                    schema 'CO_LOC_API',
-                    "table" 'STUD_V'
-                )
+                    stud_nr numeric
+                  , stud_mnr varchar
+                  , stud_famnam varchar
+                  , stud_vorname varchar
+                  , stud_akadgrad varchar
+                  , stud_sex varchar
+                  , stud_mifare varchar
+                  , stud_benutzername varchar
+                  , pers_profilbild varchar
+                  , email varchar
+                ) SERVER campusonline
+                  OPTIONS (schema 'CO_LOC_API'
+                         , table 'STUD_V')
             """,
             reverse_sql="""
                 DROP FOREIGN TABLE campusonline.stud
@@ -125,20 +113,17 @@ class Migration(migrations.Migration):
         migrations.RunSQL(
             sql="""
                 CREATE FOREIGN TABLE campusonline.stud_lv_anw (
-                    buchung_nr numeric OPTIONS (key 'true'),
-                    stud_nr numeric,
-                    grp_nr numeric,
-                    termin_nr numeric,
-                    anm_begin timestamp without time zone,
-                    anm_ende timestamp without time zone,
-                    gesendet timestamp without time zone,
-                    verarb timestamp without time zone
-                )
-                SERVER campusonline
-                OPTIONS (
-                    schema 'CO_LOC_API',
-                    "table" 'STUD_LV_ANW'
-                )
+                    buchung_nr numeric OPTIONS (key 'true')
+                  , stud_nr numeric
+                  , grp_nr numeric
+                  , termin_nr numeric
+                  , anm_begin timestamp
+                  , anm_ende timestamp
+                  , gesendet timestamp
+                  , verarb timestamp
+                ) SERVER campusonline
+                  OPTIONS (schema 'CO_LOC_API'
+                         , table 'STUD_LV_ANW')
             """,
             reverse_sql="""
                 DROP FOREIGN TABLE campusonline.stud_lv_anw
@@ -147,16 +132,13 @@ class Migration(migrations.Migration):
         migrations.RunSQL(
             sql="""
                 CREATE FOREIGN TABLE campusonline.wlan_pwd (
-                    benutzername character varying,
-                    kennwort character varying,
-                    "CO-NETZ-ENABLED-B" character varying,
-                    "CO-NETZ-WLAN-C" integer
-                )
-                SERVER campusonline
-                OPTIONS (
-                    schema 'CO_LOC_API',
-                    "table" 'MUG_WLAN_PWD_V'
-                )
+                    benutzername varchar
+                  , kennwort varchar
+                  , "CO-NETZ-ENABLED-B" varchar
+                  , "CO-NETZ-WLAN-C" integer
+                ) SERVER campusonline
+                  OPTIONS (schema 'CO_LOC_API'
+                         , table 'MUG_WLAN_PWD_V')
             """,
             reverse_sql="""
                 DROP FOREIGN TABLE campusonline.wlan_pwd
@@ -167,16 +149,13 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.gebaeude (
-                            gebaeude_nr numeric,
-                            name character varying,
-                            kurzbezeichnung character varying,
-                            strasse_hausnummer character varying
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'GEBAEUDE_V'
-                        )
+                            gebaeude_nr numeric
+                          , name varchar
+                          , kurzbezeichnung varchar
+                          , strasse_hausnummer varchar
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'GEBAEUDE_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.gebaeude
@@ -184,13 +163,12 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_building AS
-                        SELECT (gebaeude_nr)::integer AS id,
-                            name,
-                            kurzbezeichnung AS short,
-                            strasse_hausnummer AS address
-                        FROM campusonline.gebaeude
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_building
+                          AS SELECT CAST(gebaeude_nr AS integer) AS id
+                                  , name
+                                  , kurzbezeichnung AS short
+                                  , strasse_hausnummer AS address
+                             FROM campusonline.gebaeude
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_building
@@ -198,7 +176,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_building_id_idx ON public.campusonline_building USING btree(id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_building_id_idx
+                          ON public.campusonline_building (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_building_id_idx
@@ -236,18 +215,15 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.mitteilungsblatt (
-                            nr numeric,
-                            studienjahr character varying,
-                            stueck character varying,
-                            ausgabedatum timestamp without time zone,
-                            zusatz_info character varying,
-                            link character varying
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'MITTEILUNGSBLATT_V'
-                        )
+                            nr numeric
+                          , studienjahr varchar
+                          , stueck varchar
+                          , ausgabedatum timestamp
+                          , zusatz_info varchar
+                          , link varchar
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'MITTEILUNGSBLATT_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.mitteilungsblatt
@@ -255,15 +231,15 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_bulletin AS
-                        SELECT (nr)::integer AS id,
-                            studienjahr AS academic_year,
-                            stueck AS issue,
-                            timezone('Europe/Vienna'::text, ausgabedatum) AS published,
-                            zusatz_info AS teaser,
-                            link AS url
-                        FROM campusonline.mitteilungsblatt
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_bulletin
+                          AS SELECT CAST(nr AS integer) AS id
+                                  , studienjahr AS academic_year
+                                  , stueck AS issue
+                                  , timezone(CAST('Europe/Vienna' AS text)
+                                           , ausgabedatum) AS published
+                                  , zusatz_info AS teaser
+                                  , link AS url
+                             FROM campusonline.mitteilungsblatt
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_bulletin
@@ -271,7 +247,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_bulletin_id_idx ON public.campusonline_bulletin USING btree(id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_bulletin_id_idx
+                          ON public.campusonline_bulletin (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_bulletin_id_idx
@@ -279,7 +256,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_bulletin_issue_idx ON public.campusonline_bulletin USING btree(issue NULLS LAST)
+                        CREATE INDEX campusonline_bulletin_issue_idx
+                          ON public.campusonline_bulletin (issue NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_bulletin_issue_idx
@@ -287,7 +265,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_bulletin_published_idx ON public.campusonline_bulletin USING btree(published NULLS LAST)
+                        CREATE INDEX campusonline_bulletin_published_idx
+                          ON public.campusonline_bulletin (published NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_bulletin_published_idx
@@ -319,17 +298,14 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.laender_iso (
-                            iso_nummer character varying,
-                            iso_code_2 character varying,
-                            iso_code_3 character varying,
-                            name_de character varying,
-                            name_en character varying
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'LAENDER_ISO_V'
-                        )
+                            iso_nummer varchar
+                          , iso_code_2 varchar
+                          , iso_code_3 varchar
+                          , name_de varchar
+                          , name_en varchar
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'LAENDER_ISO_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.laender_iso
@@ -337,13 +313,18 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_country AS
-                        SELECT iso_code_2 AS alpha2,
-                            iso_code_3 AS alpha3,
-                            public.hstore(ARRAY['de'::text, 'en'::text], ARRAY[(name_de)::text, (name_en)::text]) AS name
-                        FROM campusonline.laender_iso
-                        WHERE ((iso_code_2 IS NOT NULL) AND (iso_code_3 IS NOT NULL) AND ((iso_code_2)::text ~ '^[A-Z]{2}$'::text) AND ((iso_code_3)::text ~ '^[A-Z]{3}$'::text))
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_country
+                          AS SELECT iso_code_2 AS alpha2
+                                  , iso_code_3 AS alpha3
+                                  , public.hstore(ARRAY[CAST('de' AS text)
+                                                      , CAST('en' AS text)]
+                                                , ARRAY[CAST(name_de AS text)
+                                                      , CAST(name_en AS text)]) AS name
+                             FROM campusonline.laender_iso
+                             WHERE iso_code_2 IS NOT NULL
+                               AND iso_code_3 IS NOT NULL
+                               AND CAST(iso_code_2 AS text) ~ CAST('^[A-Z]{2}$' AS text)
+                               AND CAST(iso_code_3 AS text) ~ CAST('^[A-Z]{3}$' AS text)
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_country
@@ -351,7 +332,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_country_alpha2_idx ON public.campusonline_country USING btree(alpha2 NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_country_alpha2_idx
+                          ON public.campusonline_country (alpha2 NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_country_alpha2_idx
@@ -384,20 +366,17 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.lv (
-                            lv_nr numeric,
-                            lv_lvnr character varying,
-                            lv_titel character varying,
-                            lv_typ character varying,
-                            lv_typ_lang character varying,
-                            lv_studjahr character varying,
-                            lv_semester character varying,
-                            semester_bezeichnung character varying
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'LV_V'
-                        )
+                            lv_nr numeric
+                          , lv_lvnr varchar
+                          , lv_titel varchar
+                          , lv_typ varchar
+                          , lv_typ_lang varchar
+                          , lv_studjahr varchar
+                          , lv_semester varchar
+                          , semester_bezeichnung varchar
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'LV_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.lv
@@ -405,14 +384,13 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_course AS
-                        SELECT (lv_nr)::integer AS id,
-                            lv_titel AS name,
-                            lv_typ_lang AS category,
-                            lv_studjahr AS year,
-                            lv_semester AS semester
-                        FROM campusonline.lv
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_course
+                          AS SELECT CAST(lv_nr AS integer) AS id
+                                  , lv_titel AS name
+                                  , lv_typ_lang AS category
+                                  , lv_studjahr AS year
+                                  , lv_semester AS semester
+                             FROM campusonline.lv
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_course
@@ -420,7 +398,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_course_id_idx ON public.campusonline_course USING btree(id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_course_id_idx
+                          ON public.campusonline_course (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_course_id_idx
@@ -449,15 +428,12 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.lv_grp (
-                            grp_nr numeric,
-                            lv_nr numeric,
-                            grp_name character varying
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'LV_GRP_V'
-                        )
+                            grp_nr numeric
+                          , lv_nr numeric
+                          , grp_name varchar
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'LV_GRP_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.lv_grp
@@ -465,12 +441,11 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_coursegroup AS
-                        SELECT (grp_nr)::integer AS id,
-                            (lv_nr)::integer AS course_id,
-                            grp_name AS name
-                        FROM campusonline.lv_grp
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_coursegroup
+                          AS SELECT CAST(grp_nr AS integer) AS id
+                                  , CAST(lv_nr AS integer) AS course_id
+                                  , grp_name AS name
+                             FROM campusonline.lv_grp
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_coursegroup
@@ -478,7 +453,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_coursegroup_id_idx ON public.campusonline_coursegroup USING btree(id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_coursegroup_id_idx
+                          ON public.campusonline_coursegroup (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_coursegroup_id_idx
@@ -487,14 +463,11 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.lv_grp_stud (
-                            grp_nr numeric,
-                            stud_nr numeric
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'LV_GRP_STUD_V'
-                        )
+                            grp_nr numeric
+                          , stud_nr numeric
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'LV_GRP_STUD_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.lv_grp_stud
@@ -502,11 +475,10 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_coursegroup_students AS
-                        SELECT (grp_nr)::integer AS coursegroup_id,
-                            (stud_nr)::integer AS student_id
-                        FROM campusonline.lv_grp_stud
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_coursegroup_students
+                          AS SELECT CAST(grp_nr AS integer) AS coursegroup_id
+                                  , CAST(stud_nr AS integer) AS student_id
+                             FROM campusonline.lv_grp_stud
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_coursegroup_students
@@ -514,7 +486,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_coursegroup_students_coursegroup_id_idx ON public.campusonline_coursegroup_students USING btree(coursegroup_id NULLS LAST)
+                        CREATE INDEX campusonline_coursegroup_students_coursegroup_id_idx
+                          ON public.campusonline_coursegroup_students (coursegroup_id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_coursegroup_students_coursegroup_id_idx
@@ -522,7 +495,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_coursegroup_students_student_id_idx ON public.campusonline_coursegroup_students USING btree(student_id NULLS LAST)
+                        CREATE INDEX campusonline_coursegroup_students_student_id_idx
+                          ON public.campusonline_coursegroup_students (student_id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_coursegroup_students_student_id_idx
@@ -548,20 +522,17 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.lv_grp_term (
-                            lv_grp_nr numeric,
-                            pers_nr numeric,
-                            termin_nr numeric,
-                            lv_beginn timestamp without time zone,
-                            lv_ende timestamp without time zone,
-                            lerneinheit character varying,
-                            raum_nr numeric,
-                            hybrid character varying
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'LV_GRP_TERM_V'
-                        )
+                            lv_grp_nr numeric
+                          , pers_nr numeric
+                          , termin_nr numeric
+                          , lv_beginn timestamp
+                          , lv_ende timestamp
+                          , lerneinheit varchar
+                          , raum_nr numeric
+                          , hybrid varchar
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'LV_GRP_TERM_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.lv_grp_term
@@ -569,18 +540,22 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_coursegroupterm AS
-                        SELECT format('%s-%s-%s'::text, (lgt.termin_nr)::integer, (lgt.lv_grp_nr)::integer, (lgt.pers_nr)::integer) AS id,
-                            (lgt.termin_nr)::integer AS term,
-                            (lgt.lv_grp_nr)::integer AS coursegroup_id,
-                            (lgt.pers_nr)::integer AS person_id,
-                            timezone('Europe/Vienna'::text, lgt.lv_beginn) AS start,
-                            timezone('Europe/Vienna'::text, lgt.lv_ende) AS "end",
-                            (lgt.raum_nr)::integer AS room_id,
-                            lgt.lerneinheit AS title
-                        FROM (campusonline.lv_grp_term lgt
-                            JOIN campusonline.personen p ON (((lgt.pers_nr)::integer = (p.pers_nr)::integer)))
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_coursegroupterm
+                          AS SELECT format(CAST('%s-%s-%s' AS text)
+                                         , CAST(lgt.termin_nr AS integer)
+                                         , CAST(lgt.lv_grp_nr AS integer)
+                                         , CAST(lgt.pers_nr AS integer)) AS id
+                                  , CAST(lgt.termin_nr AS integer) AS term
+                                  , CAST(lgt.lv_grp_nr AS integer) AS coursegroup_id
+                                  , CAST(lgt.pers_nr AS integer) AS person_id
+                                  , timezone(CAST('Europe/Vienna' AS text)
+                                           , lgt.lv_beginn) AS start
+                                  , timezone(CAST('Europe/Vienna' AS text)
+                                           , lgt.lv_ende) AS "end"
+                                  , CAST(lgt.raum_nr AS integer) AS room_id
+                                  , lgt.lerneinheit AS title
+                             FROM campusonline.lv_grp_term AS lgt
+                                  INNER JOIN campusonline.personen AS p ON CAST(lgt.pers_nr AS integer) = CAST(p.pers_nr AS integer)
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_coursegroupterm
@@ -588,7 +563,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_coursegroupterm_id_idx ON public.campusonline_coursegroupterm USING btree(id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_coursegroupterm_id_idx
+                          ON public.campusonline_coursegroupterm (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_coursegroupterm_id_idx
@@ -596,7 +572,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_coursegroupterm_person_idx ON public.campusonline_coursegroupterm USING btree(person_id NULLS LAST)
+                        CREATE INDEX campusonline_coursegroupterm_person_idx
+                          ON public.campusonline_coursegroupterm (person_id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_coursegroupterm_person_idx
@@ -604,7 +581,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_coursegroupterm_room_idx ON public.campusonline_coursegroupterm USING btree(room_id NULLS LAST)
+                        CREATE INDEX campusonline_coursegroupterm_room_idx
+                          ON public.campusonline_coursegroupterm (room_id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_coursegroupterm_room_idx
@@ -612,7 +590,11 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_coursegroupterm_selection_idx ON public.campusonline_coursegroupterm USING btree(person_id NULLS LAST, room_id NULLS LAST, start NULLS LAST, "end" NULLS LAST)
+                        CREATE INDEX campusonline_coursegroupterm_selection_idx
+                          ON public.campusonline_coursegroupterm (person_id NULLS LAST
+                                                                , room_id NULLS LAST
+                                                                , start NULLS LAST
+                                                                , "end" NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_coursegroupterm_selection_idx
@@ -620,7 +602,9 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_coursegroupterm_timerange_idx ON public.campusonline_coursegroupterm USING btree(start NULLS LAST, "end" NULLS LAST)
+                        CREATE INDEX campusonline_coursegroupterm_timerange_idx
+                          ON public.campusonline_coursegroupterm (start NULLS LAST
+                                                                , "end" NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_coursegroupterm_timerange_idx
@@ -657,14 +641,11 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.verteilerliste (
-                            profil_nr numeric,
-                            profil_name character varying
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'VERTEILERLISTE_V'
-                        )
+                            profil_nr numeric
+                          , profil_name varchar
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'VERTEILERLISTE_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.verteilerliste
@@ -672,15 +653,16 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_distributionlist AS
-                        SELECT ((verteilerliste.profil_nr)::integer)::character varying AS id,
-                            verteilerliste.profil_name AS name
-                        FROM campusonline.verteilerliste
-                        UNION
-                        SELECT campusonline_distributionlistinternal.id,
-                            campusonline_distributionlistinternal.name
-                        FROM public.campusonline_distributionlistinternal
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_distributionlist
+                          AS SELECT CAST(CAST(verteilerliste.profil_nr AS integer) AS varchar) AS id
+                                  , verteilerliste.profil_name AS name
+                             FROM campusonline.verteilerliste
+
+                             UNION
+
+                             SELECT campusonline_distributionlistinternal.id
+                                  , campusonline_distributionlistinternal.name
+                             FROM public.campusonline_distributionlistinternal
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_distributionlist
@@ -688,7 +670,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_distributionlist_id_idx ON public.campusonline_distributionlist USING btree(id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_distributionlist_id_idx
+                          ON public.campusonline_distributionlist (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_distributionlist_id_idx
@@ -697,14 +680,11 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.verteilerliste_person (
-                            profil_nr numeric,
-                            pers_nr numeric
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'VERTEILERLISTE_PERSON_PERS_V'
-                        )
+                            profil_nr numeric
+                          , pers_nr numeric
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'VERTEILERLISTE_PERSON_PERS_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.verteilerliste_person
@@ -712,15 +692,16 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_distributionlist_person AS
-                        SELECT ((verteilerliste_person.profil_nr)::integer)::character varying AS distributionlist_id,
-                            (verteilerliste_person.pers_nr)::integer AS person_id
-                        FROM campusonline.verteilerliste_person
-                        UNION
-                        SELECT campusonline_distributionlistinternal_persons.distributionlistinternal_id AS distributionlist_id,
-                            campusonline_distributionlistinternal_persons.person_id
-                        FROM public.campusonline_distributionlistinternal_persons
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_distributionlist_person
+                          AS SELECT CAST(CAST(verteilerliste_person.profil_nr AS integer) AS varchar) AS distributionlist_id
+                                  , CAST(verteilerliste_person.pers_nr AS integer) AS person_id
+                             FROM campusonline.verteilerliste_person
+
+                             UNION
+
+                             SELECT campusonline_distributionlistinternal_persons.distributionlistinternal_id AS distributionlist_id
+                                  , campusonline_distributionlistinternal_persons.person_id
+                             FROM public.campusonline_distributionlistinternal_persons
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_distributionlist_person
@@ -729,14 +710,11 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.verteilerliste_student (
-                            profil_nr numeric,
-                            pers_nr numeric
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'VERTEILERLISTE_PERSON_STUD_V'
-                        )
+                            profil_nr numeric
+                          , pers_nr numeric
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'VERTEILERLISTE_PERSON_STUD_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.verteilerliste_student
@@ -744,11 +722,10 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_distributionlist_student AS
-                        SELECT ((profil_nr)::integer)::character varying AS distributionlist_id,
-                            (pers_nr)::integer AS student_id
-                        FROM campusonline.verteilerliste_student
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_distributionlist_student
+                          AS SELECT CAST(CAST(profil_nr AS integer) AS varchar) AS distributionlist_id
+                                  , CAST(pers_nr AS integer) AS student_id
+                             FROM campusonline.verteilerliste_student
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_distributionlist_student
@@ -756,7 +733,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_distributionlist_person_distributionlist_id_idx ON public.campusonline_distributionlist_person USING btree(distributionlist_id NULLS LAST)
+                        CREATE INDEX campusonline_distributionlist_person_distributionlist_id_idx
+                          ON public.campusonline_distributionlist_person (distributionlist_id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_distributionlist_person_distributionlist_id_idx
@@ -764,7 +742,9 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_distributionlist_person_distributionlist_id_person ON public.campusonline_distributionlist_person USING btree(distributionlist_id NULLS LAST, person_id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_distributionlist_person_distributionlist_id_person
+                          ON public.campusonline_distributionlist_person (distributionlist_id NULLS LAST
+                                                                        , person_id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_distributionlist_person_distributionlist_id_person
@@ -772,7 +752,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_distributionlist_person_person_id_idx ON public.campusonline_distributionlist_person USING btree(person_id NULLS LAST)
+                        CREATE INDEX campusonline_distributionlist_person_person_id_idx
+                          ON public.campusonline_distributionlist_person (person_id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_distributionlist_person_person_id_idx
@@ -780,7 +761,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_distributionlist_student_distributionlist_id_idx ON public.campusonline_distributionlist_student USING btree(distributionlist_id NULLS LAST)
+                        CREATE INDEX campusonline_distributionlist_student_distributionlist_id_idx
+                          ON public.campusonline_distributionlist_student (distributionlist_id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_distributionlist_student_distributionlist_id_idx
@@ -788,7 +770,9 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_distributionlist_student_distributionlist_id_stude ON public.campusonline_distributionlist_student USING btree(distributionlist_id NULLS LAST, student_id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_distributionlist_student_distributionlist_id_stude
+                          ON public.campusonline_distributionlist_student (distributionlist_id NULLS LAST
+                                                                         , student_id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_distributionlist_student_distributionlist_id_stude
@@ -796,7 +780,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_distributionlist_student_student_id_idx ON public.campusonline_distributionlist_student USING btree(student_id NULLS LAST)
+                        CREATE INDEX campusonline_distributionlist_student_student_id_idx
+                          ON public.campusonline_distributionlist_student (student_id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_distributionlist_student_student_id_idx
@@ -832,29 +817,26 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.veranstaltungen (
-                            pk_intwb numeric,
-                            pk_lv numeric,
-                            pk_veranst numeric,
-                            reihung numeric,
-                            typ character varying,
-                            nummer character varying,
-                            titel character varying,
-                            datum timestamp with time zone,
-                            zeit_von timestamp with time zone,
-                            zeit_bis timestamp with time zone,
-                            pk_geb numeric,
-                            gebaeude character varying,
-                            pk_raum numeric,
-                            raum character varying,
-                            raum_bez character varying,
-                            terminart character varying,
-                            anzeige_bis timestamp with time zone
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'VERANSTALTUNGEN_HEUTE_V'
-                        )
+                            pk_intwb numeric
+                          , pk_lv numeric
+                          , pk_veranst numeric
+                          , reihung numeric
+                          , typ varchar
+                          , nummer varchar
+                          , titel varchar
+                          , datum timestamp with time zone
+                          , zeit_von timestamp with time zone
+                          , zeit_bis timestamp with time zone
+                          , pk_geb numeric
+                          , gebaeude varchar
+                          , pk_raum numeric
+                          , raum varchar
+                          , raum_bez varchar
+                          , terminart varchar
+                          , anzeige_bis timestamp with time zone
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'VERANSTALTUNGEN_HEUTE_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.veranstaltungen
@@ -862,20 +844,30 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_event AS
-                        SELECT md5(concat_ws('-'::text, pk_intwb, pk_lv, pk_veranst, reihung, typ, titel, datum, zeit_von, zeit_bis, pk_geb, pk_raum)) AS id,
-                            (pk_lv)::integer AS course_id,
-                            (reihung)::integer AS "order",
-                            typ AS category,
-                            titel AS title,
-                            (datum)::date AS date,
-                            zeit_von AS start,
-                            zeit_bis AS "end",
-                            (pk_geb)::integer AS building_id,
-                            (pk_raum)::integer AS room_id,
-                            anzeige_bis AS show_end
-                        FROM campusonline.veranstaltungen
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_event
+                          AS SELECT md5(concat_ws(CAST('-' AS text)
+                                                , pk_intwb
+                                                , pk_lv
+                                                , pk_veranst
+                                                , reihung
+                                                , typ
+                                                , titel
+                                                , datum
+                                                , zeit_von
+                                                , zeit_bis
+                                                , pk_geb
+                                                , pk_raum)) AS id
+                                  , CAST(pk_lv AS integer) AS course_id
+                                  , CAST(reihung AS integer) AS "order"
+                                  , typ AS category
+                                  , titel AS title
+                                  , CAST(datum AS date) AS date
+                                  , zeit_von AS start
+                                  , zeit_bis AS "end"
+                                  , CAST(pk_geb AS integer) AS building_id
+                                  , CAST(pk_raum AS integer) AS room_id
+                                  , anzeige_bis AS show_end
+                             FROM campusonline.veranstaltungen
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_event
@@ -883,7 +875,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_event_id_idx ON public.campusonline_event USING btree(id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_event_id_idx
+                          ON public.campusonline_event (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_event_id_idx
@@ -930,33 +923,30 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.pv_termine (
-                            termin_nr integer,
-                            org_nr integer,
-                            pv_pr_mod_nr integer,
-                            pv_pr_typ_nr integer,
-                            pruefer_person_nr integer,
-                            stp_sp_nr integer,
-                            lv_nummer character varying,
-                            lv_semester character varying,
-                            lv_titel character varying,
-                            lv_typ character varying,
-                            termin_datum timestamp without time zone,
-                            anmelde_beginn timestamp without time zone,
-                            anmelde_ende timestamp without time zone,
-                            beginn_zeit timestamp without time zone,
-                            webanmeldungs_flag character varying,
-                            anmerkung text,
-                            termin_gueltig_flag character varying,
-                            kurzbez_typ character varying,
-                            pruefungs_typ text,
-                            abmelde_ende timestamp without time zone,
-                            ort text
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'PV_TERMINE_V'
-                        )
+                            termin_nr integer
+                          , org_nr integer
+                          , pv_pr_mod_nr integer
+                          , pv_pr_typ_nr integer
+                          , pruefer_person_nr integer
+                          , stp_sp_nr integer
+                          , lv_nummer varchar
+                          , lv_semester varchar
+                          , lv_titel varchar
+                          , lv_typ varchar
+                          , termin_datum timestamp
+                          , anmelde_beginn timestamp
+                          , anmelde_ende timestamp
+                          , beginn_zeit timestamp
+                          , webanmeldungs_flag varchar
+                          , anmerkung text
+                          , termin_gueltig_flag varchar
+                          , kurzbez_typ varchar
+                          , pruefungs_typ text
+                          , abmelde_ende timestamp
+                          , ort text
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'PV_TERMINE_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.pv_termine
@@ -964,23 +954,26 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_exam AS
-                        SELECT termin_nr AS id,
-                            org_nr AS organization_id,
-                            pv_pr_mod_nr AS mode_id,
-                            pv_pr_typ_nr AS type_id,
-                            pruefer_person_nr AS examiner_id,
-                            stp_sp_nr AS course_id,
-                            timezone('Europe/Vienna'::text, anmelde_beginn) AS registration_start,
-                            timezone('Europe/Vienna'::text, anmelde_ende) AS registration_end,
-                            timezone('Europe/Vienna'::text, beginn_zeit) AS start,
-                            (lower((webanmeldungs_flag)::text) = 'j'::text) AS online_registration,
-                            anmerkung AS note,
-                            (lower((termin_gueltig_flag)::text) = 'j'::text) AS valid,
-                            timezone('Europe/Vienna'::text, abmelde_ende) AS deregistration_end,
-                            ort AS location
-                        FROM campusonline.pv_termine
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_exam
+                          AS SELECT termin_nr AS id
+                                  , org_nr AS organization_id
+                                  , pv_pr_mod_nr AS mode_id
+                                  , pv_pr_typ_nr AS type_id
+                                  , pruefer_person_nr AS examiner_id
+                                  , stp_sp_nr AS course_id
+                                  , timezone(CAST('Europe/Vienna' AS text)
+                                           , anmelde_beginn) AS registration_start
+                                  , timezone(CAST('Europe/Vienna' AS text)
+                                           , anmelde_ende) AS registration_end
+                                  , timezone(CAST('Europe/Vienna' AS text)
+                                           , beginn_zeit) AS start
+                                  , lower(CAST(webanmeldungs_flag AS text)) = CAST('j' AS text) AS online_registration
+                                  , anmerkung AS note
+                                  , lower(CAST(termin_gueltig_flag AS text)) = CAST('j' AS text) AS valid
+                                  , timezone(CAST('Europe/Vienna' AS text)
+                                           , abmelde_ende) AS deregistration_end
+                                  , ort AS location
+                             FROM campusonline.pv_termine
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_exam
@@ -988,7 +981,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_exam_id_idx ON public.campusonline_exam USING btree(id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_exam_id_idx
+                          ON public.campusonline_exam (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_exam_id_idx
@@ -1030,20 +1024,17 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.pv_kandidaten (
-                            kandidaten_nr integer,
-                            termin_nr integer,
-                            st_person_nr integer,
-                            studienidentifikator character varying,
-                            status_datum timestamp without time zone,
-                            pv_pst_typ_nr integer,
-                            anmelde_datum timestamp without time zone,
-                            datum_der_letztbeurteilung timestamp without time zone
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'PV_KANDIDATEN_V'
-                        )
+                            kandidaten_nr integer
+                          , termin_nr integer
+                          , st_person_nr integer
+                          , studienidentifikator varchar
+                          , status_datum timestamp
+                          , pv_pst_typ_nr integer
+                          , anmelde_datum timestamp
+                          , datum_der_letztbeurteilung timestamp
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'PV_KANDIDATEN_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.pv_kandidaten
@@ -1051,16 +1042,16 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_examinee AS
-                        SELECT kandidaten_nr AS id,
-                            termin_nr AS exam_id,
-                            st_person_nr AS student_id,
-                            timezone('Europe/Vienna'::text, status_datum) AS status_datetime,
-                            pv_pst_typ_nr AS status_id,
-                            date(anmelde_datum) AS registration,
-                            date(datum_der_letztbeurteilung) AS assessment_closure
-                        FROM campusonline.pv_kandidaten
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_examinee
+                          AS SELECT kandidaten_nr AS id
+                                  , termin_nr AS exam_id
+                                  , st_person_nr AS student_id
+                                  , timezone(CAST('Europe/Vienna' AS text)
+                                           , status_datum) AS status_datetime
+                                  , pv_pst_typ_nr AS status_id
+                                  , date(anmelde_datum) AS registration
+                                  , date(datum_der_letztbeurteilung) AS assessment_closure
+                             FROM campusonline.pv_kandidaten
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_examinee
@@ -1068,7 +1059,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_examinee_id_idx ON public.campusonline_examinee USING btree(id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_examinee_id_idx
+                          ON public.campusonline_examinee (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_examinee_id_idx
@@ -1105,15 +1097,12 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.pv_pruef_status_typen (
-                            nr integer,
-                            kurzbezeichnung character varying,
-                            name text
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'PV_PRUEFSTATUS'
-                        )
+                            nr integer
+                          , kurzbezeichnung varchar
+                          , name text
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'PV_PRUEFSTATUS')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.pv_pruef_status_typen
@@ -1121,12 +1110,12 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_examinee_status AS
-                        SELECT nr AS id,
-                            kurzbezeichnung AS short,
-                            public.hstore(ARRAY['de'::text], ARRAY[name]) AS name
-                        FROM campusonline.pv_pruef_status_typen
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_examinee_status
+                          AS SELECT nr AS id
+                                  , kurzbezeichnung AS short
+                                  , public.hstore(ARRAY[CAST('de' AS text)]
+                                                , ARRAY[name]) AS name
+                             FROM campusonline.pv_pruef_status_typen
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_examinee_status
@@ -1134,7 +1123,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_examinee_status_id_idx ON public.campusonline_examinee_status USING btree(id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_examinee_status_id_idx
+                          ON public.campusonline_examinee_status (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_examinee_status_id_idx
@@ -1170,16 +1160,13 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.pv_pruefungs_modi (
-                            nr integer,
-                            kurzbezeichnung character varying,
-                            name character varying,
-                            name_engl character varying
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'PV_PRUEFUNGSMODI_V'
-                        )
+                            nr integer
+                          , kurzbezeichnung varchar
+                          , name varchar
+                          , name_engl varchar
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'PV_PRUEFUNGSMODI_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.pv_pruefungs_modi
@@ -1187,12 +1174,14 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_exam_mode AS
-                        SELECT nr AS id,
-                            kurzbezeichnung AS short,
-                            public.hstore(ARRAY['de'::text, 'en'::text], ARRAY[(name)::text, (name_engl)::text]) AS name
-                        FROM campusonline.pv_pruefungs_modi
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_exam_mode
+                          AS SELECT nr AS id
+                                  , kurzbezeichnung AS short
+                                  , public.hstore(ARRAY[CAST('de' AS text)
+                                                      , CAST('en' AS text)]
+                                                , ARRAY[CAST(name AS text)
+                                                      , CAST(name_engl AS text)]) AS name
+                             FROM campusonline.pv_pruefungs_modi
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_exam_mode
@@ -1200,7 +1189,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_exam_mode_id_idx ON public.campusonline_exam_mode USING btree(id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_exam_mode_id_idx
+                          ON public.campusonline_exam_mode (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_exam_mode_id_idx
@@ -1236,18 +1226,15 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.pv_pruefungs_typen (
-                            nr integer,
-                            kurzbezeichnung character varying,
-                            zeugnisbezeichnung character varying,
-                            zeugnisbezeichnung_engl character varying,
-                            name character varying,
-                            name_engl character varying
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'PV_PRUEFUNGSTYPEN_V'
-                        )
+                            nr integer
+                          , kurzbezeichnung varchar
+                          , zeugnisbezeichnung varchar
+                          , zeugnisbezeichnung_engl varchar
+                          , name varchar
+                          , name_engl varchar
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'PV_PRUEFUNGSTYPEN_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.pv_pruefungs_typen
@@ -1255,13 +1242,18 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_exam_type AS
-                        SELECT nr AS id,
-                            kurzbezeichnung AS short,
-                            public.hstore(ARRAY['de'::text, 'en'::text], ARRAY[(zeugnisbezeichnung)::text, (zeugnisbezeichnung_engl)::text]) AS certificate,
-                            public.hstore(ARRAY['de'::text, 'en'::text], ARRAY[(name)::text, (name_engl)::text]) AS name
-                        FROM campusonline.pv_pruefungs_typen
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_exam_type
+                          AS SELECT nr AS id
+                                  , kurzbezeichnung AS short
+                                  , public.hstore(ARRAY[CAST('de' AS text)
+                                                      , CAST('en' AS text)]
+                                                , ARRAY[CAST(zeugnisbezeichnung AS text)
+                                                      , CAST(zeugnisbezeichnung_engl AS text)]) AS certificate
+                                  , public.hstore(ARRAY[CAST('de' AS text)
+                                                      , CAST('en' AS text)]
+                                                , ARRAY[CAST(name AS text)
+                                                      , CAST(name_engl AS text)]) AS name
+                             FROM campusonline.pv_pruefungs_typen
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_exam_type
@@ -1269,7 +1261,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_exam_type_id_idx ON public.campusonline_type_mode USING btree(id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_exam_type_id_idx
+                          ON public.campusonline_type_mode (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_exam_type_id_idx
@@ -1309,18 +1302,15 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.externe (
-                            pers_nr numeric,
-                            pers_famnam character varying,
-                            pers_vorname character varying,
-                            pers_titel character varying,
-                            pers_sex character varying,
-                            pers_benutzername character varying
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'PERSONEN_EXTERN_V'
-                        )
+                            pers_nr numeric
+                          , pers_famnam varchar
+                          , pers_vorname varchar
+                          , pers_titel varchar
+                          , pers_sex varchar
+                          , pers_benutzername varchar
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'PERSONEN_EXTERN_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.externe
@@ -1328,15 +1318,14 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_external AS
-                        SELECT (pers_nr)::integer AS id,
-                            pers_famnam AS last_name,
-                            pers_vorname AS first_name,
-                            pers_titel AS title,
-                            pers_sex AS sex,
-                            pers_benutzername AS username
-                        FROM campusonline.externe
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_external
+                          AS SELECT CAST(pers_nr AS integer) AS id
+                                  , pers_famnam AS last_name
+                                  , pers_vorname AS first_name
+                                  , pers_titel AS title
+                                  , pers_sex AS sex
+                                  , pers_benutzername AS username
+                             FROM campusonline.externe
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_external
@@ -1344,7 +1333,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_external_id_idx ON public.campusonline_external USING btree(id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_external_id_idx
+                          ON public.campusonline_external (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_external_id_idx
@@ -1352,7 +1342,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_external_username_idx ON public.campusonline_external USING btree(username NULLS LAST)
+                        CREATE INDEX campusonline_external_username_idx
+                          ON public.campusonline_external (username NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_external_username_idx
@@ -1403,31 +1394,28 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.abschlussarbeiten (
-                            id numeric,
-                            studienbezeichnung character varying,
-                            letzte_aenderung timestamp without time zone,
-                            autor_id numeric,
-                            vorname_autor character varying,
-                            nachname_autor character varying,
-                            autoren character varying,
-                            titel character varying,
-                            kurzfassung text,
-                            sprache character varying,
-                            seiten_anzahl numeric,
-                            betreuer_id numeric,
-                            betreuer character varying,
-                            erscheinungsjahr numeric,
-                            link character varying,
-                            werk_typ numeric,
-                            publiziert character varying,
-                            organisation numeric,
-                            organisations_id numeric
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'F_ABSCHLUSSARBEIT'
-                        )
+                            id numeric
+                          , studienbezeichnung varchar
+                          , letzte_aenderung timestamp
+                          , autor_id numeric
+                          , vorname_autor varchar
+                          , nachname_autor varchar
+                          , autoren varchar
+                          , titel varchar
+                          , kurzfassung text
+                          , sprache varchar
+                          , seiten_anzahl numeric
+                          , betreuer_id numeric
+                          , betreuer varchar
+                          , erscheinungsjahr numeric
+                          , link varchar
+                          , werk_typ numeric
+                          , publiziert varchar
+                          , organisation numeric
+                          , organisations_id numeric
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'F_ABSCHLUSSARBEIT')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.abschlussarbeiten
@@ -1435,30 +1423,52 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_finalthesis AS
-                        SELECT (aa.id)::integer AS id,
-                            aa.studienbezeichnung AS study_designation,
-                            (aa.letzte_aenderung)::timestamp with time zone AS modified,
-                            (s.stud_nr)::integer AS author_id,
-                            aa.nachname_autor AS author_lastname,
-                            aa.vorname_autor AS author_firstname,
-                            NULLIF(ltrim(split_part((aa.autoren)::text, ';'::text, 2), ' '::text), ''::text) AS author_title,
-                            public.hstore(array_agg(lower((aa.sprache)::text)), (array_agg(aa.titel))::text[]) AS title,
-                            public.hstore(array_agg(lower((aa.sprache)::text)), array_agg(aa.kurzfassung)) AS abstract,
-                            (aa.seiten_anzahl)::integer AS pages,
-                            (p.pers_nr)::integer AS tutor_id,
-                            aa.betreuer AS tutor_name,
-                            (aa.erscheinungsjahr)::integer AS year,
-                            aa.link AS url,
-                            aa.publiziert AS category,
-                            (o.nr)::integer AS organization_id
-                        FROM (((campusonline.abschlussarbeiten aa
-                            LEFT JOIN campusonline.stud s ON (((aa.autor_id)::integer = (s.stud_nr)::integer)))
-                            LEFT JOIN campusonline.personen p ON (((aa.betreuer_id)::integer = (p.pers_nr)::integer)))
-                            LEFT JOIN campusonline.organisationen o ON (((aa.organisations_id)::integer = (o.nr)::integer)))
-                        WHERE (aa.sprache IS NOT NULL)
-                        GROUP BY aa.id, aa.studienbezeichnung, ((aa.letzte_aenderung)::timestamp with time zone), ((s.stud_nr)::integer), aa.nachname_autor, aa.vorname_autor, NULLIF(ltrim(split_part((aa.autoren)::text, ';'::text, 2), ' '::text), ''::text), ((aa.seiten_anzahl)::integer), ((p.pers_nr)::integer), aa.betreuer, ((aa.erscheinungsjahr)::integer), aa.link, aa.publiziert, ((o.nr)::integer)
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_finalthesis
+                          AS SELECT CAST(aa.id AS integer) AS id
+                                  , aa.studienbezeichnung AS study_designation
+                                  , CAST(aa.letzte_aenderung AS timestamp with time zone) AS modified
+                                  , CAST(s.stud_nr AS integer) AS author_id
+                                  , aa.nachname_autor AS author_lastname
+                                  , aa.vorname_autor AS author_firstname
+                                  , NULLIF(ltrim(split_part(CAST(aa.autoren AS text)
+                                                          , CAST(';' AS text)
+                                                          , 2)
+                                               , CAST(' ' AS text))
+                                         , CAST('' AS text)) AS author_title
+                                  , public.hstore(array_agg(lower(CAST(aa.sprache AS text)))
+                                                , CAST(array_agg(aa.titel) AS text[])) AS title
+                                  , public.hstore(array_agg(lower(CAST(aa.sprache AS text)))
+                                                , array_agg(aa.kurzfassung)) AS abstract
+                                  , CAST(aa.seiten_anzahl AS integer) AS pages
+                                  , CAST(p.pers_nr AS integer) AS tutor_id
+                                  , aa.betreuer AS tutor_name
+                                  , CAST(aa.erscheinungsjahr AS integer) AS year
+                                  , aa.link AS url
+                                  , aa.publiziert AS category
+                                  , CAST(o.nr AS integer) AS organization_id
+                             FROM campusonline.abschlussarbeiten AS aa
+                                  LEFT JOIN campusonline.stud AS s ON CAST(aa.autor_id AS integer) = CAST(s.stud_nr AS integer)
+                                  LEFT JOIN campusonline.personen AS p ON CAST(aa.betreuer_id AS integer) = CAST(p.pers_nr AS integer)
+                                  LEFT JOIN campusonline.organisationen AS o ON CAST(aa.organisations_id AS integer) = CAST(o.nr AS integer)
+                             WHERE aa.sprache IS NOT NULL
+                             GROUP BY aa.id
+                                    , aa.studienbezeichnung
+                                    , CAST(aa.letzte_aenderung AS timestamp with time zone)
+                                    , CAST(s.stud_nr AS integer)
+                                    , aa.nachname_autor
+                                    , aa.vorname_autor
+                                    , NULLIF(ltrim(split_part(CAST(aa.autoren AS text)
+                                                            , CAST(';' AS text)
+                                                            , 2)
+                                                 , CAST(' ' AS text))
+                                           , CAST('' AS text))
+                                    , CAST(aa.seiten_anzahl AS integer)
+                                    , CAST(p.pers_nr AS integer)
+                                    , aa.betreuer
+                                    , CAST(aa.erscheinungsjahr AS integer)
+                                    , aa.link
+                                    , aa.publiziert
+                                    , CAST(o.nr AS integer)
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_finalthesis
@@ -1466,7 +1476,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_finalthesis_id_idx ON public.campusonline_finalthesis USING btree(id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_finalthesis_id_idx
+                          ON public.campusonline_finalthesis (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_finalthesis_id_idx
@@ -1515,16 +1526,13 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.stockwerk (
-                            nr numeric,
-                            kurzbezeichnung character varying,
-                            name character varying,
-                            name_en character varying
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'STOCKWERK_V'
-                        )
+                            nr numeric
+                          , kurzbezeichnung varchar
+                          , name varchar
+                          , name_en varchar
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'STOCKWERK_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.stockwerk
@@ -1532,12 +1540,14 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_floor AS
-                        SELECT (nr)::integer AS id,
-                            kurzbezeichnung AS short,
-                            public.hstore(ARRAY['de'::text, 'en'::text], ARRAY[(name)::text, (name_en)::text]) AS name
-                        FROM campusonline.stockwerk
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_floor
+                          AS SELECT CAST(nr AS integer) AS id
+                                  , kurzbezeichnung AS short
+                                  , public.hstore(ARRAY[CAST('de' AS text)
+                                                      , CAST('en' AS text)]
+                                                , ARRAY[CAST(name AS text)
+                                                      , CAST(name_en AS text)]) AS name
+                             FROM campusonline.stockwerk
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_floor
@@ -1545,7 +1555,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_floor_id_idx ON public.campusonline_floor USING btree(id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_floor_id_idx
+                          ON public.campusonline_floor (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_floor_id_idx
@@ -1576,19 +1587,16 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.funktionen (
-                            funk_nr numeric,
-                            funk_bez character varying,
-                            funk_gruppe character varying,
-                            funk_leiter character varying,
-                            funk_stv_leiter character varying,
-                            funk_name_w character varying,
-                            funk_name_m character varying
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'FUNKTIONEN_V'
-                        )
+                            funk_nr numeric
+                          , funk_bez varchar
+                          , funk_gruppe varchar
+                          , funk_leiter varchar
+                          , funk_stv_leiter varchar
+                          , funk_name_w varchar
+                          , funk_name_m varchar
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'FUNKTIONEN_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.funktionen
@@ -1596,22 +1604,23 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_function AS
-                        SELECT (funk_nr)::integer AS id,
-                            funk_bez AS name,
-                            funk_gruppe AS category,
-                                CASE upper((funk_leiter)::text)
-                                    WHEN 'X'::text THEN true
-                                    ELSE false
-                                END AS leader,
-                                CASE upper((funk_stv_leiter)::text)
-                                    WHEN 'X'::text THEN true
-                                    ELSE false
-                                END AS deputy_leader,
-                            funk_name_w AS name_female,
-                            funk_name_m AS name_male
-                        FROM campusonline.funktionen
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_function
+                          AS SELECT CAST(funk_nr AS integer) AS id
+                                  , funk_bez AS name
+                                  , funk_gruppe AS category
+                                  , CASE upper(CAST(funk_leiter AS text))
+                                      WHEN CAST('X' AS text)
+                                        THEN TRUE
+                                      ELSE FALSE
+                                    END AS leader
+                                  , CASE upper(CAST(funk_stv_leiter AS text))
+                                      WHEN CAST('X' AS text)
+                                        THEN TRUE
+                                      ELSE FALSE
+                                    END AS deputy_leader
+                                  , funk_name_w AS name_female
+                                  , funk_name_m AS name_male
+                             FROM campusonline.funktionen
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_function
@@ -1619,7 +1628,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_function_id_idx ON public.campusonline_function USING btree(id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_function_id_idx
+                          ON public.campusonline_function (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_function_id_idx
@@ -1670,23 +1680,25 @@ class Migration(migrations.Migration):
             database_operations=[
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_organization AS
-                        SELECT (nr)::integer AS id,
-                            public.hstore(ARRAY['de'::text, 'en'::text], ARRAY[(org_name)::text, (org_name_engl)::text]) AS name,
-                            name_kurz AS short,
-                            (basisorganisation)::integer AS parent_id,
-                            (sort_hierarchie)::integer AS sib_order,
-                            typ AS category,
-                            adresse AS address,
-                            email_adresse AS email,
-                            telefon_nummer AS phone,
-                            www_homepage AS url,
-                            fax_nummer AS fax,
-                            sekretariat AS office,
-                            orgtyp_nr AS type_id,
-                            (lower((oeug_flag)::text) = 'j'::text) AS university_law
-                        FROM campusonline.organisationen
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_organization
+                          AS SELECT CAST(nr AS integer) AS id
+                                  , public.hstore(ARRAY[CAST('de' AS text)
+                                                      , CAST('en' AS text)]
+                                                , ARRAY[CAST(org_name AS text)
+                                                      , CAST(org_name_engl AS text)]) AS name
+                                  , name_kurz AS short
+                                  , CAST(basisorganisation AS integer) AS parent_id
+                                  , CAST(sort_hierarchie AS integer) AS sib_order
+                                  , typ AS category
+                                  , adresse AS address
+                                  , email_adresse AS email
+                                  , telefon_nummer AS phone
+                                  , www_homepage AS url
+                                  , fax_nummer AS fax
+                                  , sekretariat AS office
+                                  , orgtyp_nr AS type_id
+                                  , lower(CAST(oeug_flag AS text)) = CAST('j' AS text) AS university_law
+                             FROM campusonline.organisationen
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_organization
@@ -1694,7 +1706,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_organization_category_idx ON public.campusonline_organization USING btree(category NULLS LAST)
+                        CREATE INDEX campusonline_organization_category_idx
+                          ON public.campusonline_organization (category NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_organization_category_idx
@@ -1702,7 +1715,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_organization_id_idx ON public.campusonline_organization USING btree(id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_organization_id_idx
+                          ON public.campusonline_organization (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_organization_id_idx
@@ -1710,7 +1724,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_organization_name_idx ON public.campusonline_organization USING btree(name NULLS LAST)
+                        CREATE INDEX campusonline_organization_name_idx
+                          ON public.campusonline_organization (name NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_organization_name_idx
@@ -1718,7 +1733,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_organization_parent_id_idx ON public.campusonline_organization USING btree(parent_id NULLS LAST)
+                        CREATE INDEX campusonline_organization_parent_id_idx
+                          ON public.campusonline_organization (parent_id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_organization_parent_id_idx
@@ -1726,7 +1742,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_organization_short_idx ON public.campusonline_organization USING btree(short NULLS LAST)
+                        CREATE INDEX campusonline_organization_short_idx
+                          ON public.campusonline_organization (short NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_organization_short_idx
@@ -1734,7 +1751,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_organization_sib_order_idx ON public.campusonline_organization USING btree(sib_order NULLS LAST)
+                        CREATE INDEX campusonline_organization_sib_order_idx
+                          ON public.campusonline_organization (sib_order NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_organization_sib_order_idx
@@ -1742,7 +1760,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_organization_university_law_idx ON public.campusonline_organization USING btree(university_law NULLS LAST)
+                        CREATE INDEX campusonline_organization_university_law_idx
+                          ON public.campusonline_organization (university_law NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_organization_university_law_idx
@@ -1807,15 +1826,12 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.organisationstypen (
-                            nr integer,
-                            name character varying,
-                            kurzbezeichnung character varying
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'ORGANISATIONSTYPEN_V'
-                        )
+                            nr integer
+                          , name varchar
+                          , kurzbezeichnung varchar
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'ORGANISATIONSTYPEN_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.organisationstypen
@@ -1823,12 +1839,11 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_organization_type AS
-                        SELECT nr AS id,
-                            name,
-                            kurzbezeichnung AS short
-                        FROM campusonline.organisationstypen
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_organization_type
+                          AS SELECT nr AS id
+                                  , name
+                                  , kurzbezeichnung AS short
+                             FROM campusonline.organisationstypen
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_organization_type
@@ -1836,7 +1851,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_organization_type_id_idx ON public.campusonline_organization_type USING btree(id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_organization_type_id_idx
+                          ON public.campusonline_organization_type (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_organization_type_id_idx
@@ -1875,14 +1891,11 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.personen_profilbilder_daten (
-                            person_nr numeric,
-                            content bytea
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'PERSONEN_PROFILBILDER_DATEN_V'
-                        )
+                            person_nr numeric
+                          , content bytea
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'PERSONEN_PROFILBILDER_DATEN_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.personen_profilbilder_daten
@@ -1890,38 +1903,52 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_person AS
-                        SELECT (p.pers_nr)::integer AS id,
-                            p.pers_vorname AS first_name,
-                            p.pers_famnam AS last_name,
-                            p.pers_titel AS title,
-                            p.pers_sex AS sex,
-                            p.pers_benutzername AS username,
-                            p.pers_sprechstunde AS consultation,
-                            p.pers_zusatz_info AS appendix,
-                            p.pers_profilbild AS avatar,
-                            p.pers_email AS email,
-                            (p.raum_nr)::integer AS room_id,
-                            ppd.content AS avatar_private,
-                                CASE ppd.content
-                                    WHEN NULL::bytea THEN NULL::text
-                                    ELSE encode(public.digest(((format('%s-%s-'::text, p.pers_nr, p.pers_benutzername))::bytea || ppd.content), 'sha1'::text), 'hex'::text)
-                                END AS hash,
-                            p.tel_nr AS phone,
-                            p.mobil_tel_nr AS mobile,
-                                CASE lower((p.dv)::text)
-                                    WHEN 'j'::text THEN true
-                                    ELSE false
-                                END AS employed,
-                            p.visitenkarte AS card,
-                            p.pers_fax_nummer AS fax,
-                            p.pers_externe_telefon_nummer AS phone_external,
-                            public.hstore(ARRAY['prefix'::text, 'suffix'::text], ARRAY[(p.akad_grad_vor)::text, (p.akad_grad_nach)::text]) AS academic_title,
-                            public.hstore(ARRAY['prefix'::text, 'suffix'::text], ARRAY[(p.sonstiger_titel_vor)::text, (p.sonstiger_titel_nach)::text]) AS miscellaneous_title,
-                            public.hstore(ARRAY['prefix'::text, 'suffix'::text], ARRAY[(p.amtstitel_vor)::text, (p.amtstitel_nach)::text]) AS official_title
-                        FROM (campusonline.personen p
-                            LEFT JOIN campusonline.personen_profilbilder_daten ppd ON (((p.pers_nr)::integer = (ppd.person_nr)::integer)))
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_person
+                          AS SELECT CAST(p.pers_nr AS integer) AS id
+                                  , p.pers_vorname AS first_name
+                                  , p.pers_famnam AS last_name
+                                  , p.pers_titel AS title
+                                  , p.pers_sex AS sex
+                                  , p.pers_benutzername AS username
+                                  , p.pers_sprechstunde AS consultation
+                                  , p.pers_zusatz_info AS appendix
+                                  , p.pers_profilbild AS avatar
+                                  , p.pers_email AS email
+                                  , CAST(p.raum_nr AS integer) AS room_id
+                                  , ppd.content AS avatar_private
+                                  , CASE ppd.content
+                                      WHEN CAST(NULL AS bytea)
+                                        THEN CAST(NULL AS text)
+                                      ELSE encode(public.digest(CAST(format(CAST('%s-%s-' AS text)
+                                                                          , p.pers_nr
+                                                                          , p.pers_benutzername) AS bytea) || ppd.content
+                                                              , CAST('sha1' AS text))
+                                                , CAST('hex' AS text))
+                                    END AS hash
+                                  , p.tel_nr AS phone
+                                  , p.mobil_tel_nr AS mobile
+                                  , CASE lower(CAST(p.dv AS text))
+                                      WHEN CAST('j' AS text)
+                                        THEN TRUE
+                                      ELSE FALSE
+                                    END AS employed
+                                  , p.visitenkarte AS card
+                                  , p.pers_fax_nummer AS fax
+                                  , p.pers_externe_telefon_nummer AS phone_external
+                                  , public.hstore(ARRAY[CAST('prefix' AS text)
+                                                      , CAST('suffix' AS text)]
+                                                , ARRAY[CAST(p.akad_grad_vor AS text)
+                                                      , CAST(p.akad_grad_nach AS text)]) AS academic_title
+                                  , public.hstore(ARRAY[CAST('prefix' AS text)
+                                                      , CAST('suffix' AS text)]
+                                                , ARRAY[CAST(p.sonstiger_titel_vor AS text)
+                                                      , CAST(p.sonstiger_titel_nach AS text)]) AS miscellaneous_title
+                                  , public.hstore(ARRAY[CAST('prefix' AS text)
+                                                      , CAST('suffix' AS text)]
+                                                , ARRAY[CAST(p.amtstitel_vor AS text)
+                                                      , CAST(p.amtstitel_nach AS text)]) AS official_title
+                             FROM campusonline.personen AS p
+                                  LEFT JOIN campusonline.personen_profilbilder_daten AS ppd ON CAST(p.pers_nr AS integer) = CAST(ppd.person_nr AS integer)
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_person
@@ -1929,7 +1956,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_person_email_idx ON public.campusonline_person USING btree(email NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_person_email_idx
+                          ON public.campusonline_person (email NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_person_email_idx
@@ -1937,7 +1965,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_person_employed_idx ON public.campusonline_person USING btree(employed NULLS LAST)
+                        CREATE INDEX campusonline_person_employed_idx
+                          ON public.campusonline_person (employed NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_person_employed_idx
@@ -1945,7 +1974,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_person_first_name_idx ON public.campusonline_person USING btree(first_name NULLS LAST)
+                        CREATE INDEX campusonline_person_first_name_idx
+                          ON public.campusonline_person (first_name NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_person_first_name_idx
@@ -1953,7 +1983,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_person_hash_idx ON public.campusonline_person USING btree(hash NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_person_hash_idx
+                          ON public.campusonline_person (hash NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_person_hash_idx
@@ -1961,7 +1992,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_person_id_idx ON public.campusonline_person USING btree(id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_person_id_idx
+                          ON public.campusonline_person (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_person_id_idx
@@ -1969,7 +2001,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_person_last_name_idx ON public.campusonline_person USING btree(last_name NULLS LAST)
+                        CREATE INDEX campusonline_person_last_name_idx
+                          ON public.campusonline_person (last_name NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_person_last_name_idx
@@ -1977,7 +2010,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_person_sex_idx ON public.campusonline_person USING btree(sex NULLS LAST)
+                        CREATE INDEX campusonline_person_sex_idx
+                          ON public.campusonline_person (sex NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_person_sex_idx
@@ -1986,15 +2020,12 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.personen_organisationen (
-                            person_nr numeric,
-                            org_nr numeric,
-                            karenz character varying
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'PERSONEN_ORGANISATIONEN_V'
-                        )
+                            person_nr numeric
+                          , org_nr numeric
+                          , karenz varchar
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'PERSONEN_ORGANISATIONEN_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.personen_organisationen
@@ -2002,12 +2033,11 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_person_organization AS
-                        SELECT (person_nr)::integer AS person_id,
-                            (org_nr)::integer AS organization_id
-                        FROM campusonline.personen_organisationen
-                        WHERE (karenz IS NULL)
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_person_organization
+                          AS SELECT CAST(person_nr AS integer) AS person_id
+                                  , CAST(org_nr AS integer) AS organization_id
+                             FROM campusonline.personen_organisationen
+                             WHERE karenz IS NULL
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_person_organization
@@ -2015,12 +2045,11 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_person_organization_leave AS
-                        SELECT (person_nr)::integer AS person_id,
-                            (org_nr)::integer AS organization_id
-                        FROM campusonline.personen_organisationen
-                        WHERE (karenz IS NOT NULL)
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_person_organization_leave
+                          AS SELECT CAST(person_nr AS integer) AS person_id
+                                  , CAST(org_nr AS integer) AS organization_id
+                             FROM campusonline.personen_organisationen
+                             WHERE karenz IS NOT NULL
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_person_organization_leave
@@ -2115,15 +2144,12 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.pers_org_funk (
-                            pers_nr numeric,
-                            org_nr numeric,
-                            funk_nr numeric
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'PERS_ORG_FUNK_V'
-                        )
+                            pers_nr numeric
+                          , org_nr numeric
+                          , funk_nr numeric
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'PERS_ORG_FUNK_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.pers_org_funk
@@ -2131,13 +2157,15 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_personorganizationfunction AS
-                        SELECT format('%s-%s-%s'::text, (pers_nr)::integer, (org_nr)::integer, (funk_nr)::integer) AS id,
-                            (pers_nr)::integer AS person_id,
-                            (org_nr)::integer AS organization_id,
-                            (funk_nr)::integer AS function_id
-                        FROM campusonline.pers_org_funk
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_personorganizationfunction
+                          AS SELECT format(CAST('%s-%s-%s' AS text)
+                                         , CAST(pers_nr AS integer)
+                                         , CAST(org_nr AS integer)
+                                         , CAST(funk_nr AS integer)) AS id
+                                  , CAST(pers_nr AS integer) AS person_id
+                                  , CAST(org_nr AS integer) AS organization_id
+                                  , CAST(funk_nr AS integer) AS function_id
+                             FROM campusonline.pers_org_funk
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_personorganizationfunction
@@ -2145,7 +2173,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_personorganizationfunction_function_id_idx ON public.campusonline_personorganizationfunction USING btree(function_id NULLS LAST)
+                        CREATE INDEX campusonline_personorganizationfunction_function_id_idx
+                          ON public.campusonline_personorganizationfunction (function_id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_personorganizationfunction_function_id_idx
@@ -2153,7 +2182,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_personorganizationfunction_id_idx ON public.campusonline_personorganizationfunction USING btree(id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_personorganizationfunction_id_idx
+                          ON public.campusonline_personorganizationfunction (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_personorganizationfunction_id_idx
@@ -2161,7 +2191,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_personorganizationfunction_organization_id_idx ON public.campusonline_personorganizationfunction USING btree(organization_id NULLS LAST)
+                        CREATE INDEX campusonline_personorganizationfunction_organization_id_idx
+                          ON public.campusonline_personorganizationfunction (organization_id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_personorganizationfunction_organization_id_idx
@@ -2169,7 +2200,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_personorganizationfunction_person_id_idx ON public.campusonline_personorganizationfunction USING btree(person_id NULLS LAST)
+                        CREATE INDEX campusonline_personorganizationfunction_person_id_idx
+                          ON public.campusonline_personorganizationfunction (person_id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_personorganizationfunction_person_id_idx
@@ -2200,25 +2232,22 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.raum (
-                            raum_nr numeric,
-                            raum_bez character varying,
-                            gebaeude_nr numeric,
-                            gebaeude character varying,
-                            stockwerk_nr numeric,
-                            stockwerk character varying,
-                            raum character varying,
-                            raum_nummer character varying,
-                            flaeche numeric,
-                            hoehe numeric,
-                            org_nr numeric,
-                            organisation character varying,
-                            raumtyp numeric
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'RAUM_V'
-                        )
+                            raum_nr numeric
+                          , raum_bez varchar
+                          , gebaeude_nr numeric
+                          , gebaeude varchar
+                          , stockwerk_nr numeric
+                          , stockwerk varchar
+                          , raum varchar
+                          , raum_nummer varchar
+                          , flaeche numeric
+                          , hoehe numeric
+                          , org_nr numeric
+                          , organisation varchar
+                          , raumtyp numeric
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'RAUM_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.raum
@@ -2226,19 +2255,18 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_room AS
-                        SELECT (raum_nr)::integer AS id,
-                            raum_bez AS title,
-                            (gebaeude_nr)::integer AS building_id,
-                            (stockwerk_nr)::integer AS floor_id,
-                            raum AS name_short,
-                            raum_nummer AS name_full,
-                            flaeche AS area,
-                            hoehe AS height,
-                            (org_nr)::integer AS organization_id,
-                            (raumtyp)::integer AS category_id
-                        FROM campusonline.raum
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_room
+                          AS SELECT CAST(raum_nr AS integer) AS id
+                                  , raum_bez AS title
+                                  , CAST(gebaeude_nr AS integer) AS building_id
+                                  , CAST(stockwerk_nr AS integer) AS floor_id
+                                  , raum AS name_short
+                                  , raum_nummer AS name_full
+                                  , flaeche AS area
+                                  , hoehe AS height
+                                  , CAST(org_nr AS integer) AS organization_id
+                                  , CAST(raumtyp AS integer) AS category_id
+                             FROM campusonline.raum
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_room
@@ -2246,7 +2274,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_room_id_idx ON public.campusonline_room USING btree(id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_room_id_idx
+                          ON public.campusonline_room (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_room_id_idx
@@ -2302,18 +2331,15 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.hybrid_angemeldete (
-                            termin_nr numeric,
-                            raum_nr numeric,
-                            datum_von timestamp with time zone,
-                            datum_bis timestamp with time zone,
-                            st_person_nr numeric,
-                            angemeldet character varying
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'LV_HYBRID_ANGEMELDETE_STUD_JE_ZEIT_V'
-                        )
+                            termin_nr numeric
+                          , raum_nr numeric
+                          , datum_von timestamp with time zone
+                          , datum_bis timestamp with time zone
+                          , st_person_nr numeric
+                          , angemeldet varchar
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'LV_HYBRID_ANGEMELDETE_STUD_JE_ZEIT_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.hybrid_angemeldete
@@ -2321,19 +2347,22 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_roomallocation AS
-                        SELECT concat_ws('-'::text, (ha.termin_nr)::integer, (ha.raum_nr)::integer, (ha.st_person_nr)::integer) AS id,
-                            (ha.termin_nr)::integer AS term,
-                            (ha.raum_nr)::integer AS room_id,
-                            (ha.st_person_nr)::integer AS student_id,
-                            timezone('Europe/Vienna'::text, min(lgt.lv_beginn)) AS start,
-                            timezone('Europe/Vienna'::text, max(lgt.lv_ende)) AS "end",
-                            (upper((ha.angemeldet)::text) = 'J'::text) AS onsite
-                        FROM campusonline.hybrid_angemeldete ha,
-                            campusonline.lv_grp_term lgt
-                        WHERE (ha.termin_nr = lgt.termin_nr)
-                        GROUP BY ha.termin_nr, ha.raum_nr, ha.st_person_nr, ha.angemeldet
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_roomallocation
+                          AS SELECT concat_ws(CAST('-' AS text)
+                                            , CAST(ha.termin_nr AS integer)
+                                            , CAST(ha.raum_nr AS integer)
+                                            , CAST(ha.st_person_nr AS integer)) AS id
+                                  , CAST(ha.termin_nr AS integer) AS term
+                                  , CAST(ha.raum_nr AS integer) AS room_id
+                                  , CAST(ha.st_person_nr AS integer) AS student_id
+                                  , timezone(CAST('Europe/Vienna' AS text)
+                                           , min(lgt.lv_beginn)) AS start
+                                  , timezone(CAST('Europe/Vienna' AS text)
+                                           , max(lgt.lv_ende)) AS "end"
+                                  , upper(CAST(ha.angemeldet AS text)) = CAST('J' AS text) AS onsite
+                             FROM campusonline.hybrid_angemeldete AS ha, campusonline.lv_grp_term AS lgt
+                             WHERE ha.termin_nr = lgt.termin_nr
+                             GROUP BY ha.termin_nr, ha.raum_nr, ha.st_person_nr, ha.angemeldet
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_roomallocation
@@ -2341,7 +2370,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_roomallocation_id_idx ON public.campusonline_roomallocation USING btree(id NULLS LAST)
+                        CREATE INDEX campusonline_roomallocation_id_idx
+                          ON public.campusonline_roomallocation (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_roomallocation_id_idx
@@ -2349,7 +2379,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_roomallocation_room_id_idx ON public.campusonline_roomallocation USING btree(room_id NULLS LAST)
+                        CREATE INDEX campusonline_roomallocation_room_id_idx
+                          ON public.campusonline_roomallocation (room_id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_roomallocation_room_id_idx
@@ -2357,7 +2388,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_roomallocation_student_id_idx ON public.campusonline_roomallocation USING btree(student_id NULLS LAST)
+                        CREATE INDEX campusonline_roomallocation_student_id_idx
+                          ON public.campusonline_roomallocation (student_id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_roomallocation_student_id_idx
@@ -2365,7 +2397,9 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_roomallocation_timerange_idx ON public.campusonline_roomallocation USING btree(start NULLS LAST, "end" NULLS LAST)
+                        CREATE INDEX campusonline_roomallocation_timerange_idx
+                          ON public.campusonline_roomallocation (start NULLS LAST
+                                                               , "end" NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_roomallocation_timerange_idx
@@ -2399,14 +2433,11 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.raum_kategorie (
-                            nr numeric,
-                            name_de character varying
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'RAUM_TYPEN_V'
-                        )
+                            nr numeric
+                          , name_de varchar
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'RAUM_TYPEN_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.raum_kategorie
@@ -2414,11 +2445,10 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_room_category AS
-                        SELECT (nr)::integer AS id,
-                            name_de AS name
-                        FROM campusonline.raum_kategorie
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_room_category
+                          AS SELECT CAST(nr AS integer) AS id
+                                  , name_de AS name
+                             FROM campusonline.raum_kategorie
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_room_category
@@ -2426,7 +2456,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_room_category_id_idx ON public.campusonline_room_category USING btree(id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_room_category_id_idx
+                          ON public.campusonline_room_category (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_room_category_id_idx
@@ -2456,19 +2487,16 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.oefos (
-                            ebene integer,
-                            edv_code character varying,
-                            code character varying,
-                            titel_de character varying,
-                            kurztitel_de character varying,
-                            titel_en character varying,
-                            kurztitel_en character varying
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'OEFOS_V'
-                        )
+                            ebene integer
+                          , edv_code varchar
+                          , code varchar
+                          , titel_de varchar
+                          , kurztitel_de varchar
+                          , titel_en varchar
+                          , kurztitel_en varchar
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'OEFOS_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.oefos
@@ -2476,21 +2504,36 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_science_branch AS
-                        SELECT edv_code AS id,
-                            code,
-                            ebene AS level,
-                                CASE ebene
-                                    WHEN 1 THEN NULL::integer
-                                    WHEN 2 THEN ("substring"((edv_code)::text, 1, 1))::integer
-                                    WHEN 3 THEN ("substring"((edv_code)::text, 1, 3))::integer
-                                    WHEN 4 THEN ("substring"((edv_code)::text, 1, 4))::integer
-                                    ELSE NULL::integer
-                                END AS parent_id,
-                            public.hstore(ARRAY['de'::text, 'en'::text], ARRAY[(titel_de)::text, (titel_en)::text]) AS name,
-                            public.hstore(ARRAY['de'::text, 'en'::text], ARRAY[(kurztitel_de)::text, (kurztitel_en)::text]) AS short
-                        FROM campusonline.oefos
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_science_branch
+                          AS SELECT edv_code AS id
+                                  , code
+                                  , ebene AS level
+                                  , CASE ebene
+                                      WHEN 1
+                                        THEN CAST(NULL AS integer)
+                                      WHEN 2
+                                        THEN CAST(substring(CAST(edv_code AS text)
+                                                          , 1
+                                                          , 1) AS integer)
+                                      WHEN 3
+                                        THEN CAST(substring(CAST(edv_code AS text)
+                                                          , 1
+                                                          , 3) AS integer)
+                                      WHEN 4
+                                        THEN CAST(substring(CAST(edv_code AS text)
+                                                          , 1
+                                                          , 4) AS integer)
+                                      ELSE CAST(NULL AS integer)
+                                    END AS parent_id
+                                  , public.hstore(ARRAY[CAST('de' AS text)
+                                                      , CAST('en' AS text)]
+                                                , ARRAY[CAST(titel_de AS text)
+                                                      , CAST(titel_en AS text)]) AS name
+                                  , public.hstore(ARRAY[CAST('de' AS text)
+                                                      , CAST('en' AS text)]
+                                                , ARRAY[CAST(kurztitel_de AS text)
+                                                      , CAST(kurztitel_en AS text)]) AS short
+                             FROM campusonline.oefos
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_science_branch
@@ -2498,7 +2541,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_science_branch_code_idx ON public.campusonline_science_branch USING btree(code NULLS LAST)
+                        CREATE INDEX campusonline_science_branch_code_idx
+                          ON public.campusonline_science_branch (code NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_science_branch_code_idx
@@ -2506,7 +2550,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE UNIQUE INDEX campusonline_science_branch_id_idx ON public.campusonline_science_branch USING btree(id NULLS LAST)
+                        CREATE UNIQUE INDEX campusonline_science_branch_id_idx
+                          ON public.campusonline_science_branch (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_science_branch_id_idx
@@ -2514,7 +2559,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_science_branch_parent_id_idx ON public.campusonline_science_branch USING btree(parent_id NULLS LAST)
+                        CREATE INDEX campusonline_science_branch_parent_id_idx
+                          ON public.campusonline_science_branch (parent_id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_science_branch_parent_id_idx
@@ -2552,14 +2598,11 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.stud_impfstatus (
-                            st_person_nr numeric,
-                            covid_imunisierungs_status character varying
-                        )
-                        SERVER campusonline
-                        OPTIONS (
-                            schema 'CO_LOC_API',
-                            "table" 'STUD_IMPFSTATUS_V'
-                        )
+                            st_person_nr numeric
+                          , covid_imunisierungs_status varchar
+                        ) SERVER campusonline
+                          OPTIONS (schema 'CO_LOC_API'
+                                 , table 'STUD_IMPFSTATUS_V')
                     """,
                     reverse_sql="""
                         DROP FOREIGN TABLE campusonline.stud_impfstatus
@@ -2567,20 +2610,20 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE MATERIALIZED VIEW public.campusonline_student AS
-                        SELECT (s.stud_nr)::integer AS id,
-                            s.stud_mnr AS matriculation,
-                            s.stud_famnam AS last_name,
-                            s.stud_vorname AS first_name,
-                            s.stud_akadgrad AS title,
-                            s.stud_mifare AS cardid,
-                            s.stud_benutzername AS username,
-                            s.pers_profilbild AS avatar,
-                            s.email,
-                            (upper((COALESCE(si.covid_imunisierungs_status, 'N'::character varying))::text) = 'J'::text) AS immunized
-                        FROM (campusonline.stud s
-                            LEFT JOIN campusonline.stud_impfstatus si ON (((s.stud_nr)::integer = (si.st_person_nr)::integer)))
-                        WITH DATA
+                        CREATE MATERIALIZED VIEW public.campusonline_student
+                          AS SELECT CAST(s.stud_nr AS integer) AS id
+                                  , s.stud_mnr AS matriculation
+                                  , s.stud_famnam AS last_name
+                                  , s.stud_vorname AS first_name
+                                  , s.stud_akadgrad AS title
+                                  , s.stud_mifare AS cardid
+                                  , s.stud_benutzername AS username
+                                  , s.pers_profilbild AS avatar
+                                  , s.email
+                                  , upper(CAST(COALESCE(si.covid_imunisierungs_status
+                                                      , CAST('N' AS varchar)) AS text)) = CAST('J' AS text) AS immunized
+                             FROM campusonline.stud AS s
+                                  LEFT JOIN campusonline.stud_impfstatus AS si ON CAST(s.stud_nr AS integer) = CAST(si.st_person_nr AS integer)
                     """,
                     reverse_sql="""
                         DROP MATERIALIZED VIEW public.campusonline_student
@@ -2588,7 +2631,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_student_cardid_idx ON public.campusonline_student USING btree(cardid NULLS LAST)
+                        CREATE INDEX campusonline_student_cardid_idx
+                          ON public.campusonline_student (cardid NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_student_cardid_idx
@@ -2596,7 +2640,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_student_email_idx ON public.campusonline_student USING btree(email NULLS LAST)
+                        CREATE INDEX campusonline_student_email_idx
+                          ON public.campusonline_student (email NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_student_email_idx
@@ -2604,7 +2649,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_student_id_idx ON public.campusonline_student USING btree(id NULLS LAST)
+                        CREATE INDEX campusonline_student_id_idx
+                          ON public.campusonline_student (id NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_student_id_idx
@@ -2612,7 +2658,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_student_matriculation_idx ON public.campusonline_student USING btree(matriculation NULLS LAST)
+                        CREATE INDEX campusonline_student_matriculation_idx
+                          ON public.campusonline_student (matriculation NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_student_matriculation_idx
@@ -2620,7 +2667,8 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
-                        CREATE INDEX campusonline_student_username_idx ON public.campusonline_student USING btree(username NULLS LAST)
+                        CREATE INDEX campusonline_student_username_idx
+                          ON public.campusonline_student (username NULLS LAST)
                     """,
                     reverse_sql="""
                         DROP INDEX campusonline_student_username_idx
