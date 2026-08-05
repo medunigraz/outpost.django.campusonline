@@ -38,7 +38,7 @@ class RoomViewSet(ReadOnlyModelViewSet):
     queryset = models.Room.objects.all()
     serializer_class = serializers.RoomSerializer
     permission_classes = (AllowAny,)
-    filter_fields = ("category",)
+    filterset_fields = ("category",)
 
 
 class FloorViewSet(ReadOnlyModelViewSet):
@@ -70,7 +70,7 @@ class FunctionViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
     queryset = models.Function.objects.all()
     serializer_class = serializers.FunctionSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_class = filters.FunctionFilter
+    filterset_class = filters.FunctionFilter
     permission_classes = (IsAuthenticated,)
     permit_list_expands = ("persons",)
 
@@ -98,7 +98,7 @@ class OrganizationViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
     queryset = models.Organization.objects.all()
     serializer_class = serializers.OrganizationSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_class = filters.OrganizationFilter
+    filterset_class = filters.OrganizationFilter
     permission_classes = (AllowAny,)
     permit_list_expands = (
         "persons",
@@ -134,7 +134,7 @@ class PersonViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
     queryset = models.Person.objects.all()
     serializer_class = serializers.PersonSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_class = filters.PersonFilter
+    filterset_class = filters.PersonFilter
     permission_classes = (AllowAny,)
     permit_list_expands = (
         "functions",
@@ -180,7 +180,7 @@ class StudentViewSet(ReadOnlyModelViewSet):
     queryset = models.Student.objects.all()
     serializer_class = serializers.StudentSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_class = filters.StudentFilter
+    filterset_class = filters.StudentFilter
     permission_classes = (IsAuthenticated,)
 
     def get_serializer_class(self):
@@ -201,7 +201,7 @@ class PersonOrganizationFunctionViewSet(ReadOnlyModelViewSet):
     queryset = models.PersonOrganizationFunction.objects.all()
     serializer_class = serializers.PersonOrganizationFunctionSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_class = filters.PersonOrganizationFunctionFilter
+    filterset_class = filters.PersonOrganizationFunctionFilter
     permission_classes = (IsAuthenticated,)
 
 
@@ -226,7 +226,7 @@ class DistributionListViewSet(
     object_cache_key_func = key_constructors.DistributionListKeyConstructor()
     list_cache_key_func = key_constructors.DistributionListKeyConstructor()
     filter_backends = (DjangoFilterBackend,)
-    filter_class = filters.DistributionListFilter
+    filterset_class = filters.DistributionListFilter
     permission_classes = (IsAuthenticated,)
     permit_list_expands = ("persons", "students")
 
@@ -243,7 +243,7 @@ class EventViewSet(ReadOnlyModelViewSet):
     queryset = models.Event.objects.all()
     serializer_class = serializers.EventSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_class = filters.EventFilter
+    filterset_class = filters.EventFilter
     permission_classes = (AllowAny,)
 
     def get_queryset(self):
@@ -254,7 +254,7 @@ class CourseGroupTermViewSet(ReadOnlyModelViewSet):
     queryset = models.CourseGroupTerm.objects.all()
     serializer_class = serializers.CourseGroupTermSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_class = filters.CourseGroupTermFilter
+    filterset_class = filters.CourseGroupTermFilter
     permission_classes = (IsAuthenticated,)
 
 
@@ -270,7 +270,7 @@ class BulletinViewSet(ReadOnlyModelViewSet):
     queryset = models.Bulletin.objects.all()
     serializer_class = serializers.BulletinSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_class = filters.BulletinFilter
+    filterset_class = filters.BulletinFilter
 
 
 @docstring_format(
@@ -287,7 +287,7 @@ class BulletinPageViewSet(ReadOnlyModelViewSet):
     queryset = models.BulletinPage.objects.all()
     serializer_class = serializers.BulletinPageSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_class = filters.BulletinPageFilter
+    filterset_class = filters.BulletinPageFilter
     permission_classes = (AllowAny,)
 
 
@@ -314,7 +314,7 @@ class FinalThesisViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
     queryset = models.FinalThesis.objects.all()
     serializer_class = serializers.FinalThesisSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_class = filters.FinalThesisFilter
+    filterset_class = filters.FinalThesisFilter
     permission_classes = (IsAuthenticated,)
     permit_list_expands = ("author", "tutor", "organization")
 
@@ -336,7 +336,7 @@ class CountryViewSet(ReadOnlyModelViewSet):
     queryset = models.Country.objects.all()
     serializer_class = serializers.CountrySerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_class = filters.CountryFilter
+    filterset_class = filters.CountryFilter
     permission_classes = (AllowAny,)
 
 
@@ -357,7 +357,7 @@ class ExamModeViewSet(ReadOnlyModelViewSet):
     queryset = models.ExamMode.objects.all()
     serializer_class = serializers.ExamModeSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_class = filters.ExamModeFilter
+    filterset_class = filters.ExamModeFilter
     permission_classes = (AllowAny,)
 
 
@@ -378,7 +378,7 @@ class ExamTypeViewSet(ReadOnlyModelViewSet):
     queryset = models.ExamType.objects.all()
     serializer_class = serializers.ExamTypeSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_class = filters.ExamTypeFilter
+    filterset_class = filters.ExamTypeFilter
     permission_classes = (AllowAny,)
 
 
@@ -399,7 +399,7 @@ class ExamViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
     queryset = models.Exam.objects.all()
     serializer_class = serializers.ExamSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_class = filters.ExamFilter
+    filterset_class = filters.ExamFilter
     permission_classes = (ExtendedDjangoModelPermissions,)
     permit_list_expands = ("organization", "mode", "type", "course", "examiner")
 
@@ -421,7 +421,7 @@ class ExamineeStatusViewSet(ReadOnlyModelViewSet):
     queryset = models.ExamineeStatus.objects.all()
     serializer_class = serializers.ExamineeStatusSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_class = filters.ExamineeStatusFilter
+    filterset_class = filters.ExamineeStatusFilter
     permission_classes = (AllowAny,)
 
 
@@ -442,7 +442,7 @@ class ExamineeViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
     queryset = models.Examinee.objects.all()
     serializer_class = serializers.ExamineeSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_class = filters.ExamineeFilter
+    filterset_class = filters.ExamineeFilter
     permission_classes = (ExtendedDjangoModelPermissions,)
     permit_list_expands = ("exam", "student", "status")
 
@@ -464,6 +464,6 @@ class ScienceBranchViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
     queryset = models.ScienceBranch.objects.all()
     serializer_class = serializers.ScienceBranchSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_class = filters.ScienceBranchFilter
+    filterset_class = filters.ScienceBranchFilter
     permission_classes = (AllowAny,)
     permit_list_expands = ("parent",)
