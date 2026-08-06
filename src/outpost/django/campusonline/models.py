@@ -166,7 +166,7 @@ class Function(models.Model):
 
     ### `deputy_leader` (`boolean`)
     Indicate if function is associated with deputy leadership.
-    
+
     ### `persons` (`[integer]`)
     List of foreign keys to [CAMPUSonline persons](../person) associated with this function.
     """
