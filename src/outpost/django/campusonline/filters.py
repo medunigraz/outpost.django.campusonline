@@ -347,6 +347,7 @@ class PersonOrganizationFunctionFilter(filterset.FilterSet):
     """
 
     leader = BooleanFilter(field_name="function__leader")
+    deputy_leader = BooleanFilter(field_name="function__deputy_leader")
 
     class Meta:
         model = models.PersonOrganizationFunction
