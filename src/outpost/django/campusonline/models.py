@@ -697,7 +697,7 @@ class Event(OrderedModel):
     """
     ## Fields
 
-    ### `id` (`integer`)
+    ### `id` (`string`)
     Primary key.
 
     ### `course` (`object`)
@@ -728,6 +728,7 @@ class Event(OrderedModel):
     When to stop showing this event.
     """
 
+    id = models.CharField(max_length=32, primary_key=True)
     course = models.ForeignKey(
         "Course",
         models.SET_NULL,
