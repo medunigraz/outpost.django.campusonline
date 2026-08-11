@@ -2506,6 +2506,7 @@ class Migration(migrations.Migration):
                     sql="""
                         CREATE MATERIALIZED VIEW public.campusonline_science_branch
                           AS SELECT edv_code AS id
+                                  , code
                                   , ebene AS level
                                   , CASE ebene
                                       WHEN 1
@@ -2540,6 +2541,15 @@ class Migration(migrations.Migration):
                 ),
                 migrations.RunSQL(
                     sql="""
+                        CREATE INDEX campusonline_science_branch_code_idx
+                          ON public.campusonline_science_branch (code NULLS LAST)
+                    """,
+                    reverse_sql="""
+                        DROP INDEX campusonline_science_branch_code_idx
+                    """,
+                ),
+                migrations.RunSQL(
+                    sql="""
                         CREATE UNIQUE INDEX campusonline_science_branch_id_idx
                           ON public.campusonline_science_branch (id NULLS LAST)
                     """,
@@ -2570,6 +2580,7 @@ class Migration(migrations.Migration):
                                 verbose_name="ID",
                             ),
                         ),
+                        ("code", models.CharField(max_length=32)),
                         ("level", models.PositiveSmallIntegerField()),
                         ("name", django.contrib.postgres.fields.hstore.HStoreField()),
                         ("short", django.contrib.postgres.fields.hstore.HStoreField()),
