@@ -298,11 +298,11 @@ class Migration(migrations.Migration):
                 migrations.RunSQL(
                     sql="""
                         CREATE FOREIGN TABLE campusonline.laender_iso (
-                            iso_nummer varchar
+                            name_de varchar
+                          , name_en varchar
                           , iso_code_2 varchar
                           , iso_code_3 varchar
-                          , name_de varchar
-                          , name_en varchar
+                          , iso_nummer varchar
                         ) SERVER campusonline
                           OPTIONS (schema 'CO_LOC_API'
                                  , table 'LAENDER_ISO_V')
