@@ -81,7 +81,7 @@ class FunctionSerializer(FlexFieldsModelSerializer):
         return {
             "persons": (
                 f"{self.__class__.__module__}.{serializer}",
-                {"source": "persons", "many": True},
+                {"many": True},
             )
         }
 
@@ -119,11 +119,11 @@ class OrganizationSerializer(FlexFieldsModelSerializer):
         return {
             "parent": (
                 f"{self.__class__.__module__}.{self.__class__.__name__}",
-                {"source": "parent", "many": False},
+                {"many": False},
             ),
             "type": (
                 f"{self.__class__.__module__}.OrganizationTypeSerializer",
-                {"source": "type", "many": False},
+                {"many": False},
             ),
         }
 
@@ -157,15 +157,15 @@ class AuthenticatedOrganizationSerializer(OrganizationSerializer):
             **{
                 "parent": (
                     f"{self.__class__.__module__}.{self.__class__.__name__}",
-                    {"source": "parent", "many": False},
+                    {"many": False},
                 ),
                 "persons": (
                     f"{self.__class__.__module__}.AuthenticatedPersonSerializer",
-                    {"source": "persons", "many": True},
+                    {"many": True},
                 ),
                 "persons_leave": (
                     f"{self.__class__.__module__}.AuthenticatedPersonSerializer",
-                    {"source": "persons_leave", "many": True},
+                    {"many": True},
                 ),
             },
         }
@@ -200,19 +200,19 @@ class PersonSerializer(FlexFieldsModelSerializer):
     expandable_fields = {
         "classifications": (
             "outpost.django.research.serializers.ClassificationSerializer",
-            {"source": "classifications", "many": True},
+            {"many": True},
         ),
         "expertise": (
             "outpost.django.research.serializers.ExpertiseSerializer",
-            {"source": "expertise", "many": True},
+            {"many": True},
         ),
         "knowledge": (
             "outpost.django.research.serializers.KnowledgeSerializer",
-            {"source": "knowledge", "many": True},
+            {"many": True},
         ),
         "education": (
             "outpost.django.research.serializers.EducationSerializer",
-            {"source": "education", "many": True},
+            {"many": True},
         ),
     }
 
@@ -260,15 +260,15 @@ class AuthenticatedPersonSerializer(PersonSerializer):
             **{
                 "functions": (
                     f"{self.__class__.__module__}.FunctionSerializer",
-                    {"source": "functions", "many": True},
+                    {"many": True},
                 ),
                 "organizations": (
                     f"{self.__class__.__module__}.OrganizationSerializer",
-                    {"source": "organizations", "many": True},
+                    {"many": True},
                 ),
                 "organizations_leave": (
                     f"{self.__class__.__module__}.OrganizationSerializer",
-                    {"source": "organizations_leave", "many": True},
+                    {"many": True},
                 ),
             },
         }
@@ -346,11 +346,11 @@ class DistributionListSerializer(FlexFieldsModelSerializer):
         return {
             "persons": (
                 f"{self.__class__.__module__}.{person}",
-                {"source": "persons", "many": True},
+                {"many": True},
             ),
             "students": (
                 f"{self.__class__.__module__}.StudentSerializer",
-                {"source": "students", "many": True},
+                {"many": True},
             ),
         }
 
@@ -461,12 +461,9 @@ class FinalThesisSerializer(FlexFieldsModelSerializer):
                 if request.user.is_authenticated:
                     serializer = "AuthenticatedPersonSerializer"
         return {
-            "author": (f"{__name__}.StudentSerializer", {"source": "author"}),
-            "tutor": (f"{__name__}.{serializer}", {"source": "tutor"}),
-            "organization": (
-                f"{__name__}.OrganizationSerializer",
-                {"source": "organization"},
-            ),
+            "author": (f"{__name__}.StudentSerializer",),
+            "tutor": (f"{__name__}.{serializer}",),
+            "organization": (f"{__name__}.OrganizationSerializer",),
         }
 
     class Meta:
@@ -526,10 +523,7 @@ class ExamSerializer(FlexFieldsModelSerializer):
                 if request.user.is_authenticated:
                     serializer = "AuthenticatedPersonSerializer"
         return {
-            "organization": (
-                f"{__name__}.OrganizationSerializer",
-                {"source": "organization"},
-            ),
+            "organization": (f"{__name__}.OrganizationSerializer",),
             "mode": (f"{__name__}.ExamModeSerializer"),
             "type": (f"{__name__}.ExamTypeSerializer"),
             "examiner": (f"{__name__}.{serializer}"),
@@ -569,9 +563,9 @@ class ExamineeSerializer(FlexFieldsModelSerializer):
     @property
     def expandable_fields(self):
         return {
-            "exam": (f"{__name__}.ExamSerializer", {"source": "exam"}),
-            "student": (f"{__name__}.StudentSerializer", {"source": "student"}),
-            "status": (f"{__name__}.ExamineeStatusSerializer", {"source": "status"}),
+            "exam": (f"{__name__}.ExamSerializer",),
+            "student": (f"{__name__}.StudentSerializer",),
+            "status": (f"{__name__}.ExamineeStatusSerializer",),
         }
 
     class Meta:
@@ -599,7 +593,7 @@ class ScienceBranchSerializer(FlexFieldsModelSerializer):
         return {
             "parent": (
                 f"{self.__class__.__module__}.{self.__class__.__name__}",
-                {"source": "parent", "many": False},
+                {"many": False},
             ),
         }
 
