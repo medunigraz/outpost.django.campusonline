@@ -530,10 +530,10 @@ class ExamSerializer(FlexFieldsModelSerializer):
                 f"{__name__}.OrganizationSerializer",
                 {"source": "organization"},
             ),
-            "modes": (f"{__name__}.ExamModeSerializer", {"source": "mode"}),
-            "type": (f"{__name__}.ExamTypeSerializer", {"source": "type"}),
-            "examiner": (f"{__name__}.{serializer}", {"source": "examiner"}),
-            "course": (f"{__name__}.CourseSerializer", {"source": "course"}),
+            "mode": (f"{__name__}.ExamModeSerializer"),
+            "type": (f"{__name__}.ExamTypeSerializer"),
+            "examiner": (f"{__name__}.{serializer}"),
+            "course": (f"{__name__}.CourseSerializer"),
         }
 
     class Meta:
