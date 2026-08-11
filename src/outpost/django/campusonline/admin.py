@@ -18,7 +18,7 @@ class PersonAdmin(ReadOnlyAdminMixin, admin.ModelAdmin):
     list_display = ("last_name", "first_name", "title", "email", "username", "room")
     list_display_links = ("first_name", "last_name")
     list_filter = ("sex", "employed")
-    search_fields = ("first_name", "last_name", "email")
+    search_fields = ("first_name", "last_name", "email", "username")
     exclude = ("avatar_private", "hash")
 
 
