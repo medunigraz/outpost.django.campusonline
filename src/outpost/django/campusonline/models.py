@@ -1120,7 +1120,6 @@ class ScienceBranch(AL_Node):
     of `null` inidcated a root branch.
     """
 
-    code = models.CharField(max_length=32)
     level = models.PositiveSmallIntegerField()
     name = HStoreField()
     short = HStoreField()
