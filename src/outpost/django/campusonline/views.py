@@ -31,7 +31,7 @@ class PrivateAvatarView(View):
     def get(self, request, hash):
         p = get_object_or_404(models.Person, hash=hash)
         try:
-            with Image(blob=p.avatar_private.tobytes()) as img:
+            with Image(blob=p.avatar_private) as img:
                 response = HttpResponse()
                 img.format = "jpeg"
                 img.save(file=response)
