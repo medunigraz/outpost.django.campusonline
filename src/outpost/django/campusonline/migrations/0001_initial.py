@@ -75,6 +75,8 @@ class Migration(migrations.Migration):
                   , visitenkarte varchar
                   , pers_fax_nummer varchar
                   , pers_externe_telefon_nummer varchar
+                  , kages_pers_nr varchar
+                  , pers_geburtsdatum date
                   , akad_grad_vor varchar
                   , akad_grad_nach varchar
                   , sonstiger_titel_vor varchar
