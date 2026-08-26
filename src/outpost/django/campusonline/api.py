@@ -140,10 +140,6 @@ class PersonViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
         "functions",
         "organizations",
         "organizations_leave",
-        "classifications",
-        "expertise",
-        "knowledge",
-        "education",
     )
 
     def get_serializer_class(self):

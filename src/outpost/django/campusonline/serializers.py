@@ -188,33 +188,10 @@ class PersonSerializer(FlexFieldsModelSerializer):
      * `functions` <i class="glyphicon glyphicon-lock"></i>
      * `organizations` <i class="glyphicon glyphicon-lock"></i>
      * `organizations_leave` <i class="glyphicon glyphicon-lock"></i>
-     * `classification`
-     * `expertise`
-     * `knowledge`
-     * `education`
 
     """
 
     room = RoomSerializer()
-
-    expandable_fields = {
-        "classifications": (
-            "outpost.django.research.serializers.ClassificationSerializer",
-            {"many": True},
-        ),
-        "expertise": (
-            "outpost.django.research.serializers.ExpertiseSerializer",
-            {"many": True},
-        ),
-        "knowledge": (
-            "outpost.django.research.serializers.KnowledgeSerializer",
-            {"many": True},
-        ),
-        "education": (
-            "outpost.django.research.serializers.EducationSerializer",
-            {"many": True},
-        ),
-    }
 
     class Meta:
         model = models.Person
@@ -232,10 +209,6 @@ class PersonSerializer(FlexFieldsModelSerializer):
             "phone_external",
             "fax",
             "card",
-            "classifications",
-            "expertise",
-            "knowledge",
-            "education",
             "academic_title",
             "miscellaneous_title",
             "official_title",
