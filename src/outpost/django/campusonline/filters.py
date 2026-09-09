@@ -271,7 +271,7 @@ class PersonFilter(filterset.FilterSet):
 
     def filter_name(self, queryset, name, value):
         if len(value) < settings.CAMPUSONLINE_NAME_FILTER_MIN_LENGHT:
-            return queryset.empty()
+            return queryset.none()
         return queryset.filter(
             Q(first_name__icontains=value) | Q(last_name__icontains=value)
         )
@@ -295,6 +295,8 @@ class StudentFilter(filterset.FilterSet):
       - `last_name`: `iexact`, `contains`, `icontains`, `startswith`, `istartswith`, `endswith`, `iendswith`, `isnull`, `regex`, `iregex`
       - `title`: `iexact`, `contains`, `icontains`, `isnull`, `regex`, `iregex`
     """
+
+    name = CharFilter(method="filter_name", label="Name")
 
     class Meta:
         model = models.Student
@@ -335,6 +337,13 @@ class StudentFilter(filterset.FilterSet):
                 "iregex",
             ),
         }
+
+    def filter_name(self, queryset, name, value):
+        if len(value) < settings.CAMPUSONLINE_NAME_FILTER_MIN_LENGHT:
+            return queryset.none()
+        return queryset.filter(
+            Q(first_name__icontains=value) | Q(last_name__icontains=value)
+        )
 
 
 class PersonOrganizationFunctionFilter(filterset.FilterSet):
