@@ -342,7 +342,6 @@ class AuthenticatedStudentSerializer(StudentSerializer):
     class Meta(StudentSerializer.Meta):
         fields = StudentSerializer.Meta.fields + (
             "email",
-            "immunized",
         )
 
 
