@@ -154,9 +154,9 @@ class PersonViewSet(FlexFieldsMixin, ReadOnlyModelViewSet):
     def get_queryset(self):
         qs = super().get_queryset()
         if self.request.user and self.request.user.is_authenticated:
-            return qs
+            return qs.filter(active=True)
         else:
-            return qs.filter(employed=True)
+            return qs.filter(active=True, employed=True)
 
 
 @docstring_format(
