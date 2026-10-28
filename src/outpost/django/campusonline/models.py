@@ -393,6 +393,11 @@ class Person(models.Model):
         ("K", _("No record")),
     )
 
+    AVATAR_DISPLAY_RULES = (
+        ("A", _("All")),
+        ("I", _("Internal")),
+    )
+
     id = models.IntegerField(primary_key=True)
     first_name = models.CharField(max_length=256, blank=True, null=True)
     last_name = models.CharField(max_length=256, blank=True, null=True)
@@ -425,11 +430,13 @@ class Person(models.Model):
         db_constraint=False,
         related_name="persons_leave",
     )
+    avatar_display_rule = models.CharField(choices=AVATAR_DISPLAY_RULES, max_length=1, blank=True, null=True)
     avatar_private = models.BinaryField()
     hash = models.CharField(max_length=64)
     phone = models.CharField(max_length=256, blank=True, null=True)
     mobile = models.CharField(max_length=256, blank=True, null=True)
     employed = models.BooleanField()
+    active = models.BooleanField()
     card = models.URLField(blank=True, null=True)
     fax = models.CharField(max_length=256, blank=True, null=True)
     phone_external = models.CharField(max_length=256, blank=True, null=True)
