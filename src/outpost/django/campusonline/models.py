@@ -852,7 +852,9 @@ class Bulletin(models.Model):
     def update(cls, name, model, **kwargs):
         if not cls == model:
             return
-        for b in model.objects.all():
+        for b in model.objects.annotate(page_count=models.Count("pages")).filter(
+            page_count=0
+        ):
             b.extract()
 
 
