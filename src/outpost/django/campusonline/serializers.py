@@ -340,9 +340,7 @@ class StudentSerializer(ModelSerializer):
 
 class AuthenticatedStudentSerializer(StudentSerializer):
     class Meta(StudentSerializer.Meta):
-        fields = StudentSerializer.Meta.fields + (
-            "email",
-        )
+        fields = StudentSerializer.Meta.fields + ("email",)
 
 
 class CourseSerializer(ModelSerializer):

@@ -15,7 +15,15 @@ class OrganizationAdmin(ReadOnlyAdminMixin, admin.ModelAdmin):
 
 @admin.register(models.Person)
 class PersonAdmin(ReadOnlyAdminMixin, admin.ModelAdmin):
-    list_display = ("last_name", "first_name", "title", "email", "username", "room", "active")
+    list_display = (
+        "last_name",
+        "first_name",
+        "title",
+        "email",
+        "username",
+        "room",
+        "active",
+    )
     list_display_links = ("first_name", "last_name")
     list_filter = ("sex", "employed", "active")
     search_fields = ("first_name", "last_name", "email", "username")
